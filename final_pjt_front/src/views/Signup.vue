@@ -6,14 +6,14 @@
           <input type="text" id="username" v-model="credentials.username">
       </div>
       <div>
-          <label for="username">비밀번호: </label>
-          <input type="text" id="username" v-model="credentials.password">
+          <label for="password">비밀번호: </label>
+          <input type="text" id="password" v-model="credentials.password">
       </div>
       <div>
-          <label for="username">비밀번호 확인: </label>
+          <label for="passwordConfirmation">비밀번호 확인: </label>
           <input 
             type="text" 
-            id="username"
+            id="passwordConfirmation"
             v-model="credentials.passwordConfirmation"
             @keypress.enter="signup"
             >
@@ -38,9 +38,13 @@ export default {
     },
     methods: {
         signup: function () {
-            axios.post('http://127.0.0.1:8000/accounts/signup/')
+            axios.post('http://127.0.0.1:8000/accounts/signup/', this.credentials)
                 .then((res) => {
                     console.log(res)
+                    // this.$router.push({ name: ''})
+                })
+                .catch((err) => {
+                    console.log(err)
                 })
         }
     }
