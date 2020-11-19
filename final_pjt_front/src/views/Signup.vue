@@ -41,7 +41,7 @@ export default {
             axios.post('http://127.0.0.1:8000/accounts/signup/', this.credentials)
                 .then((res) => {
                     console.log(res)
-                    // this.$router.push({ name: ''})
+                    this.$router.push({ name: 'Login' })
                 })
                 .catch((err) => {
                     console.log(err)
