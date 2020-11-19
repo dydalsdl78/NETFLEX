@@ -1,9 +1,34 @@
 <template>
   <div id="app">
-    dfsd
-
+    <p>List</p>
+    <button @click="getMovieList">getlist</button>
+    <ul>
+      <p v-for="(movie, idx) in movies" :key="idx"> {{ movie.title }} </p>
+    </ul>
   </div>
 </template>
+
+<script>
+import axios from 'axios'
+
+export default {
+  name: 'App',
+  data: function () {
+    return {
+      movies: [],
+    }
+  },
+  methods: {
+    getMovieList: function () {
+      axios.get("http://127.0.0.1:8000/movies/movielist/")
+        .then((res) => {
+          // console.log(res.data[0].title)
+          this.movies = res.data
+        })
+    }
+  }
+}
+</script>
 
 <style>
 #app {
