@@ -1,22 +1,23 @@
 <template>
   <div id="app">
-    <p>List</p>
-    <button @click="getMovieList">getlist</button>
-    <ul>
-      <p v-for="(movie, idx) in movies" :key="idx"> {{ movie.title }} </p>
-    </ul>
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <MovieCard v-for="(movie, idx) in movies" :key="idx" :movie="movie" />
+      </div>
+    </div>
+
   </div>
 </template>
 
 <script>
-<<<<<<< HEAD
-export default {
-  
-=======
 import axios from 'axios'
+import MovieCard from '@/components/MovieCard'
 
 export default {
   name: 'App',
+  components:{
+    MovieCard
+  },
   data: function () {
     return {
       movies: [],
@@ -30,8 +31,10 @@ export default {
           this.movies = res.data
         })
     }
+  },
+  created(){
+    this.getMovieList()
   }
->>>>>>> 5b2a61fd84255d1eac405f8fc3e4674094e9ccee
 }
 </script>
 
