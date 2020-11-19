@@ -7,10 +7,14 @@ from .models import Movie
 from .serializers import MovieSerializer
 
 # Create your views here.
-@api_view(['GET'])
+@api_view(['GET', 'POST'])
 def movielist(request):
-    movies = Movie.objects.all()
-    serializer = MovieSerializer(movies, many=True)
-    print(serializer.data)
-    return Response(serializer.data)
-    
+    if request.method == "GET":
+        movies = Movie.objects.all()
+        serializer = MovieSerializer(movies, many=True)
+        return Response(serializer.data)
+    else:
+        serializer = MovieSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save(user=request.user)
+            return Response(serializer.data)

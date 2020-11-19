@@ -1,10 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
+import Signup from '@/views/Signup'
 Vue.use(VueRouter)
 
 const routes = [
-
+  {
+    path: '/accounts/signup',
+    name: 'Signup',
+    component: Signup,
+  }
 ]
 
 const router = new VueRouter({
