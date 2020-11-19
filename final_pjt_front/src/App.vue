@@ -11,7 +11,7 @@
             <router-link class="nav-link" :to="{ name:'Home'}"> Home </router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/">Log in </router-link>
+            <router-link class="nav-link" :to="{ name: 'Login' }">Log in </router-link>
           </li>
           <li class="nav-item">
             <router-link class="nav-link" :to="{ name: 'Signup' }">Sign up</router-link>
