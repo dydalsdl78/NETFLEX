@@ -1,9 +1,5 @@
 import Vue from 'vue'
-import './plugins/fontawesome'
-import App from './App.vue'
-import router from './router'
-import store from './store'
-// 여기부터
+
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -11,12 +7,3 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 library.add(fas)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
-// 여기 추가
-
-Vue.config.productionTip = false
-
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')

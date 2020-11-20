@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <router-link class="navbar-brand" :to="{ name: 'Home' }">TQDB</router-link>
+      <router-link class="navbar-brand" :to="{ name: 'Home' }"
+        >TQDB</router-link
+      >
       <button
         class="navbar-toggler"
         type="button"
@@ -77,7 +79,7 @@
       <header class="chatbox-popup__header">
         <aside style="flex: 3">
           <i
-            class="fa fa-user-circle fa-4x chatbox-popup__avatar"
+            class="fa fa-user-circle fa-5x chatbox-popup__avatar"
             aria-hidden="true"
           ></i>
         </aside>
@@ -160,6 +162,8 @@
 
 <script src="path/jquery-3.3.1.min.js"></script>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<!--<script src="https://use.fontawesome.com/1a5ee2cd62.js"></script>-->
+
 <script>
 import jQuery from "jquery";
 
