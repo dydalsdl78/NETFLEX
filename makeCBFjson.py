@@ -14,14 +14,13 @@ for page in range(0, 10):
 
     # 한번에 20개의 데이터를 반복문을 돌면서
     for i in range(20):
-        # print(i)
-        # 한개의 딕셔너리 안에 "model" : "movies.movie" 라는 키, 값 형태로 저장
-        data.append({"model": "movies.movie"})
         # 전체 필드를 "fields": tmp[results][i] 키, 값 형태로 저장
-        data[20 * page + i]["fields"] = tmp['results'][i]
+        data.append(tmp['results'][i])
 
 
-file_path = "./fixtures/movies.json"
+file_path = "movies.json"
 
 with open(file_path, 'w', encoding='UTF-8') as outfile:
     json.dump(data, outfile, ensure_ascii=False, indent=4)
+
+

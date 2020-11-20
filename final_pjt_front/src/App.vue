@@ -62,6 +62,7 @@
     </nav>
     <router-view @login="login = true" />
 
+    <!-- chatting box -->
     <noscript>
       <strong
         >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
