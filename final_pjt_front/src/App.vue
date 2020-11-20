@@ -15,23 +15,6 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <router-link class="nav-link" :to="{ name:'Home'}"> Home </router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" :to="{ name: 'Login' }">Log in </router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" :to="{ name: 'Signup' }">Sign up</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/">Community</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/">Recommendation</router-link>
-          </li>
-        </ul>
-        
           <!-- 로그인 했을 때 -->
           <span v-if="login" class="form-inline">
             <li class="nav-item">

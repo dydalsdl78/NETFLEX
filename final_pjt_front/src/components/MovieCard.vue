@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
 <div class="card" style="width: 18rem;">   
            
     <img :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path" class="card-img-top" alt="poster">
@@ -39,27 +38,6 @@ export default {
 
 
 }
-=======
-  <div class="card" style="width: 18rem">
-    <img
-      :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path"
-      class="card-img-top"
-      alt="poster"
-    />
-    <div class="card-body">
-      <h5 class="card-title">{{ movie.title }}</h5>
-    </div>
-  </div>
-</template>
-
-<script>
-export default {
-  name: "MovieCard",
-  props: {
-    movie: Object,
-  },
-};
->>>>>>> a3e190f9e98f3b6ebbbb27c341909d9c6724d037
 </script>
 
 <style>

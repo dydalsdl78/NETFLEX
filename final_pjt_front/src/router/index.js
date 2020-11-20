@@ -28,6 +28,8 @@ const routes = [
     path: '/movies/reviews',
     name: 'ReviewCreate',
     component: ReviewCreate,
+  },
+  {
     path: '/community',
     name: 'Community',
     component: Community,
