@@ -14,6 +14,7 @@ def signup(request):
 
     # 데이터 직렬화
     serializer = UserSerializer(data=request.data)
+    print(serializer)
 
     # 데이터 검증 작업 진행
     if serializer.is_valid(raise_exception=True):

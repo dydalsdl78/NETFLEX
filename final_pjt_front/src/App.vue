@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">TQDB</a>
+      <router-link class="navbar-brand" :to="{ name: 'Home' }">TQDB</router-link>
       <button
         class="navbar-toggler"
         type="button"
@@ -17,11 +17,6 @@
         <ul class="navbar-nav ml-auto">
           <!-- 로그인 했을 때 -->
           <span v-if="login" class="form-inline">
-            <li class="nav-item">
-              <router-link class="nav-link" :to="{ name: 'Home' }">
-                Home
-              </router-link>
-            </li>
             <li class="nav-item">
               <router-link class="nav-link" @click.native="logout" to="#"
                 >Logout</router-link

@@ -28,7 +28,12 @@ def review_create(request):
         serializer = ReviewSerializer(reviews, many=True)
         return Response(serializer.data)
     else:
-        serializer = TodoSerialzier(data=request.data)
+        serializer = ReviewSerializer(data=request.data)
+        print(request.data['title'])
+        print('end')
         if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            return Response(serializer.data, status.HTPP_201_CREATED)
+            print('valid')
+            serializer.save(user=request.user)
+            return Response(serializer.data, status.HTTP_201_CREATED)
+        else:
+            print('invalid')
