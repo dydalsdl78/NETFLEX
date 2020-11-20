@@ -25,9 +25,10 @@ const routes = [
     component: Login,
   },
   {
-    path: '/movies/reviews',
+    path: '/movies/reviews/:url',
     name: 'ReviewCreate',
     component: ReviewCreate,
+    props:true
   },
   {
     path: '/community',
