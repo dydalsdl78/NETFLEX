@@ -6,8 +6,11 @@ from rest_framework.decorators import api_view
 
 from .models import Movie, Review
 from .serializers import MovieSerializer, ReviewSerializer
+from .CBF import overview_recommend
 
 # Create your views here.
+
+
 @api_view(['GET'])
 def movielist(request):
     # 영화 목록에 대한 권한은 관리자만 가질 것이고 POST로 조작 할 일은 없을 것 같아서 주석처리했어요. 나중에 토의하고 지우던가 하죠 머
@@ -22,10 +25,10 @@ def movielist(request):
     #     return Response(serializer.data)
 
 
-@api_view(['GET','POST'])
+@api_view(['GET', 'POST'])
 def review_create(request, movie_pk):
     # 리뷰 만드는 거는 GET으로 목록로 보여줘야하니까 아마 함수이름이랑 url이름 바꿔야 할 것 같음요
-    # 어떤 영화에 달려있는지 알아오기 위해서 movie_pk 값 이랑 일치하는 영화 불러왔습니다. 
+    # 어떤 영화에 달려있는지 알아오기 위해서 movie_pk 값 이랑 일치하는 영화 불러왔습니다.
     movie = Movie.objects.get(pk=movie_pk)
     if request.method == 'GET':
         serializer = ReviewSerializer(review, many=True)
@@ -39,3 +42,10 @@ def review_create(request, movie_pk):
             # serializer.save(user=request.user)
             return Response(serializer.data, status.HTTP_201_CREATED)
 
+
+@api_view(['POST'])
+def recommend(request):
+    # print(request.data)
+    movies_recommended = overview_recommend(request.data['movie_title'])
+    # print(movies_recommended)
+    return Response(movies_recommended)

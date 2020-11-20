@@ -4,9 +4,11 @@ import json
 api_key = "d7a0f6399832ff632e1b02fc2afb5d21"
 
 data = []
+pages = 10
 
-for page in range(0, 10):
-    url = "https://api.themoviedb.org/3/movie/popular?api_key=" + api_key + "&language=ko-KR&page=" + str(page + 1)
+for page in range(0, pages):
+    url = "https://api.themoviedb.org/3/movie/popular?api_key=" + \
+        api_key + "&language=ko-KR&page=" + str(page + 1)
     # 응답
     response = requests.get(url)
     # 응답값 저장
