@@ -8,32 +8,28 @@
 
 <script>
 // @ is an alias to /src
-import axios from 'axios'
-import MovieCard from '@/components/MovieCard'
+import axios from "axios";
+import MovieCard from "@/components/MovieCard";
 export default {
-    name:'Home',
-    components:{
-        MovieCard,
-    },
-    data:function(){
-      
-        return{
-          movies:[]
-        
-      }
-    },
-    methods: {
-    getMovieList: function () {
-      axios.get("http://127.0.0.1:8000/movies/movielist/")
-        .then((res) => {
-          // console.log(res.data[0].title)
-          this.movies = res.data
-        })
-    }
+  name: "Home",
+  components: {
+    MovieCard,
   },
-  created(){
-    this.getMovieList()
-  }
-
-}
+  data: function () {
+    return {
+      movies: [],
+    };
+  },
+  methods: {
+    getMovieList: function () {
+      axios.get("http://127.0.0.1:8000/movies/movielist/").then((res) => {
+        // console.log(res.data[0].title)
+        this.movies = res.data;
+      });
+    },
+  },
+  created() {
+    this.getMovieList();
+  },
+};
 </script>
