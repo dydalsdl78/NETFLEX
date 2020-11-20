@@ -41,7 +41,7 @@ export default {
         .then((res) => {
           localStorage.setItem("jwt", res.data.token);
           this.$emit("login");
-          this.$router.push({ name: "Home" }); // 무비 리스트로 ㄱㄱ
+          this.$router.push({ name: "Home" });
         })
         .catch((err) => {
           console.log(err);
