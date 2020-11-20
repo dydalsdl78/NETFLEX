@@ -23,7 +23,7 @@
             <router-link class="nav-link" to="/">Recommendation</router-link>
           </li>
         </ul>
-
+        
 
       </div>
     </nav>

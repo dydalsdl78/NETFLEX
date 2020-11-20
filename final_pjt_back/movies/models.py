@@ -3,8 +3,10 @@ from django.conf import settings
 
 # Create your models here.
 
+
 class Genre(models.Model):
     name = models.CharField(max_length=50)
+
 
 class Movie(models.Model):
     popularity = models.FloatField()
@@ -20,3 +22,14 @@ class Movie(models.Model):
     original_language = models.CharField(max_length=10)
     original_title = models.CharField(max_length=50)
     genre_ids = models.ManyToManyField(Genre)
+
+
+class Review(models.Model):
+    title = models.CharField(max_length=100)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    rank = models.IntegerField()
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
