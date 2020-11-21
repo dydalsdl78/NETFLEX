@@ -47,6 +47,8 @@ export default {
           console.log(err);
         });
     },
+    // 여기서 vuex써서 dispatch로 username을 보내고 actions, mutaions 차례로 state에 username을 저장한다.
+    // 그리고 recommend를 누를 때 $store.state로 username을 받아 url에 같이 요청한다.
   },
 };
 </script>

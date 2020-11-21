@@ -57,7 +57,7 @@ import axios from "axios";
 export default {
   name: "CreateReview",
   props: {
-    movie: Object,
+    // movie: Object, // 필요 없는듯요?? 받아오는 곳이 없음
   },
   data: function () {
     return {
