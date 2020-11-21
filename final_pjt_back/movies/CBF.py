@@ -13,7 +13,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # 데이터 불러오기
-movies = pd.read_json("C:/Users/kym/Desktop/finalpjt/CBF/CBFmovies.json")
+movies = pd.read_json("../../finalpjt/CBF/CBFmovies.json")
 
 # 사용 할 데이터만 저장
 movies_df = movies[['id', 'title', 'overview', 'popularity', 'vote_count',
@@ -101,7 +101,7 @@ def overview_recommend(movie_title):
     warnings.filterwarnings('ignore')
 
     # 데이터 불러오기
-    movies = pd.read_json("C:/Users/kym/Desktop/finalpjt/CBF/CBFmovies.json")
+    movies = pd.read_json("../../finalpjt/CBF/CBFmovies.json")
 
     # 사용 할 데이터만 저장
     movies_df = movies[['id', 'title', 'overview', 'popularity', 'vote_count',
