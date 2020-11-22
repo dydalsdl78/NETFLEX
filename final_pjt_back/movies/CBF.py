@@ -1,4 +1,4 @@
-
+'''
 # 1.장르기반 ------------------------------------------------------------
 
 # from sklearn.feature_extraction.text import CountVectorizer
@@ -19,8 +19,6 @@ movies = pd.read_json("../../finalpjt/CBF/CBFmovies.json")
 movies_df = movies[['id', 'title', 'overview', 'popularity', 'vote_count',
                     'vote_average', 'release_date', 'poster_path', 'adult', 'genre_ids']]
 
-
-'''
 # print(movies_df['genre_ids'])
 movies_df['genre_ids'] = movies_df['genre_ids'].apply(
     lambda x: list(map(str, x)))
