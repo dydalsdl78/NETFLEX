@@ -6,7 +6,7 @@ from rest_framework.decorators import api_view
 
 from .models import Movie, Review
 from .serializers import MovieSerializer, ReviewSerializer
-from .CBF import overview_recommend
+from .CBF import overview_recommend, genre_recommend
 from .pingpong import pingpong
 
 from accounts.models import User
@@ -52,7 +52,7 @@ def review_create(request, movie_pk, username):
 @api_view(['POST'])
 def recommend(request):
     # print(request.data)
-    movies_recommended = overview_recommend(request.data['movie_title'])
+    movies_recommended = genre_recommend(request.data['movie_title'])
     # print(movies_recommended)
     return Response(movies_recommended)
 
