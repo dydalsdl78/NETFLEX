@@ -1,9 +1,14 @@
 <template>
   <div>
-    <h1>Login</h1>
+    <h2>Login</h2>
     <div>
       <label for="username">사용자 이름: </label>
-      <input type="text" id="username" v-model="credentials.username" />
+      <input
+        placeholder="영문입력하세요"
+        type="text"
+        id="username"
+        v-model="credentials.username"
+      />
     </div>
     <div>
       <label for="password">비밀번호: </label>
@@ -33,12 +38,17 @@ export default {
   },
   methods: {
     login: function () {
+      const username = this.credentials.username;
+      // username 데이터를 전송
+      this.$store.dispatch("usernameSave", username);
       axios
         .post(
           "http://127.0.0.1:8000/accounts/api-token-auth/",
           this.credentials
         )
         .then((res) => {
+          console.log(this.$store.state.username);
+          // jwt 토큰 생성
           localStorage.setItem("jwt", res.data.token);
           this.$emit("login");
           this.$router.push({ name: "Home" });

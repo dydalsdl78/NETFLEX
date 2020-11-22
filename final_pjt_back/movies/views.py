@@ -8,6 +8,7 @@ from .models import Movie, Review
 from .serializers import MovieSerializer, ReviewSerializer
 from .CBF import overview_recommend
 
+from accounts.models import User
 # Create your views here.
 
 
@@ -26,10 +27,13 @@ def movielist(request):
 
 
 @api_view(['GET', 'POST'])
-def review_create(request, movie_pk):
+def review_create(request, movie_pk, username):
     # 리뷰 만드는 거는 GET으로 목록로 보여줘야하니까 아마 함수이름이랑 url이름 바꿔야 할 것 같음요
     # 어떤 영화에 달려있는지 알아오기 위해서 movie_pk 값 이랑 일치하는 영화 불러왔습니다.
     movie = Movie.objects.get(pk=movie_pk)
+    # vue에서 받은 username과 일치하는 user_id 값을 user에 저장
+    user = User.objects.values("id").get(username=username)
+    print(user['id'])
     if request.method == 'GET':
         serializer = ReviewSerializer(review, many=True)
         return Response(serializer.data)
@@ -38,8 +42,9 @@ def review_create(request, movie_pk):
         if serializer.is_valid(raise_exception=True):
             # fields 에서 movie field가 비어있어서 넣었고
             serializer.save(movie=movie)
-            # 원래 모델에는 user가 있어서 넣어줘야 했는데 현재 user값을 어떻게 불러와서 넣어야 할지 모르겠어서 일단 모델에서도 제거하고 해봤어요
-            # serializer.save(user=request.user)
+            # serializer.save(user=userInstance) 얘도 모르겠다,,
+            # user 쿼리셋의 id값을 user_id에 저장하는건데 이렇게 해도되는지 모르겠음...
+            serializer.save(user_id=user['id'])
             return Response(serializer.data, status.HTTP_201_CREATED)
 
 

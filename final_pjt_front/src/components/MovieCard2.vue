@@ -28,11 +28,6 @@ export default {
   props: {
     movie: Object,
   },
-  data: function () {
-    return {
-      login: false,
-    };
-  },
   created: function () {
     const token = localStorage.getItem("jwt");
 

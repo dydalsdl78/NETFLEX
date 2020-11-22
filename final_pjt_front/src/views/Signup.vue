@@ -1,9 +1,14 @@
 <template>
   <div>
-    <h1>Singup</h1>
+    <h2>Singup</h2>
     <div>
       <label for="username">사용자 이름: </label>
-      <input type="text" id="username" v-model="credentials.username" />
+      <input
+        placeholder="영문으로 입력하세요"
+        type="text"
+        id="username"
+        v-model="credentials.username"
+      />
     </div>
     <div>
       <label for="password">비밀번호: </label>
@@ -53,4 +58,22 @@ export default {
 </script>
 
 <style>
+body {
+  position: relative;
+  z-index: 1;
+}
+
+body:after {
+  background-image: url("../../src/assets/background.jpg");
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-size: 100%;
+  opacity: 0.5 !important;
+  filter: alpha(opacity=50);
+  z-index: -1;
+  content: "";
+  width: 100%;
+  height: 100%;
+}
 </style>

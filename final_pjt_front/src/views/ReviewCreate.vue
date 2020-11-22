@@ -2,7 +2,9 @@
   <div class="container">
     <form>
       <div class="form-group">
-        <label for="title"> {{ movie.title }}의 리뷰 </label>
+        <!-- movie를 받아오는 곳이 없어서 오류나는 듯?.. -->
+        <!-- <label for="title"> {{ movie.title }}의 리뷰 </label> -->
+        <label for="title"> 리뷰 제목 </label>
         <input
           v-model="reviewItem.title"
           type="text"
@@ -40,31 +42,29 @@
           >사용자 약관에 동의합니다.</label
         >
       </div>
-      <button @click="createReview" type="submit" class="btn btn-primary">
-        제출
-      </button>
+      <!-- <button @click="createReview" type="submit" class="btn btn-primary">제출</button> -->
       <small id="emailHelp" class="form-text text-muted"
         >We'll never share your email with anyone elsedd.</small
       >
     </form>
 
-    <button @click="createReview(movie)">sdasd</button>
+    <button @click="createReview(movie)">제출테스트</button>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+
 export default {
   name: "CreateReview",
   props: {
-    // movie: Object, // 필요 없는듯요?? 받아오는 곳이 없음
+    movie: Object,
   },
   data: function () {
     return {
       reviewItem: {
-        // reviewItem 이라고 변수명 바꿨어요!
         title: "",
-        // movie: this.movie, 얘 필요없을듯??
+        movie: this.movie,
         score: "",
         content: "",
       },
@@ -72,9 +72,11 @@ export default {
   },
   methods: {
     createReview: function (movie) {
+      const username = this.$store.state.username;
+      console.log(username);
       axios
         .post(
-          `http://127.0.0.1:8000/movies/${movie.id}/reviews/`,
+          `http://127.0.0.1:8000/movies/${movie.id}/${username}/reviews/`,
           this.reviewItem
         )
         .then(() => {
