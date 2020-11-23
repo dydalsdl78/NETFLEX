@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- <div class="col justify-content-center"> -->
+    <!-- <div class="row justify-content-center"> -->
     <h2 class="mt-5">현재 상영 영화</h2>
     <div class="container">
       <carousel

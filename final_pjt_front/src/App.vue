@@ -70,9 +70,11 @@
     <div id="app"></div>
 
     <button class="chatbox-open">
+      채팅
       <i class="fa fa-comment fa-2x" aria-hidden="true"></i>
     </button>
     <button class="chatbox-close">
+      닫기
       <i class="fa fa-close fa-2x" aria-hidden="true"></i>
     </button>
     <section class="chatbox-popup">
@@ -84,8 +86,7 @@
           ></i>
         </aside>
         <aside style="flex: 8">
-          <h1>기현용민</h1>
-          채팅봇
+          <h1>채팅봇</h1>
         </aside>
         <aside style="flex: 1">
           <button class="chatbox-maximize">
@@ -94,9 +95,8 @@
         </aside>
       </header>
       <main id="chatting_box" class="chatbox-popup__main">
-        아;;<br />
-        화면 스크롤 따라서<br />
-        안움직이네ㅋㅋㅋㅋㅋㅋ
+        <p v-if="chattings">{{ chattings }}</p>
+        <p v-else>사이트에 궁금한 점이 있으시면 물어봐주세요</p>
       </main>
       <footer class="chatbox-popup__footer">
         <aside style="flex: 1; color: #888; text-align: center">
@@ -104,10 +104,12 @@
         </aside>
         <aside style="flex: 10">
           <textarea
+            v-model="query"
             id="text"
             type="text"
             placeholder="채팅을 입력하세요"
             autofocus
+            @keypress.enter="transferQuery"
           ></textarea>
         </aside>
         <aside style="flex: 1; color: #888; text-align: center">
@@ -166,12 +168,17 @@
 
 <script>
 import jQuery from "jquery";
+import axios from "axios";
 
 export default {
   name: "App",
   data: function () {
     return {
       login: false,
+      query: "",
+      chattings: "",
+      myMessage: [],
+      botMessage: [],
     };
   },
   methods: {
@@ -179,6 +186,22 @@ export default {
       localStorage.removeItem("jwt");
       this.login = false;
       this.$router.push({ name: "Login" });
+    },
+    transferQuery: function () {
+      const query = {
+        query: this.query,
+      };
+
+      axios
+        .post("http://127.0.0.1:8000/movies/pingpong/", query)
+        .then((res) => {
+          // this.chattings.push(this.query);
+          this.query = "";
+          this.myMessage.push(this.query);
+          this.chattings = res.data;
+          this.botMessage.push(this.chattings);
+          console.log(res.data);
+        });
     },
   },
   created: function () {

@@ -1,23 +1,39 @@
 <template>
   <div>
-    <h1>Recommendation</h1>
+    <h2>장르 유사도 및 가중평점이 가장 높은 추천</h2>
+    <br />
     <input
       @keypress.enter="getRecommendedMovies"
       v-model="movie_title"
       type="text"
     />
     <button @click="getRecommendedMovies">get</button>
-    <ul v-for="(recommend_movie, idx) in recommend_movies" :key="idx">
-      <p>{{ recommend_movie.title }}</p>
-    </ul>
+    <br />
+    <!-- <ul v-for="(recommend_movie, idx) in recommend_movies" :key="idx"> -->
+    <!-- <p>{{ recommend_movie.title }}</p> -->
+    <br />
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <MovieRecommend
+          v-for="(recommend_movie, idx) in recommend_movies"
+          :key="idx"
+          :recommend_movie="recommend_movie"
+        />
+      </div>
+    </div>
+    <!-- </ul> -->
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import MovieRecommend from "@/components/MovieRecommend";
 
 export default {
   name: "Recommendation",
+  components: {
+    MovieRecommend,
+  },
   data: function () {
     return {
       movie_title: "",
