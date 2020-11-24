@@ -6,7 +6,7 @@
       <i><font-awesome-icon :icon="faSearch" size="1x" /></i>
       <p class="d-flex justify-content-center"></p>
 
-      <vue-autosuggest
+      <!-- <vue-autosuggest
         :suggestions="[
           {
             data: suggests,
@@ -23,7 +23,7 @@
         <template slot-scope="{ suggestion }">
           <span class="my-suggestion-item">{{ suggestion.item }}</span>
         </template>
-      </vue-autosuggest>
+      </vue-autosuggest> -->
 
       <button @click="searchMovie">search</button>
     </div>
@@ -35,12 +35,12 @@
 <script>
 import axios from "axios";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { VueAutosuggest } from "vue-autosuggest";
+// import { VueAutosuggest } from "vue-autosuggest";
 
 export default {
   name: "Search",
   components: {
-    VueAutosuggest,
+    // VueAutosuggest,
   },
   props: {
     movies: Array,
