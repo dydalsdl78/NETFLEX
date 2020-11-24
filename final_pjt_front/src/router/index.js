@@ -7,6 +7,7 @@ import ReviewCreate from '@/views/ReviewCreate'
 import Community from '@/views/Community'
 import Mypage from '@/views/Mypage'
 import MovieDetail from '@/views/MovieDetail'
+import ReviewDetail from '@/views/ReviewDetail'
 Vue.use(VueRouter)
 
 const routes = [
@@ -46,7 +47,13 @@ const routes = [
     name: 'MovieDetail',
     component: MovieDetail,
     props: true
-  }
+  },
+  {
+    path: '/reviewDetail',
+    name: 'ReviewDetail',
+    component: ReviewDetail,
+    props: true
+  },
 ]
 
 const router = new VueRouter({

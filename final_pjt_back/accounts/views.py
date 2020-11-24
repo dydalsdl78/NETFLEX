@@ -34,8 +34,5 @@ def signup(request):
 @authentication_classes([JSONWebTokenAuthentication])
 @permission_classes([IsAuthenticated])
 def username(request):
-    print('entered')
-    print(request.user)
     serializer = UserSerializer(request.user)
-    print(serializer.data)
     return Response(serializer.data)

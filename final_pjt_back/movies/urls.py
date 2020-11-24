@@ -9,4 +9,5 @@ urlpatterns = [
     path('pingpong/', views.pingpongTransfer),
     path('search/', views.searchMovie),
     path('getgenre/', views.getGenre),
+    path('<int:review_pk>/', views.detail),
 ]

@@ -24,7 +24,7 @@
       <label for="inputPassword" class="sr-only"></label>
       <input
         v-model="credentials.password"
-        @keypress.enter="login"
+        @keypress.enter="signup"
         type="text"
         id="inputPassword"
         class="m-auto form-control"
@@ -51,7 +51,7 @@
         </label>
       </div>
       <button
-        @click="login"
+        @click="signup"
         class="m-auto btn btn-lg btn-primary btn-block"
         type="submit"
         style="width: 300px"
@@ -166,7 +166,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 body {
   position: relative;
   z-index: 1;

@@ -48,7 +48,9 @@
       >
 </form>
 
-    <button @click="createReview">제출테스트</button>
+    
+    <button v-if="update" @click='updateReview' class="btn btn-primary">업데이트</button>
+    <button v-else @click="createReview" class="btn btn-primary">등록</button>
 </div>
 </template>
 
@@ -59,6 +61,7 @@ export default {
   name: "CreateReview",
   props: {
     movie: Object,
+    review: Object,
   },
   data: function () {
     return {
@@ -67,7 +70,9 @@ export default {
         movie: this.movie,
         score: "",
         content: "",
+        id: "",
       },
+      update:false,
     };
   },
   methods: {
@@ -95,6 +100,33 @@ export default {
           console.log(err);
         });
     },
+    updateReview: function(){
+      const config = this.setToken()
+      axios.put(
+         `http://127.0.0.1:8000/movies/review_create_list/`, this.reviewItem, config
+      )
+      .then(() => {
+        
+        this.$router.push({ name: "Community" });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    },
+    updateCreateReview: function(){
+      if(this.review){ 
+      this.reviewItem.title = this.review.title
+      this.reviewItem.score = this.review.score
+      this.reviewItem.content = this.review.content
+      this.reviewItem.id = this.review.id
+      this.update = true
+      }
+    }
+  },
+  created: function(){
+    this.updateCreateReview()
+    console.log('updatereview')
   },
 };
 </script>

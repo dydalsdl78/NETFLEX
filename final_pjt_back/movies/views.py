@@ -32,7 +32,7 @@ def movielist(request):
     #     return Response(serializer.data)
 
 
-@api_view(['GET', 'POST'])
+@api_view(['GET', 'POST', 'PUT', 'DELETE'])
 @authentication_classes([JSONWebTokenAuthentication])
 # @permission_classes([IsAuthenticated])
 def review_create_list(request):
@@ -45,7 +45,25 @@ def review_create_list(request):
             print(review.user)
         serializer = ReviewSerializer(reviews, many=True)
         return Response(serializer.data)
+    elif request.method == 'PUT':
 
+
+        review = Review.objects.get(pk=request.data['id'])
+        if not request.user.reviews.filter(pk=review.id).exists():
+            print('권한없음!')
+            return Response({'detail': '권한이 없습니다.'})
+        
+
+        print(review.title)
+        serializer = ReviewSerializer(review, data=request.data)
+        print('hererer')
+        if serializer.is_valid():
+            print('herer2222')
+            serializer.save()
+            return Response(serializer.data, status.HTTP_201_CREATED)
+    elif request.method == 'DELETE':
+        print('here')
+        print(request.data)
     else:
         serializer = ReviewSerializer(data=request.data)
         if serializer.is_valid():
@@ -94,3 +112,9 @@ def getGenre(request):
         print(genre)
         res.append(genre)
     return Response(res)
+
+
+@api_view(['GET'])
+def detail(request, review_pk):
+    review = Review.objects.get(pk=review_pk)
+    return Response(review)

@@ -17,7 +17,14 @@
           <div class="card-body py-3" v-for="(review, idx) in reviews" :key="idx">
               <div class="row">
                   <div class="col">
-                      {{review.title}}
+                    <router-link
+                        class="nav-link"
+                        :to="{
+                        name: 'ReviewDetail',
+                        params: { review: review, url: review.title },
+                        }"
+                        >{{review.title}}
+                    </router-link>
                       <div class="small">{{review.movie.title}}를 보고 {{review.user.username}}님이 쓰신 리뷰</div>
                   </div>
                   <div class="d-none d-md-block col-4">

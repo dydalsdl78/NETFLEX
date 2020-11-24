@@ -277,9 +277,11 @@ chatbox(() => {
     chatbox(".chatbox-open").fadeIn();
   });
 });
+
+
 </script>
 
 
-<style>
+<style scoped>
 @import "./assets/chat_css.css";
 </style>
