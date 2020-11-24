@@ -45,14 +45,13 @@ def review_create_list(request):
             print(review.user)
         serializer = ReviewSerializer(reviews, many=True)
         return Response(serializer.data)
-    elif request.method == 'PUT':
 
+    elif request.method == 'PUT':
 
         review = Review.objects.get(pk=request.data['id'])
         if not request.user.reviews.filter(pk=review.id).exists():
             print('권한없음!')
             return Response({'detail': '권한이 없습니다.'})
-        
 
         print(review.title)
         serializer = ReviewSerializer(review, data=request.data)
@@ -62,12 +61,15 @@ def review_create_list(request):
             serializer.save()
             return Response(serializer.data, status.HTTP_201_CREATED)
     elif request.method == 'DELETE':
-        print('here')
-        print(request.data)
+        review = Review.objects.get(pk=request.data['id'])
+        review.delete()
+        return Response({'detail': '삭제되었습니다.'})
+
     else:
         serializer = ReviewSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save(user=request.user, movie=Movie.objects.get(pk=request.data['movie']['id']))
+            serializer.save(user=request.user, movie=Movie.objects.get(
+                pk=request.data['movie']['id']))
             return Response(serializer.data, status.HTTP_201_CREATED)
 
 

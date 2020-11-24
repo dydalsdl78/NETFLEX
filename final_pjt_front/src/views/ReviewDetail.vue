@@ -34,10 +34,9 @@
         <p class="lead"> {{review.content}}</p>
 
         <hr>
-        <div v-if="user">
-        <router-link class="btn btn-primary mr-3" :to="{name: 'ReviewCreate', params: { movie: review.movie, url: review.movie.title, review:review},}">Update </router-link>
-        <router-link class="btn btn-primary mr-3" :to="{name: 'ReviewCreate', params: { movie: review.movie, url: review.movie.title, review:review},}">Delete </router-link>
-        <button class='btn btn-primary' @click="deleteReview">Delete</button>
+        <div class="text-right" v-if="user">
+        <router-link class="btn btn-success mr-3" :to="{name: 'ReviewCreate', params: { movie: review.movie, url: review.movie.title, review:review},}">Update </router-link>
+        <button class='btn btn-danger' @click="deleteReview">Delete</button>
         <hr>
         </div>
       
@@ -47,8 +46,8 @@
         <!-- Single Comment -->
         <div class="media mb-4">
           <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-          <div class="media-body">
-            <h5 class="mt-0">Commenter Name</h5>
+          <div class="media-body text-left">
+            <h5 class="mt-0">Commenter님의 댓글</h5>
             Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
           </div>
         </div>
@@ -121,13 +120,21 @@ export default {
 
       },
       deleteReview: function(){
-        const config = this.setToken()
-        console.log(this.review.id)
-        axios.delete("http://127.0.0.1:8000/movies/review_create_list/", config, this.review.id)
+        if (confirm('삭제하시겠습니까?')) {
+          // Save it!
+        console.log(this.review)
+        axios.delete("http://127.0.0.1:8000/movies/review_create_list/", {data:this.review})
         .then((res)=>{
           console.log(res)
           console.log('deleted')
+          this.$router.push({ name: "Community" });
         })
+          
+        } else {
+          // Do nothing!
+          console.log('Thing was not saved to the database.');
+        }
+
 
       }
     },
