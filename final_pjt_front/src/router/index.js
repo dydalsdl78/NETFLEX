@@ -5,7 +5,8 @@ import Signup from '@/views/Signup'
 import Login from '@/views/Login'
 import ReviewCreate from '@/views/ReviewCreate'
 import Community from '@/views/Community'
-import Recommendation from '@/views/Recommendation'
+import Mypage from '@/views/Mypage'
+import MovieDetail from '@/views/MovieDetail'
 Vue.use(VueRouter)
 
 const routes = [
@@ -28,7 +29,7 @@ const routes = [
     path: '/movies/reviews/:url',
     name: 'ReviewCreate',
     component: ReviewCreate,
-    props:true
+    props: true
   },
   {
     path: '/community',
@@ -36,10 +37,16 @@ const routes = [
     component: Community,
   },
   {
-    path: '/recommendation',
-    name: 'Recommendation',
-    component: Recommendation,
+    path: '/mypage',
+    name: 'Mypage',
+    component: Mypage,
   },
+  {
+    path: '/movieDetail',
+    name: 'MovieDetail',
+    component: MovieDetail,
+    props: true
+  }
 ]
 
 const router = new VueRouter({

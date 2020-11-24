@@ -77,7 +77,7 @@ def genre_recommend(movie_title):
         return df.iloc[similar_indexes].sort_values('weighted_vote', ascending=False)[:top_n][['title', 'overview', 'popularity', 'vote_count', 'vote_average', 'release_date', 'poster_path', 'genre_ids']].to_json(orient='records', force_ascii=False)
 
     similar_movies = find_sim_movie_ver2(
-        movies_df, genre_sim_sorted_ind, '{}'.format(movie_title), 10)
+        movies_df, genre_sim_sorted_ind, '{}'.format(movie_title), 3)
     # print(similar_movies[['title', 'vote_average', 'weighted_vote', 'genre_ids', 'vote_count']])
     parsed = json.loads(similar_movies)
     return parsed
@@ -179,7 +179,7 @@ def overview_recommend(movie_title):
         return df.iloc[similar_indexes].sort_values('weighted_vote', ascending=False)[:top_n][['title', 'overview', 'popularity', 'vote_count', 'vote_average', 'release_date', 'poster_path', 'genre_ids']].to_json(orient='records', force_ascii=False)
 
     similar_movies = find_sim_movie_ver2(
-        movies_df, genre_sim_sorted_ind, '{}'.format(movie_title), 10)
+        movies_df, genre_sim_sorted_ind, '{}'.format(movie_title), 3)
     # print(similar_movies[['title', 'vote_average',
     #                       'weighted_vote', 'overview', 'vote_count']])
     parsed = json.loads(similar_movies)

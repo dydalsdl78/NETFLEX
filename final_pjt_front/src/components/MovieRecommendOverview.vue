@@ -1,30 +1,26 @@
 <template>
-  <div class="card" style="width: 15rem">
+  <div class="card" style="width: 150px; height: 330px">
+    <!-- <div class="card" style="width: 15rem"> -->
     <img
-      :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path"
+      :src="'https://image.tmdb.org/t/p/w300' + recommend_movie.poster_path"
       class="card-img-top"
       alt="poster"
     />
     <div class="card-body">
-      <h5 class="card-title">{{ movie.title }}</h5>
+      <h5 class="card-title">{{ recommend_movie.title }}</h5>
     </div>
     <div>
       <router-link
         v-if="login"
         class="nav-link"
         :to="{
-          name: 'ReviewCreate',
-          params: { movie: movie, url: movie.title },
+          name: '',
+          params: {
+            recommend_movie: recommend_movie,
+            url: recommend_movie.title,
+          },
         }"
-        >리뷰쓰기
-      </router-link>
-      <router-link
-        class="nav-link"
-        :to="{
-          name: 'MovieDetail',
-          params: { movie: movie, url: movie.title },
-        }"
-        >영화정보
+        >영화 정보 보기
       </router-link>
     </div>
   </div>
@@ -32,9 +28,9 @@
 
 <script>
 export default {
-  name: "MovieCard",
+  name: "MovieRecommendOverview",
   props: {
-    movie: Object,
+    recommend_movie: Object,
   },
   data: function () {
     return {

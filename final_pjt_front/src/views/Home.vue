@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- <div class="row justify-content-center"> -->
+    <Search :movies="movies" />
     <h2 class="mt-5">현재 상영 영화</h2>
     <div class="container">
       <carousel
@@ -36,6 +36,10 @@
         </slide>
       </carousel>
     </div>
+    <footer>
+      <h2 class="m-5">footer</h2>
+      <h2 class="m-5">footer</h2>
+    </footer>
   </div>
 </template>
 
@@ -44,6 +48,7 @@
 import axios from "axios";
 import MovieCard from "@/components/MovieCard";
 import MovieCard2 from "@/components/MovieCard2";
+import Search from "@/components/Search";
 import { Carousel, Slide } from "vue-carousel";
 
 export default {
@@ -51,6 +56,7 @@ export default {
   components: {
     MovieCard,
     MovieCard2,
+    Search,
     Carousel,
     Slide,
   },

@@ -18,6 +18,14 @@
         }"
         >리뷰쓰기
       </router-link>
+      <router-link
+        class="nav-link"
+        :to="{
+          name: 'MovieDetail',
+          params: { movie: movie, url: movie.title },
+        }"
+        >영화정보
+      </router-link>
     </div>
   </div>
 </template>

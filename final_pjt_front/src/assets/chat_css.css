@@ -92,6 +92,14 @@
     overflow: hidden;
   }
   
+  .my-message {
+    background-color: skyblue;
+  }
+
+  .bot-message {
+    background-color: pink;
+  }
+
   textarea::placeholder {
     color: #888;
   }
@@ -170,6 +178,7 @@
     display: flex;
     width: 100%;
     padding: 16px;
+    margin-top: 48px;
     color: #fff;
     background-color: #0360a5;
     align-items: center;
