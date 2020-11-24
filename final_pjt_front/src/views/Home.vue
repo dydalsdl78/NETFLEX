@@ -81,3 +81,9 @@ export default {
   },
 };
 </script>
+
+<style >
+.VueCarousel .VueCarousel-navigation-button {
+  color: white;
+}
+</style>
