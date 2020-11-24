@@ -1,11 +1,19 @@
 <template>
   <div>
     <h2>Community</h2>
+    <Username />
+    <ReviewList />
   </div>
 </template>
 
 <script>
-export default {};
+import Username from '@/views/Username'
+import ReviewList from '@/components/ReviewList'
+
+export default {
+  name:'Community',
+  components: {Username, ReviewList},
+};
 </script>
 
 <style>

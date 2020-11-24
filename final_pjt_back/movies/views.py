@@ -4,12 +4,17 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
+from rest_framework.decorators import authentication_classes, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
+
 from .models import Movie, Review
 from .serializers import MovieSerializer, ReviewSerializer
 from .CBF import overview_recommend, genre_recommend
 from .pingpong import pingpong
 
 from accounts.models import User
+from .models import Review, Movie
 # Create your views here.
 
 
@@ -28,24 +33,23 @@ def movielist(request):
 
 
 @api_view(['GET', 'POST'])
-def review_create(request, movie_pk, username):
+@authentication_classes([JSONWebTokenAuthentication])
+# @permission_classes([IsAuthenticated])
+def review_create_list(request):
     # 리뷰 만드는 거는 GET으로 목록로 보여줘야하니까 아마 함수이름이랑 url이름 바꿔야 할 것 같음요
     # 어떤 영화에 달려있는지 알아오기 위해서 movie_pk 값 이랑 일치하는 영화 불러왔습니다.
-    movie = Movie.objects.get(pk=movie_pk)
     # vue에서 받은 username과 일치하는 user_id 값을 user에 저장
-    user = User.objects.values("id").get(username=username)
-    print(user['id'])
     if request.method == 'GET':
-        serializer = ReviewSerializer(review, many=True)
+        reviews = Review.objects.all()
+        for review in reviews:
+            print(review.user)
+        serializer = ReviewSerializer(reviews, many=True)
         return Response(serializer.data)
+
     else:
         serializer = ReviewSerializer(data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            # fields 에서 movie field가 비어있어서 넣었고
-            serializer.save(movie=movie)
-            # serializer.save(user=userInstance) 얘도 모르겠다,,
-            # user 쿼리셋의 id값을 user_id에 저장하는건데 이렇게 해도되는지 모르겠음...
-            serializer.save(user_id=user['id'])
+        if serializer.is_valid():
+            serializer.save(user=request.user, movie=Movie.objects.get(pk=request.data['movie']['id']))
             return Response(serializer.data, status.HTTP_201_CREATED)
 
 
@@ -62,3 +66,11 @@ def pingpongTransfer(request):
     print(request.data)
     answer = pingpong(request.data)
     return Response(answer)
+
+
+
+@api_view(['GET'])
+def reviewlist(request):
+    reviews = Review.objects.all()
+    serializer = ReviewSerializer(reviews, many=True)
+    return Response(serializer.data)

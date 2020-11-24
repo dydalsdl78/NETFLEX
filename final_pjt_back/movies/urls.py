@@ -3,7 +3,7 @@ from . import views
 
 urlpatterns = [
     path('movielist/', views.movielist),
-    path('<int:movie_pk>/<username>/reviews/', views.review_create),
+    path('review_create_list/', views.review_create_list),
     path('recommend/', views.recommend),
     path('pingpong/', views.pingpongTransfer),
 ]

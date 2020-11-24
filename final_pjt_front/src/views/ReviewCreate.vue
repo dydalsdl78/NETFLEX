@@ -1,10 +1,10 @@
 <template>
   <div class="container">
-    <form>
-      <div class="form-group">
+<form>
+  <div class="form-group">
         <!-- movie를 받아오는 곳이 없어서 오류나는 듯?.. -->
         <!-- <label for="title"> {{ movie.title }}의 리뷰 </label> -->
-        <label for="title"> 리뷰 제목 </label>
+        <label for="title"> {{movie.title}}의 리뷰 </label>
         <input
           v-model="reviewItem.title"
           type="text"
@@ -12,20 +12,20 @@
           id="title"
           placeholder="글 제목"
         />
-      </div>
+  </div>
 
-      <div class="form-group">
-        <label for="content">리뷰 내용</label>
+  <div class="form-group">
+    <label for="content">리뷰 내용</label>
         <textarea
           v-model="reviewItem.content"
           class="form-control"
           id="content"
           rows="3"
         ></textarea>
-      </div>
+  </div>
 
-      <div class="form-group">
-        <label for="score">평점</label>
+  <div class="form-group">
+    <label for="score">평점</label>
         <input
           v-model="reviewItem.score"
           class="form-control"
@@ -34,22 +34,22 @@
           min="1"
           max="10"
         />
-      </div>
+  </div>
 
-      <div class="form-check">
+  <div class="form-check">
         <input type="checkbox" class="form-check-input" id="exampleCheck1" />
         <label class="form-check-label" for="exampleCheck1"
           >사용자 약관에 동의합니다.</label
         >
-      </div>
+  </div>
       <!-- <button @click="createReview" type="submit" class="btn btn-primary">제출</button> -->
       <small id="emailHelp" class="form-text text-muted"
         >We'll never share your email with anyone elsedd.</small
       >
-    </form>
+</form>
 
-    <button @click="createReview(movie)">제출테스트</button>
-  </div>
+    <button @click="createReview">제출테스트</button>
+</div>
 </template>
 
 <script>
@@ -71,16 +71,25 @@ export default {
     };
   },
   methods: {
-    createReview: function (movie) {
-      const username = this.$store.state.username;
-      console.log(username);
+    setToken : function(){
+      const token = localStorage.getItem('jwt')
+      const config = {
+        headers: {
+          Authorization: `JWT ${token}`
+        }
+      }
+      return config
+    },
+    createReview: function () {
+      const config = this.setToken()
+      console.log('here')
+      console.log(this.reviewItem)
       axios
         .post(
-          `http://127.0.0.1:8000/movies/${movie.id}/${username}/reviews/`,
-          this.reviewItem
-        )
+          `http://127.0.0.1:8000/movies/review_create_list/`, this.reviewItem, config)
         .then(() => {
-          this.$router.push({ name: "Home" });
+          
+          this.$router.push({ name: "Community" });
         })
         .catch((err) => {
           console.log(err);

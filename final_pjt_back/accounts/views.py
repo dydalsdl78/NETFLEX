@@ -1,5 +1,9 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from rest_framework.decorators import authentication_classes, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
+
 from .serializers import UserSerializer
 
 # Create your views here.
@@ -24,4 +28,14 @@ def signup(request):
         user.save()
 
     # 패스워드는 직렬화과 과정에 포함되지만 표현 할 때는 나타나지 않는다.
+    return Response(serializer.data)
+
+@api_view(['GET'])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
+def username(request):
+    print('entered')
+    print(request.user)
+    serializer = UserSerializer(request.user)
+    print(serializer.data)
     return Response(serializer.data)
