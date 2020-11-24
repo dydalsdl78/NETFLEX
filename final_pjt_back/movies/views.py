@@ -8,7 +8,7 @@ from rest_framework.decorators import authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
-from .models import Movie, Review
+from .models import Movie, Review, Genre
 from .serializers import MovieSerializer, ReviewSerializer
 from .CBF import overview_recommend, genre_recommend
 from .pingpong import pingpong
@@ -54,9 +54,17 @@ def review_create_list(request):
 
 
 @api_view(['POST'])
-def recommend(request):
+def recommendGenre(request):
     # print(request.data)
     movies_recommended = genre_recommend(request.data['movie_title'])
+    # print(movies_recommended)
+    return Response(movies_recommended)
+
+
+@api_view(['POST'])
+def recommendOverview(request):
+    # print(request.data)
+    movies_recommended = overview_recommend(request.data['movie_title'])
     # print(movies_recommended)
     return Response(movies_recommended)
 
@@ -68,9 +76,21 @@ def pingpongTransfer(request):
     return Response(answer)
 
 
-
-@api_view(['GET'])
-def reviewlist(request):
-    reviews = Review.objects.all()
-    serializer = ReviewSerializer(reviews, many=True)
+@api_view(['POST'])
+def searchMovie(request):
+    movie = Movie.objects.get(title=request.data['search'])
+    serializer = MovieSerializer(movie)
     return Response(serializer.data)
+
+
+@api_view(['POST'])
+def getGenre(request):
+    genres = request.data['genres']
+    print(genres)
+    print(request.data)
+    res = []
+    for genre_id in genres:
+        genre = Genre.objects.values("name").get(id=genre_id)
+        print(genre)
+        res.append(genre)
+    return Response(res)

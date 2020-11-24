@@ -1,5 +1,113 @@
 <template>
-  <div>
+  <div class="container">
+    <form class="mt-5 form-signin">
+      <img
+        class="mb-4"
+        src="https://s3.ap-northeast-2.amazonaws.com/elasticbeanstalk-ap-northeast-2-176213403491/media/magazine_img/magazine_283/5-2-%EC%8D%B8%EB%84%A4%EC%9D%BC.jpg"
+        alt=""
+        width="72"
+        height="72"
+      />
+      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+      <label for="username" class="sr-only"></label>
+      <input
+        v-model="credentials.username"
+        type="text"
+        id="username"
+        class="m-auto form-control"
+        placeholder="영문 아이디"
+        required=""
+        autofocus=""
+        maxlength="10"
+        style="width: 300px"
+      />
+      <label for="inputPassword" class="sr-only"></label>
+      <input
+        v-model="credentials.password"
+        @keypress.enter="login"
+        type="text"
+        id="inputPassword"
+        class="m-auto form-control"
+        placeholder="비밀번호"
+        required=""
+        minlength="10"
+        style="width: 300px"
+      />
+      <label for="passwordConfirmation" class="sr-only"></label>
+      <input
+        type="text"
+        id="passwordConfirmation"
+        class="m-auto form-control"
+        placeholder="비밀번호 확인"
+        required=""
+        minlength="10"
+        v-model="credentials.passwordConfirmation"
+        @keypress.enter="signup"
+        style="width: 300px"
+      />
+      <div class="checkbox mt-2">
+        <label>
+          <input type="checkbox" value="remember-me" /> 아이디 저장
+        </label>
+      </div>
+      <button
+        @click="login"
+        class="m-auto btn btn-lg btn-primary btn-block"
+        type="submit"
+        style="width: 300px"
+      >
+        Sign in
+      </button>
+      <p class="mt-3">다른 방법으로 회원가입하기</p>
+      <div class="d-flex justify-content-around">
+        <div class="d-flex justify-content-around" style="width: 300px">
+          <span class="d-inline">
+            <img
+              src="https://www.flaticon.com/svg/static/icons/svg/270/270799.svg"
+              alt=""
+              width="40"
+              height="40"
+            />
+          </span>
+          <span class="d-inline">
+            <img
+              src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F236A893A57C3AA6629BF4F"
+              alt=""
+              width="40"
+              height="40"
+            />
+          </span>
+          <span class="d-inline">
+            <img
+              src="https://t1.daumcdn.net/cfile/tistory/2368144B56FFF8620A"
+              alt=""
+              width="40"
+              height="40"
+            />
+          </span>
+          <span class="d-inline">
+            <img
+              src="https://www.flaticon.com/svg/static/icons/svg/174/174848.svg"
+              alt=""
+              width="40"
+              height="40"
+            />
+          </span>
+          <span class="d-inline">
+            <img
+              src="https://cdn2.iconfinder.com/data/icons/metro-uinvert-dock/256/Twitter_NEW.png"
+              alt=""
+              width="40"
+              height="40"
+            />
+          </span>
+        </div>
+      </div>
+
+      <p class="mt-5 mb-3 text-muted">© 2020</p>
+    </form>
+
+    <!-- <div>
     <h2>Singup</h2>
     <div>
       <label for="username">사용자 이름: </label>
@@ -24,6 +132,7 @@
       />
     </div>
     <button @click="signup">회원가입</button>
+  </div> -->
   </div>
 </template>
 

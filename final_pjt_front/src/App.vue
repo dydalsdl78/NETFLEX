@@ -30,8 +30,8 @@
               >
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" :to="{ name: 'Recommendation' }"
-                >Recommendation</router-link
+              <router-link class="nav-link" :to="{ name: 'Mypage' }"
+                >Mypage</router-link
               >
             </li>
           </span>
@@ -61,36 +61,40 @@
 
     <!-- chatting box -->
     <noscript>
-      <strong
-        >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
-        properly without JavaScript enabled. Please enable it to
-        continue.</strong
-      >
+      <strong></strong>
     </noscript>
     <div id="app"></div>
 
     <button class="chatbox-open">
-      채팅
-      <i class="fa fa-comment fa-2x" aria-hidden="true"></i>
+      <i
+        ><font-awesome-icon :icon="faCommentDots" size="2x" aria-hidden="true"
+      /></i>
     </button>
     <button class="chatbox-close">
-      닫기
-      <i class="fa fa-close fa-2x" aria-hidden="true"></i>
+      <i><font-awesome-icon :icon="faTimes" size="2x" aria-hidden="true" /></i>
     </button>
     <section class="chatbox-popup">
       <header class="chatbox-popup__header">
-        <aside style="flex: 3">
+        <aside style="flex: 1">
           <i
-            class="fa fa-user-circle fa-5x chatbox-popup__avatar"
-            aria-hidden="true"
-          ></i>
+            ><font-awesome-icon
+              :icon="faUserCircle"
+              size="3x"
+              aria-hidden="true"
+          /></i>
         </aside>
-        <aside style="flex: 8">
+        <aside style="flex: 1">
           <h1>채팅봇</h1>
         </aside>
         <aside style="flex: 1">
           <button class="chatbox-maximize">
-            <i class="fa fa-window-maximize" aria-hidden="true"></i>
+            <i
+              ><font-awesome-icon
+                :icon="faWindowMaximize"
+                size="2x"
+                aria-hidden="true"
+            /></i>
+            <!-- <i class="fa fa-window-maximize" aria-hidden="true"></i> -->
           </button>
         </aside>
       </header>
@@ -119,29 +123,46 @@
     </section>
     <section class="chatbox-panel">
       <header class="chatbox-panel__header">
-        <aside style="flex: 3">
+        <aside style="flex: 1">
           <i
+            ><font-awesome-icon
+              :icon="faUserCircle"
+              size="3x"
+              aria-hidden="true"
+              class="chatbox-popup__avatar"
+          /></i>
+          <!-- <i
             class="fa fa-user-circle fa-3x chatbox-popup__avatar"
             aria-hidden="true"
-          ></i>
+          ></i> -->
         </aside>
-        <aside style="flex: 6">
-          <h1>Sussanah Austin</h1>
-          Agent (Online)
+        <aside style="flex: 1">
+          <h1>채팅봇</h1>
         </aside>
-        <aside style="flex: 3; text-align: right">
+        <aside style="flex: 1; text-align: right">
           <button class="chatbox-minimize">
-            <i class="fa fa-window-restore" aria-hidden="true"></i>
+            <i
+              ><font-awesome-icon
+                :icon="faWindowRestore"
+                size="2x"
+                aria-hidden="true"
+            /></i>
           </button>
           <button class="chatbox-panel-close">
-            <i class="fa fa-close" aria-hidden="true"></i>
+            <i
+              ><font-awesome-icon
+                :icon="faWindowClose"
+                size="2x"
+                aria-hidden="true"
+            /></i>
           </button>
         </aside>
       </header>
       <main class="chatbox-panel__main" style="flex: 1">
-        We make it simple and seamless for<br />
-        bussiness and people to talk to each<br />
-        other. Ask us anything.
+        <div v-for="(message, idx) in Messages" :key="idx">
+          <p class="text-left bot-message" v-if="idx % 2">봇 : {{ message }}</p>
+          <p class="text-right my-message" v-else>나 : {{ message }}</p>
+        </div>
       </main>
       <footer class="chatbox-panel__footer">
         <aside style="flex: 1; color: #888; text-align: center">
@@ -149,9 +170,11 @@
         </aside>
         <aside style="flex: 10">
           <textarea
+            v-model="query"
             type="text"
-            placeholder="Type your message here..."
+            placeholder="채팅을 입력하세요!"
             autofocus
+            @keypress.enter="transferQuery"
           ></textarea>
         </aside>
         <aside style="flex: 1; color: #888; text-align: center">
@@ -164,21 +187,35 @@
 
 <script src="path/jquery-3.3.1.min.js"></script>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-<!--<script src="https://use.fontawesome.com/1a5ee2cd62.js"></script>-->
 
 <script>
 import jQuery from "jquery";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { faWindowMaximize } from "@fortawesome/free-solid-svg-icons";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { faWindowClose } from "@fortawesome/free-solid-svg-icons";
+import { faWindowRestore } from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faCommentDots } from "@fortawesome/free-solid-svg-icons";
 
 export default {
   name: "App",
+  components: {
+    FontAwesomeIcon,
+  },
   data: function () {
     return {
       login: false,
       query: "",
       chattings: "",
-      myMessage: [],
-      botMessage: [],
+      Messages: [],
+      faWindowMaximize,
+      faUserCircle,
+      faWindowClose,
+      faWindowRestore,
+      faTimes,
+      faCommentDots,
     };
   },
   methods: {
@@ -196,10 +233,10 @@ export default {
         .post("http://127.0.0.1:8000/movies/pingpong/", query)
         .then((res) => {
           // this.chattings.push(this.query);
-          this.query = "";
-          this.myMessage.push(this.query);
+          this.Messages.push(this.query);
           this.chattings = res.data;
-          this.botMessage.push(this.chattings);
+          this.Messages.push(this.chattings);
+          this.query = "";
           console.log(res.data);
         });
     },
@@ -240,14 +277,6 @@ chatbox(() => {
     chatbox(".chatbox-open").fadeIn();
   });
 });
-
-// const text = document.querySelector('#text')
-// const chatting_box = document.querySelector('#chatting_box')
-// axios.post("")
-// drf서버로 axios 요청을 보내고 받아와서
-// message에 넣고
-// const message = document.createElement('p')
-// chatting_box.appendChild(message)
 </script>
 
 

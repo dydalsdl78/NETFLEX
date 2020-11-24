@@ -1,5 +1,6 @@
 <template>
-  <div class="card" style="width: 15rem">
+  <div class="card" style="width: 150px; height: 330px">
+    <!-- <div class="card" style="width: 15rem"> -->
     <img
       :src="'https://image.tmdb.org/t/p/w300' + recommend_movie.poster_path"
       class="card-img-top"
@@ -27,7 +28,7 @@
 
 <script>
 export default {
-  name: "MovieRecommend",
+  name: "MovieRecommendGenre",
   props: {
     recommend_movie: Object,
   },
