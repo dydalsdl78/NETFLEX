@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div >
     <Search :movies="movies" />
     <h2 class="mt-5">현재 상영 영화</h2>
     <div class="container">

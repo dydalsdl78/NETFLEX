@@ -1,10 +1,10 @@
 <template>
 
-  <div class="container-fluid">
-      <div class="card mb-3">
+  <div id="ReviewList" class="container">
+      <div class="card mb-3" style="background-color:black;">
           <div class="card-header">
               <div class="row">
-                  <div class="col">Topics</div>
+                  <div class="col ">Topics</div>
                   <div class="col-4">
                       <div class="row">
                         <div class="col-4">Replis</div>
@@ -16,7 +16,7 @@
           </div>
           <div class="card-body py-3" v-for="(review, idx) in reviews" :key="idx">
               <div class="row">
-                  <div class="col">
+                  <div class="col text-left">
                     <router-link
                         class="nav-link"
                         :to="{
@@ -72,6 +72,16 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
+#ReviewList {
+    background-color: black;
+
+}
+.nav-link {
+    color:red;
+}
+.nav-link:hover {
+    color:white;
+}
 
 </style>

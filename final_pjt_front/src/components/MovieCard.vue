@@ -1,5 +1,5 @@
 <template>
-  <div class="card" style="width: 15rem">
+  <div id="MovieCard" class="card" style="width: 15rem; backgroud-color:black;">
     <img
       :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path"
       class="card-img-top"
@@ -8,7 +8,7 @@
     <div class="card-body">
       <h5 class="card-title">{{ movie.title }}</h5>
     </div>
-    <div>
+    <div class="card-tail">
       <router-link
         v-if="login"
         class="nav-link"
@@ -51,5 +51,15 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+#MovieCard{
+  background-color: black;
+}
+.nav-link{
+  color: red;
+}
+.nav-link:hover{
+  color:white;
+}
+
 </style>

@@ -1,6 +1,7 @@
 <template>
-  <div>
+  <div id="Community">
     <h2>Community</h2>
+    
     <Username />
     <ReviewList />
   </div>
@@ -17,4 +18,7 @@ export default {
 </script>
 
 <style>
+#Community{
+  background-color: black;
+}
 </style>

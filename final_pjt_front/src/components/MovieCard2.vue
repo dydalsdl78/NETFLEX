@@ -1,5 +1,5 @@
 <template>
-  <div class="card" style="width: 15rem">
+  <div class="card" style="width: 15rem; background-color:black;">
     <img
       :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path"
       class="card-img-top"
@@ -52,4 +52,12 @@ export default {
 </script>
 
 <style>
+
+.nav-link{
+  color: red;
+}
+.nav-link:hover{
+  color:white;
+}
+
 </style>
