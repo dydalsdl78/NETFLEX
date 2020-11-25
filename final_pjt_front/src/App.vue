@@ -2,12 +2,12 @@
   <div id="app">
     <nav
       class="navbar navbar-expand-lg sticky-top mb-5"
-      style="color: white; background-color: transparent"
+      style="color: white; background-color: black"
     >
       <router-link class="navbar-brand" :to="{ name: 'Home' }">
         <img
           src="./assets/ssaflix(white).png"
-          height="40"
+          height="80"
           class="d-inline-block align-top"
           alt=""
         />

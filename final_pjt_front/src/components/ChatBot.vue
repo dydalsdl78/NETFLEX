@@ -69,6 +69,7 @@
         </aside>
       </footer>
     </section>
+
     <section class="chatbox-panel loader">
       <header class="chatbox-panel__header">
         <aside style="flex: 1">
@@ -106,16 +107,20 @@
           </button>
         </aside>
       </header>
-      <main class="chatbox-panel__main" style="flex: 1">
-        <div v-for="(message, idx) in Messages" :key="idx">
-          <p class="text-left" v-if="idx % 2">
-            <span class="bot-message">봇 : {{ message }}</span>
-          </p>
-          <p class="text-right" v-else>
-            <span class="my-message">나 : {{ message }}</span>
-          </p>
-        </div>
-      </main>
+      <vuescroll>
+        <main class="chatbox-panel__main" style="flex: 1">
+          <div v-for="(message, idx) in Messages" :key="idx">
+            <p class="text-left" v-if="idx % 2">
+              <span>봇 : </span>
+              <span class="bot-message">{{ message }}</span>
+            </p>
+            <p class="text-right" v-else>
+              <span>나 : </span>
+              <span class="my-message">{{ message }}</span>
+            </p>
+          </div>
+        </main>
+      </vuescroll>
       <footer class="chatbox-panel__footer">
         <i
           ><font-awesome-icon
@@ -151,6 +156,7 @@
 <script>
 import jQuery from "jquery";
 import axios from "axios";
+import vuescroll from "vuescroll";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { faWindowMaximize } from "@fortawesome/free-solid-svg-icons";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
@@ -164,6 +170,7 @@ export default {
   name: "ChatBot",
   components: {
     FontAwesomeIcon,
+    vuescroll,
   },
   data: function () {
     return {

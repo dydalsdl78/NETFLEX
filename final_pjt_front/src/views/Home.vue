@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- <Search :movies="movies" /> -->
+    <HomeCarousel />
     <h5 class="mt-5 mb-4">현재 상영 영화</h5>
     <div class="container">
       <carousel
@@ -64,8 +64,8 @@ import _ from "lodash";
 import MovieCard from "@/components/MovieCard";
 import MovieCard2 from "@/components/MovieCard2";
 import MovieCard3 from "@/components/MovieCard3";
-// import Search from "@/components/Search";
 import { Carousel, Slide } from "vue-carousel";
+import HomeCarousel from "@/components/HomeCarousel";
 
 export default {
   name: "Home",
@@ -73,9 +73,9 @@ export default {
     MovieCard,
     MovieCard2,
     MovieCard3,
-    // Search,
     Carousel,
     Slide,
+    HomeCarousel,
   },
   data: function () {
     return {
@@ -108,5 +108,15 @@ export default {
 <style >
 .VueCarousel .VueCarousel-navigation-button {
   color: white;
+}
+
+.example-slide {
+  align-items: center;
+  background-color: #666;
+  color: #999;
+  display: flex;
+  font-size: 1.5rem;
+  justify-content: center;
+  min-height: 10rem;
 }
 </style>
