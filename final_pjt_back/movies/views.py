@@ -45,7 +45,6 @@ def review_create_list(request):
         return Response(serializer.data)
 
     elif request.method == 'PUT':
-
         review = Review.objects.get(pk=request.data['id'])
         if not request.user.reviews.filter(pk=review.id).exists():
             return Response({'detail': '권한이 없습니다.'})
@@ -140,3 +139,10 @@ def getGenre(request):
 def detail(request, review_pk):
     review = Review.objects.get(pk=review_pk)
     return Response(review)
+
+
+@api_view(['POST'])
+def movieDetail(request):
+    movie = Movie.objects.get(title=request.data['title'])
+    serializer = MovieSerializer(movie)
+    return Response(serializer.data)

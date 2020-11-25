@@ -5,8 +5,12 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 from .serializers import UserSerializer
-
+from movies.serializers import ReviewSerializer, MovieSerializer
+from movies.models import Movie, Review
+from django.contrib.auth import get_user_model
 # Create your views here.
+
+
 @api_view(['POST'])
 def signup(request):
     password = request.data.get('password')
@@ -30,9 +34,35 @@ def signup(request):
     # 패스워드는 직렬화과 과정에 포함되지만 표현 할 때는 나타나지 않는다.
     return Response(serializer.data)
 
+
 @api_view(['GET'])
 @authentication_classes([JSONWebTokenAuthentication])
 @permission_classes([IsAuthenticated])
 def username(request):
     serializer = UserSerializer(request.user)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
+def userReview(request):
+    review_user = get_user_model().objects.values(
+        'id').filter(username=request.user)
+    reviews = Review.objects.filter(user_id=review_user[0]['id'])
+    # print(reviews[0])
+    serializer = ReviewSerializer(reviews, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
+def userMovie(request):
+    review_user = get_user_model().objects.values(
+        'id').filter(username=request.user)
+    movies = Movie.objects.filter(user_id=review_user[0]['id'])
+    # print(reviews[0])
+    serializer = MovieSerializer(movies, many=True)
+    print(serializer.data)
     return Response(serializer.data)

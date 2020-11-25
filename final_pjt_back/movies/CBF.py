@@ -108,7 +108,7 @@ def overview_recommend(movie_title):
     mecab = Mecab()
 
     # 명사 기반
-    movies_df['overview'] = movies_df['overview'].apply(
+    movies_df['overview_token'] = movies_df['overview'].apply(
         lambda x: mecab.nouns(x))
     # 형태소 기반
     # movies_df['overview'] = movies_df['overview'].apply(lambda x: mecab.morphs(x))
@@ -127,7 +127,7 @@ def overview_recommend(movie_title):
 
     # movies_df['overview'] = movies_df['overview'].apply(lambda x: x.apply(lambda word: len(word) > 1))
 
-    movies_df['overview_literal'] = movies_df['overview'].apply(
+    movies_df['overview_literal'] = movies_df['overview_token'].apply(
         lambda x: (' ').join(x))
 
     # CountVectorizer로 학습시켰더니 4803개 영화에 대한 276개 장르의 '장르 매트릭스'가 생성되었다.
