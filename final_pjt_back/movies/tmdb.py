@@ -17,6 +17,7 @@ for page in range(0, pages):
     # 한번에 20개의 데이터를 반복문을 돌면서
     for i in range(20):
         tmp['results'][i].pop('id')
+        tmp['results'][i]['vote_average'] = tmp['results'][i]['vote_average'] / 2
         # 한개의 딕셔너리 안에 "model" : "movies.movie" 라는 키, 값 형태로 저장
         data.append({"model": "movies.movie"})
         # 전체 필드를 "fields": tmp[results][i] 키, 값 형태로 저장
