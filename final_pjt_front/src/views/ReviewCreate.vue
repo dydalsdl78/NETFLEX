@@ -33,8 +33,8 @@
           type="number"
           id="score"
           min="1"
-          max="10"
-          placeholder="1~10 사이의 평점"
+          max="5"
+          placeholder="1~5 사이의 평점"
         />
   </div>
 
