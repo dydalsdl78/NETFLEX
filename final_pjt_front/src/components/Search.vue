@@ -57,21 +57,26 @@ export default {
   },
   methods: {
     searchSelected: function (event) {
-      const title = {
-        title: event.name,
-      };
-      axios
-        .post("http://127.0.0.1:8000/movies/moviedetail/", title)
-        .then((res) => {
-          this.movie = res.data;
-          this.$router.replace({
-            path: "MovieDetail",
-            query: { movie: this.movie },
-          });
-        });
+      const movie_name = event.name
+      console.log(movie_name)
+      axios.post(
+        `http://127.0.0.1:8000/movies/get_movie/`, {'name':movie_name}
+      )
+      .then((res) => {
+        console.log(res.data)
+        const received_movie = res.data
+        this.$router.push({ name: "MovieDetail", params:{movie:received_movie} });
+      })
+      .catch((res) => {
+        console.log(err)
+      })
+
     },
-  },
-};
+
+}
+}
+
+
 </script>
 
 <style>
