@@ -41,8 +41,6 @@ def review_create_list(request):
     # vue에서 받은 username과 일치하는 user_id 값을 user에 저장
     if request.method == 'GET':
         reviews = Review.objects.all()
-        for review in reviews:
-            print(review.user)
         serializer = ReviewSerializer(reviews, many=True)
         return Response(serializer.data)
 
@@ -50,14 +48,12 @@ def review_create_list(request):
 
         review = Review.objects.get(pk=request.data['id'])
         if not request.user.reviews.filter(pk=review.id).exists():
-            print('권한없음!')
             return Response({'detail': '권한이 없습니다.'})
 
         print(review.title)
         serializer = ReviewSerializer(review, data=request.data)
         print('hererer')
         if serializer.is_valid():
-            print('herer2222')
             serializer.save()
             return Response(serializer.data, status.HTTP_201_CREATED)
     elif request.method == 'DELETE':
@@ -76,9 +72,8 @@ def review_create_list(request):
 @api_view(['GET', 'POST', 'PUT', 'DELETE'])
 @authentication_classes([JSONWebTokenAuthentication])
 # @permission_classes([IsAuthenticated])
-def comment_crud(request):
+def comment_crud(request, review_pk):
     if request.method == 'POST':
-        print('jweaklfjweaklfhere')
         serializer = CommentSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(user=request.user, review=Review.objects.get(
@@ -86,21 +81,16 @@ def comment_crud(request):
             return Response(serializer.data, status.HTTP_201_CREATED)
 
     elif request.method == 'GET':
-        print('here------------------')
-        print(request.data)
-        comments = Comment.objects.all()
+        review = Review.objects.get(pk=review_pk)
+        comments = review.comments.all()
         serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data)
 
-    elif request.method == 'PUT':
-        pass
-
     else:
-        pass
-
-
-def comment_list(request):
-    pass
+        comment_pk = request.data['id']
+        comment = Comment.objects.get(pk=comment_pk)
+        comment.delete()
+        return Response({'id': comment_pk})
 
 
 @api_view(['POST'])

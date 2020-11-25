@@ -13,6 +13,7 @@
         placeholder="영화 제목을 입력하세요"
       >
       </Dropdown>
+      <button @click='yeah'></button>
     </span>
   </div>
 </template>
@@ -44,11 +45,8 @@ export default {
     };
   },
   methods: {
-    searchSelected: function () {
-      const inputValue = document.querySelector(".dropdown-input");
-      // console.log(inputValue);
-      console.log(this.search);
-      console.log(Dropdown);
+    searchSelected: function (event) {
+      console.log(event.id)
     },
     // searchMovie: function () {
     //   console.log("?");

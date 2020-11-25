@@ -7,8 +7,8 @@
                   <div class="col ">Topics</div>
                   <div class="col-4">
                       <div class="row">
-                        <div class="col-4">Replis</div>
-                        <div class="col-8">Last</div>
+                        <div class="col-4">Replies</div>
+                        <div class="col-8">작성일</div>
                       </div>
                   </div>
 
@@ -29,8 +29,8 @@
                   </div>
                   <div class="d-none d-md-block col-4">
                     <div class="row">
-                      <div class="col-4">댓글수</div>
-                      <div class="col-8">{{review.created_at}}</div>
+                      <div class="col-4">''개의 댓글</div>
+                      <div class="col-8">{{review.created_at | slice}}</div>
                       </div>
                   </div>
               </div>
@@ -55,7 +55,6 @@ export default {
     },
     methods:{
         getList:function(){
-                console.log('k')
                 axios.get('http://127.0.0.1:8000/movies/review_create_list/')
                 .then((res)=>{
                     console.log(res.data)
@@ -66,6 +65,13 @@ export default {
         },
     created(){
         return(this.getList())
+
+    },
+    filters: {
+        slice: function(origin){
+            return origin.slice(0, 10)
+
+        }
     }
 }
 

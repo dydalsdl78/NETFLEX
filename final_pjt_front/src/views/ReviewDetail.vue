@@ -49,6 +49,9 @@
             {{comment.content}}
           
           </div>
+          <div v-if="user">
+          <button @click="deleteComment(comment)">삭제</button>
+          </div>
         </div>
 
         <!-- Comments Form -->
@@ -126,10 +129,25 @@ export default {
         })
         .catch((err)=>{console.log(err)})
       },
+      deleteComment:function(comment){
+        console.log(comment)
+        axios.delete(`http://127.0.0.1:8000/movies/${this.review.id}/comment_crud/`, {data:comment})
+        .then((res)=>{
+          console.log(res)
+          const targetCommentIdx = this.comments.findIndex((comment)=>{
+            return comment.id === res.data.id
+          })
+          this.comments.splice(targetCommentIdx, 1)
+        })
+        .catch((err)=>{
+          console.log(err)
+        })
+
+      },
       readComment:function(){
 
-        console.log(this.commentItem)
-        axios.get('http://127.0.0.1:8000/movies/comment_crud/', {data:{review:this.review}})
+        console.log(this.review)
+        axios.get(`http://127.0.0.1:8000/movies/${this.review.id}/comment_crud/`)
         .then((res)=>{
           console.log(res.data)
           this.comments=res.data;
@@ -139,10 +157,11 @@ export default {
       createComment:function(){
         const config = this.setToken()
         console.log(this.commentItem)
-        axios.post('http://127.0.0.1:8000/movies/comment_crud/', this.commentItem, config)
+        axios.post(`http://127.0.0.1:8000/movies/${this.review.id}/comment_crud/`, this.commentItem, config)
         .then((res)=>{
           console.log(res.data)
           this.comments.push(res.data)
+          this.commentItem.content = ''
         })
         .catch((err)=>{
           console.log(err)
