@@ -5,32 +5,32 @@
     :scrollPerPage="true"
     :paginationEnabled="true"
   >
-    <slide
-      ><img
+    <slide>
+      <img
         src="https://t1.daumcdn.net/cfile/tistory/99713B485DE860D201"
         alt=""
         class="test"
-        style="width: 1400px"
+        style="width: 1000px"
       />
-      <span class="img-content">11월 4주차 인기작</span>
+      <p class="img-content">11월 4주차 인기작</p>
     </slide>
     <slide
       ><img
         src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F9940613C5A62F7001A341B"
         alt=""
-        style="width: 1400px"
+        style="width: 1000px"
       />
-      <span class="img-content">코로나 때문에 집에 있을 때</span>
-      <span class="img-content">보기 좋은 미드!</span></slide
+      <p class="img-content">코로나 때문에 집에 있을 때</p>
+      <p class="img-content">보기 좋은 미드!</p></slide
     >
     <slide
       ><img
         src="https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F2433A93C53C72A6C2B8C64"
         alt=""
-        style="width: 1400px"
+        style="width: 1000px"
       />
-      <span class="img-content">싸피릭스</span>
-      <span class="img-content">최고 인기 시리즈</span></slide
+      <p class="img-content">싸피릭스</p>
+      <p class="img-content">최고 인기 시리즈</p></slide
     >
   </carousel>
 </template>

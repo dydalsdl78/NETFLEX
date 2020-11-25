@@ -110,13 +110,25 @@
       <vuescroll>
         <main class="chatbox-panel__main" style="flex: 1">
           <div v-for="(message, idx) in Messages" :key="idx">
-            <p class="text-left" v-if="idx % 2">
-              <span>봇 : </span>
-              <span class="bot-message">{{ message }}</span>
+            <p class="text-left bot-message-tooltip" v-if="idx % 2">
+              <i
+                ><font-awesome-icon
+                  :icon="faRobot"
+                  size="1x"
+                  aria-hidden="true"
+                  class="chatbox-popup__avatar mr-2"
+              /></i>
+              <span>{{ message }}</span>
             </p>
-            <p class="text-right" v-else>
-              <span>나 : </span>
-              <span class="my-message">{{ message }}</span>
+            <p class="text-right my-message-tooltip" v-else>
+              <i
+                ><font-awesome-icon
+                  :icon="faUserCircle"
+                  size="1x"
+                  aria-hidden="true"
+                  class="mr-2"
+              /></i>
+              <span>{{ message }}</span>
             </p>
           </div>
         </main>
@@ -128,11 +140,11 @@
             :style="{ color: '#42b983' }"
             size="2x"
             aria-hidden="true"
-            class="d-flex"
+            class="d-flex mr-3"
         /></i>
-        <aside style="flex: 1; color: #888; text-align: center">
+        <!-- <aside style="flex: 1; color: #888; text-align: center">
           <i class="fa fa-camera" aria-hidden="true"></i>
-        </aside>
+        </aside> -->
         <aside style="flex: 10">
           <textarea
             v-model="query"

@@ -12,11 +12,11 @@
       </h5>
     </div>
     <div class="card-tail">
-      <div @click="test" class="container">
+      <div @click="moveMovieDetail" class="container">
         <router-link
           class="nav-link font-size-menus"
           :to="{
-            name: '',
+            name: 'MovieDetail',
             params: {
               movie: recommend_movie,
             },
@@ -40,16 +40,11 @@ export default {
     };
   },
   methods: {
-    test: function () {
-      console.log(this.recommend_movie);
-      // this.$router.go(this.$router.currentRoute);
+    moveMovieDetail: function () {
       this.$router.replace({
-        name: "",
-        params: { movie: this.recommend_movie },
+        path: "MovieDetail",
+        query: { movie: this.recommend_movie },
       });
-      // .catch((err) => {
-      //   console.log(err);
-      // });
     },
   },
   created: function () {

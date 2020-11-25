@@ -12,15 +12,23 @@
       >
         <h5 class="mt-5">{{ movie.title }}</h5>
         <p>{{ movie.release_date }}</p>
-        <div class="average-font-size">{{ movie.vote_average }}</div>
-        <star-rating
-          :increment="0.5"
-          :star-size="30"
-          :show-rating="false"
-          v-model="rating"
-          @rating-selected="setRating"
-          class="justify-content-center"
-        ></star-rating>
+        <div class="average-font-size">{{ movie.vote_count }}</div>
+        <div @click="movieLike">
+          <font-awesome-icon
+            v-if="this.like"
+            :icon="faHeart"
+            size="2x"
+            aria-hidden="true"
+            :style="{ color: 'red' }"
+          />
+          <font-awesome-icon
+            v-else
+            :icon="faHeart"
+            size="2x"
+            aria-hidden="true"
+            :style="{ color: 'white' }"
+          />
+        </div>
       </div>
     </button>
     <div class="card-body" style="height: 70px">
@@ -36,40 +44,37 @@
           }"
           >영화정보
         </router-link>
-        <router-link
-          v-if="login"
-          class="nav-link font-size-menus d-inline"
-          :to="{
-            name: 'ReviewCreate',
-            params: { movie: movie, url: movie.title },
-          }"
-          >리뷰쓰기
-        </router-link>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import StarRating from "vue-star-rating";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 export default {
   name: "MovieCard",
   components: {
-    StarRating,
+    FontAwesomeIcon,
   },
   props: {
     movie: Object,
   },
   data: function () {
     return {
+      faHeart,
       login: false,
+      like: false,
       rating: 0,
     };
   },
   methods: {
     setRating: function (rating) {
       this.rating = rating;
+    },
+    movieLike: function () {
+      this.like = !this.like;
     },
   },
   created: function () {

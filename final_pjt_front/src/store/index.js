@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     username: '',
-    movieRating: []
+    movieRating: [],
   },
   getters: {
     transferUsername: function (state) {
@@ -20,8 +20,7 @@ export default new Vuex.Store({
     TRANSFER_RATING: function (state, movieRating) {
       // 같은 값이 없을 때는 그냥추가
       state.movieRating.push(movieRating)
-
-    }
+    },
   },
   actions: {
     usernameSave: function (context, username) {
@@ -29,6 +28,6 @@ export default new Vuex.Store({
     },
     transferRating: function (context, movieRating) {
       context.commit('TRANSFER_RATING', movieRating)
-    }
+    },
   },
 })

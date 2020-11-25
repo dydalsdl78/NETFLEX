@@ -19,24 +19,6 @@
       </carousel>
     </div>
 
-    <h5 class="mt-5 mb-4">개봉 예정 영화</h5>
-    <div class="container">
-      <carousel
-        :navigationEnabled="true"
-        :perPage="10"
-        :scrollPerPage="true"
-        :paginationEnabled="false"
-      >
-        <slide
-          v-for="(movie, idx) in pre_movies"
-          :key="idx"
-          @slideclick="handleSlideClick"
-        >
-          <MovieCard2 :movie="movie" />
-        </slide>
-      </carousel>
-    </div>
-
     <h5 class="mt-5 mb-4">인기 영화</h5>
     <div class="mb-4 container">
       <carousel
@@ -53,6 +35,25 @@
           <MovieCard3 :movie="movie" />
         </slide>
       </carousel>
+    </div>
+
+    <h5 class="mt-5 mb-4">개봉 예정 영화</h5>
+    <div class="container">
+      <carousel
+        :navigationEnabled="true"
+        :perPage="10"
+        :scrollPerPage="true"
+        :paginationEnabled="false"
+      >
+        <slide
+          v-for="(movie, idx) in pre_movies"
+          :key="idx"
+          @slideclick="handleSlideClick"
+        >
+          <MovieCard2 :movie="movie" />
+        </slide>
+      </carousel>
+      <hr class="mt-3" />
     </div>
   </div>
 </template>

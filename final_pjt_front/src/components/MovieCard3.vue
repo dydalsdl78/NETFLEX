@@ -70,6 +70,13 @@ export default {
   methods: {
     setRating: function (rating) {
       this.rating = rating;
+
+      const movieRating = {
+        movie: this.movie,
+        rating: rating,
+      };
+
+      this.$store.dispatch("transferRating", movieRating);
     },
   },
   created: function () {

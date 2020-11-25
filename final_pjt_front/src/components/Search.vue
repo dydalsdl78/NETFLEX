@@ -12,8 +12,18 @@
         :maxItem="20"
         placeholder="영화 제목을 입력하세요"
       >
+        <router-link
+          class="nav-link font-size-menus"
+          :to="{
+            name: '',
+            params: {
+              movie: movie,
+            },
+          }"
+        >
+        </router-link>
       </Dropdown>
-      <button @click='yeah'></button>
+      <button></button>
     </span>
   </div>
 </template>
@@ -42,44 +52,25 @@ export default {
       faSearch,
       suggests: [],
       searchJson: searchJson,
+      movie: [],
     };
   },
   methods: {
     searchSelected: function (event) {
-      console.log(event.id)
+      const title = {
+        title: event.name,
+      };
+      axios
+        .post("http://127.0.0.1:8000/movies/moviedetail/", title)
+        .then((res) => {
+          this.movie = res.data;
+          this.$router.replace({
+            path: "MovieDetail",
+            query: { movie: this.movie },
+          });
+        });
     },
-    // searchMovie: function () {
-    //   console.log("?");
-    //   for (const idx in this.movies) {
-    //     this.suggests.push({ id: idx, name: this.movies[idx].title });
-    //   }
-    //   const API_KEY = "d7a0f6399832ff632e1b02fc2afb5d21";
-    //   axios
-    //     .get(
-    //       `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=kr-KR&query=${this.search}`
-    //     )
-    //     .then((res) => {
-    //       console.log(res.data["results"]);
-    //       for (const idx in res.data["results"]) {
-    //         this.suggests.push({
-    //           id: idx,
-    //           name: res.data["results"][idx].title,
-    //         });
-    //         console.log(this.suggests);
-    //       }
-    //       // this.suggests = res.data["results"];
-    //     })
-    //     .catch((err) => {
-    //       console.log(err, "일치하는 영화가 없습니다.");
-    //     });
-    // },
   },
-  // created: function () {
-  //   for (const idx in this.movies) {
-  //     this.suggests.push(movies[idx].title);
-  //     console.log(this.suggests);
-  //   }
-  // },
 };
 </script>
 

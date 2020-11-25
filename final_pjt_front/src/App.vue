@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav
-      class="navbar navbar-expand-lg sticky-top mb-5"
+      class="navbar navbar-expand-lg sticky-top zindex"
       style="color: white; background-color: black"
     >
       <router-link class="navbar-brand" :to="{ name: 'Home' }">
@@ -118,9 +118,18 @@ export default {
 
 <style>
 @import "./assets/chat_css.css";
+@import url("https://fonts.googleapis.com/css2?family=Jua&display=swap");
+
+.basic-font {
+  font-family: "Jua", sans-serif;
+}
 
 .loader {
   z-index: 1000;
+}
+
+.zindex {
+  z-index: 100;
 }
 
 #app {

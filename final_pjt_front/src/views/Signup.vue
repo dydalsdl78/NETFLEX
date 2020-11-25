@@ -1,6 +1,7 @@
 <template>
-  <div class="container" style="width: 300px">
-    <form class="mt-5 form-signin">
+  <div class="wrapper">
+    <div class="container" style="width: 300px"></div>
+    <form class="mt-5 form-signin test">
       <!-- <img
         class="mb-4"
         src="https://s3.ap-northeast-2.amazonaws.com/elasticbeanstalk-ap-northeast-2-176213403491/media/magazine_img/magazine_283/5-2-%EC%8D%B8%EB%84%A4%EC%9D%BC.jpg"
@@ -8,7 +9,7 @@
         width="72"
         height="72"
       /> -->
-      <h1 class="h3 mb-3 font-weight-normal">회원가입</h1>
+      <h1 class="h3 mb-3 font-weight-normal basic-font-ko">회원가입</h1>
       <label for="username" class="sr-only"></label>
       <input
         v-model="credentials.username"
@@ -63,7 +64,7 @@
       </div>
       <button
         @click="signup"
-        class="m-auto btn btn-lg btn-success btn-block"
+        class="m-auto btn btn-lg btn-success btn-block basic-font-en"
         type="submit"
         style="width: 300px"
       >
@@ -73,77 +74,63 @@
       <div class="d-flex justify-content-around">
         <div class="d-flex justify-content-around" style="width: 300px">
           <span class="d-inline">
-            <img
-              src="https://www.flaticon.com/svg/static/icons/svg/270/270799.svg"
-              alt=""
-              width="40"
-              height="40"
-            />
+            <a href="https://www.google.com/" target="_blank">
+              <img
+                src="https://www.flaticon.com/svg/static/icons/svg/270/270799.svg"
+                alt=""
+                width="40"
+                height="40"
+              />
+            </a>
           </span>
           <span class="d-inline">
-            <img
-              src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F236A893A57C3AA6629BF4F"
-              alt=""
-              width="40"
-              height="40"
-            />
+            <a href="https://www.naver.com/" target="_blank">
+              <img
+                src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F236A893A57C3AA6629BF4F"
+                alt=""
+                width="40"
+                height="40"
+              />
+            </a>
           </span>
           <span class="d-inline">
-            <img
-              src="https://t1.daumcdn.net/cfile/tistory/2368144B56FFF8620A"
-              alt=""
-              width="40"
-              height="40"
-            />
+            <a
+              href="https://www.kakaocorp.com/service/KakaoTalk"
+              target="_blank"
+            >
+              <img
+                src="https://t1.daumcdn.net/cfile/tistory/2368144B56FFF8620A"
+                alt=""
+                width="40"
+                height="40"
+              />
+            </a>
           </span>
           <span class="d-inline">
-            <img
-              src="https://www.flaticon.com/svg/static/icons/svg/174/174848.svg"
-              alt=""
-              width="40"
-              height="40"
-            />
+            <a href="https://ko-kr.facebook.com/" target="_blank">
+              <img
+                src="https://www.flaticon.com/svg/static/icons/svg/174/174848.svg"
+                alt=""
+                width="40"
+                height="40"
+              />
+            </a>
           </span>
           <span class="d-inline">
-            <img
-              src="https://cdn2.iconfinder.com/data/icons/metro-uinvert-dock/256/Twitter_NEW.png"
-              alt=""
-              width="40"
-              height="40"
-            />
+            <a href="https://twitter.com/?lang=ko" target="_blank">
+              <img
+                src="https://cdn2.iconfinder.com/data/icons/metro-uinvert-dock/256/Twitter_NEW.png"
+                alt=""
+                width="40"
+                height="40"
+              />
+            </a>
           </span>
         </div>
       </div>
 
       <p class="mt-5 mb-3 text-muted">© 2020</p>
     </form>
-
-    <!-- <div>
-    <h2>Singup</h2>
-    <div>
-      <label for="username">사용자 이름: </label>
-      <input
-        placeholder="영문으로 입력하세요"
-        type="text"
-        id="username"
-        v-model="credentials.username"
-      />
-    </div>
-    <div>
-      <label for="password">비밀번호: </label>
-      <input type="text" id="password" v-model="credentials.password" />
-    </div>
-    <div>
-      <label for="passwordConfirmation">비밀번호 확인: </label>
-      <input
-        type="text"
-        id="passwordConfirmation"
-        v-model="credentials.passwordConfirmation"
-        @keypress.enter="signup"
-      />
-    </div>
-    <button @click="signup">회원가입</button>
-  </div> -->
   </div>
 </template>
 
@@ -178,24 +165,66 @@ export default {
 </script>
 
 <style scoped>
-/* body {
-  position: relative;
-  z-index: 1;
+@import url("https://fonts.googleapis.com/css2?family=Jua&family=Oswald:wght@500&display=swap");
+
+.basic-font-ko {
+  font-family: "Jua", sans-serif;
 }
 
-body:after {
-  background-image: url("../../src/assets/background.jpg");
+.basic-font-en {
+  font-family: "Oswald", sans-serif;
+}
+
+.wrapper {
+  z-index: 1;
+  position: relative;
+  width: auto;
+  height: 600;
+  /* border: 1px solid; */
+  /* border-radius: 1px; */
+}
+.wrapper:after {
+  width: 1300px;
+  height: 520px;
+  z-index: -1;
+  position: absolute;
   top: 0;
   left: 0;
-  position: absolute;
-  background-size: 100%;
-  opacity: 0.5 !important;
-  filter: alpha(opacity=50);
-  z-index: -1;
   content: "";
-  width: 100%;
-  height: 100%;
-} */
+  background-image: url("https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F2433A93C53C72A6C2B8C64");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-origin: content-box;
+  background-size: 100%;
+  opacity: 0.3 !important;
+  filter: alpha(opacity=30);
+}
+
+.box {
+  background: url("https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F2433A93C53C72A6C2B8C64")
+    no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  /* filter: alpha(opacity=50); */
+}
+
+.box::before {
+  content: "";
+  opacity: 0.5;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: #000;
+  z-index: 20;
+}
+
+.test {
+  z-index: -1;
+}
 
 .blurtext {
   opacity: 0.5;

@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h2>영화 정보</h2>
     <div class="p-5 d-flex">
       <div class="float-left">
         <img
@@ -42,24 +41,39 @@
       </div>
     </div>
     <hr />
-    <div class="d-flex justify-content-around">
+    <div class="mb-5 d-flex justify-content-around">
       <div>
         <h2 class="mb-5 d-flex justify-content-center">
           좋아요 {{ movie.vote_count }}
         </h2>
-        <i><font-awesome-icon :icon="faHeart" size="6x" /></i>
+        <i
+          ><font-awesome-icon
+            :icon="faHeart"
+            size="6x"
+            :style="{ color: 'red' }"
+        /></i>
       </div>
       <div>
         <h2 class="mb-5 d-flex justify-content-center">
           인기도 {{ movie.popularity }}
         </h2>
-        <i><font-awesome-icon :icon="faHeart" size="6x" /></i>
+        <i
+          ><font-awesome-icon
+            :icon="faFire"
+            size="6x"
+            :style="{ color: 'orange' }"
+        /></i>
       </div>
       <div>
         <h2 class="mb-5 d-flex justify-content-center">
           평점 {{ movie.vote_average }}
         </h2>
-        <i><font-awesome-icon :icon="faHeart" size="6x" /></i>
+        <i
+          ><font-awesome-icon
+            :icon="faStar"
+            size="6x"
+            :style="{ color: 'yellow' }"
+        /></i>
       </div>
     </div>
     <hr />
@@ -67,7 +81,7 @@
       <div>
         <h3 class="m-4">유사한 장르</h3>
         <div class="container-fluid">
-          <div class="row justify-content-center mb-5">
+          <div class="row justify-content-center mt-5 mb-5">
             <MovieRecommendGenre
               v-for="(recommend_movie, idx) in recommend_Genre"
               :key="idx"
@@ -79,7 +93,7 @@
       <div>
         <h3 class="m-4">유사한 줄거리</h3>
         <div class="container-fluid">
-          <div class="row justify-content-center mb-5">
+          <div class="row justify-content-center mt-5 mb-5">
             <MovieRecommendOverview
               v-for="(recommend_movie, idx) in recommend_Overview"
               :key="idx"
@@ -94,8 +108,10 @@
 
 <script>
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faFire } from "@fortawesome/free-solid-svg-icons";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 import MovieRecommendGenre from "@/components/MovieRecommendGenre";
 import MovieRecommendOverview from "@/components/MovieRecommendOverview";
@@ -114,7 +130,9 @@ export default {
   data: function () {
     return {
       faHeart,
+      faFire,
       faCheck,
+      faStar,
       faTimesCircle,
       recommend_Genre: [],
       recommend_Overview: [],
@@ -146,17 +164,6 @@ export default {
           this.recommend_Overview = res.data;
         });
     },
-    //   getGenre: function () {
-    //     const genres = {
-    //       genres: this.movie.genre_ids,
-    //     };
-
-    //     axios
-    //       .post("http://127.0.0.1:8000/movies/getgenre/", genres)
-    //       .then((res) => {
-    //         this.genreName = res.data;
-    //       });
-    //   },
   },
   created() {
     this.getRecommendedGenre();
