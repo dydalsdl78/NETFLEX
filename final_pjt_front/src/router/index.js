@@ -43,7 +43,7 @@ const routes = [
     component: Mypage,
   },
   {
-    path: '/movieDetail',
+    path: '/movieDetail/:url',
     name: 'MovieDetail',
     component: MovieDetail,
     props: true

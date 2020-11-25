@@ -49,7 +49,7 @@
             {{comment.content}}
           
           </div>
-          <div v-if="user">
+          <div v-if="username===comment.user.username">
           <button @click="deleteComment(comment)">삭제</button>
           </div>
         </div>
@@ -98,6 +98,7 @@ export default {
     data: function(){
       return{
         user:false,
+        username:'',
         comments:[],
         commentItem:{
           content: "",
@@ -121,8 +122,9 @@ export default {
         const config = this.setToken()
         axios.get('http://127.0.0.1:8000/accounts/username/', config)
         .then((res)=> {
+          this.username = res.data.username
           if(res.data.username === this.review.user.username){
-            console.log('match')
+            console.log('matcddh')
             this.user = true
             this.commentItem.user = res.data
           }
