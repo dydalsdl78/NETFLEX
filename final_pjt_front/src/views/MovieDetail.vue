@@ -1,14 +1,14 @@
 <template>
-  <div>
-    <div class="p-5 d-flex">
-      <div class="float-left">
+  <div class="container">
+    <div class="row p-5 d-flex">
+      <div class="col">
         <img
           :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path"
           class="img-thumbnail ml-5"
           alt="poster"
         />
       </div>
-      <div class="container">
+      <div class="col">
         <h2 class="d-flex mb-4">
           {{ movie.title }} ({{ movie.original_title }})
         </h2>
@@ -16,7 +16,7 @@
           <h5>{{ movie.release_date }} |</h5>
           <!-- <h5 v-for="(name, idx) in genreName" :key="idx">{{ name.name }}</h5> -->
           <h5 v-for="(genre_id, idx) in movie.genre_ids" :key="idx">
-            <span> {{ genre_id.name }}, </span>
+            <button type="button" class="btn btn-secondary btn-sm ml-1">{{ genre_id.name  }}</button>
           </h5>
         </div>
         <div class="d-flex mb-4">

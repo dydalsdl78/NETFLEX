@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <h2 class="m-5">{{ username }}님 반갑습니다.</h2>
     <i
       ><font-awesome-icon
@@ -17,8 +17,45 @@
       <div class="follow-count-size">245</div>
     </div>
     <hr class="mb-5 mt-5 bg-light" style="width: 1200px" />
+
+
+
+    <h2 @click="getUserReview">작성한 리뷰 리스트</h2>
+    <div class="media mb-4" v-for="(review, idx) in reviews" :key="'review' + idx">
+      <div class="justify-content-center">
+        <img class="d-flex mr-3"  :src="'https://image.tmdb.org/t/p/w300' + review.movie.poster_path" alt="" style="width: 100px; height: 160px">
+        <star-rating
+          :increment="0.5"
+          :star-size="15"
+          :show-rating="false"
+          v-model="review.score"
+          @rating-selected="setRating"
+          class="justify-content-center"
+          read-only="true"
+        >
+        </star-rating>
+      </div>
+      <div class="media-body text-left">
+        <h5 class="mt-0">{{review.title}}</h5>
+        {{review.content}}
+        <p>{{review.movie.title}}을 보고 {{review.created_at |slice }}에 남긴 리뷰</p>
+      
+      </div>
+      <div class="d-flex justify-content-center align-items-center">
+        <router-link
+            class="nav-link"
+            :to="{
+            name: 'ReviewDetail',
+            params: { review: review, url: review.title },
+            }"
+            >보러 가기
+        </router-link>        
+      </div>
+    </div>
+    <hr class="mb-5 mt-5 bg-light" style="width: 1200px" />
+
     <h2>평점 매긴 영화</h2>
-    <div class="container row d-flex">
+    <div class="row d-flex mb-3">
       <div v-for="(movieRating, idx) in movieRatings" :key="idx">
         <img
           :src="
@@ -38,50 +75,11 @@
         </div>
       </div>
     </div>
-    <h2 @click="getUserReview">리뷰 작성한 영화</h2>
-    <div class="container row d-flex">
-      <div v-for="(review, idx) in reviews" :key="'movie' + idx">
-        <img
-          :src="'https://image.tmdb.org/t/p/w300' + review.movie.poster_path"
-          class="card-img-top"
-          alt="poster"
-          style="width: 150px; height: 220px"
-        />
-        <div class="container" style="width: 180px">
-          <div>
-            {{ review.movie.title }}
-          </div>
-          <div>
-            {{ review.movie.vote_average }}
-          </div>
-        </div>
-      </div>
-    </div>
-    <h2 @click="getUserReview">작성한 리뷰 리스트</h2>
-    <span class="container row d-flex justify-content-around">
-      <h4>포스터</h4>
-      <h4>영화 제목</h4>
-      <h4>리뷰 제목</h4>
-      <h4>리뷰 내용</h4>
-      <h4>매긴 평점</h4>
-    </span>
-    <div v-for="(review, idx) in reviews" :key="'review' + idx">
-      <span
-        class="container row d-flex justify-content-around align-items-center"
-      >
-        <img
-          :src="'https://image.tmdb.org/t/p/w300' + review.movie.poster_path"
-          class="card-img-top"
-          alt="poster"
-          style="width: 100px; height: 160px"
-        />
-        <div>{{ review.movie.title }}</div>
-        <div>{{ review.title }}</div>
-        <div>{{ review.content }}</div>
-        <div>{{ review.score }}</div>
-      </span>
-      <br />
-    </div>
+
+
+
+
+
   </div>
 </template>
 
@@ -89,11 +87,13 @@
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import StarRating from "vue-star-rating";
 
 export default {
   name: "Mypage",
   components: {
     FontAwesomeIcon,
+    StarRating
   },
   data: function () {
     return {
@@ -145,6 +145,12 @@ export default {
     this.getUsername();
     this.getUserReview();
     this.ratingMovie();
+  },
+  filters: {
+    slice: function(origin){
+        return origin.slice(0, 10)
+
+    }
   },
 };
 </script>
