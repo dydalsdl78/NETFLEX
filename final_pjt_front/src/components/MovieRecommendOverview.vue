@@ -1,18 +1,17 @@
 <template>
-  <div class="card" style="width: 150px; height: 330px">
+  <div id="MovieCard" class="card" style="width: 150px; height: 330px">
     <!-- <div class="card" style="width: 15rem"> -->
     <img
       :src="'https://image.tmdb.org/t/p/w300' + recommend_movie.poster_path"
       class="card-img-top"
       alt="poster"
     />
-    <div class="card-body">
-      <h5 class="card-title">{{ recommend_movie.title }}</h5>
+    <div class="pt-2 card-body">
+      <h5 class="card-title font-size-title">{{ recommend_movie.title }}</h5>
     </div>
     <div>
       <router-link
-        v-if="login"
-        class="nav-link"
+        class="nav-link font-size-menus"
         :to="{
           name: '',
           params: {
@@ -20,7 +19,7 @@
             url: recommend_movie.title,
           },
         }"
-        >영화 정보 보기
+        >영화정보
       </router-link>
     </div>
   </div>
@@ -48,4 +47,19 @@ export default {
 </script>
 
 <style>
+#MovieCard {
+  background-color: black;
+}
+.nav-link {
+  color: red;
+}
+.nav-link:hover {
+  color: white;
+}
+.font-size-title {
+  font-size: 12px;
+}
+.font-size-menus {
+  font-size: 10px;
+}
 </style>

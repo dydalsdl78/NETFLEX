@@ -2,20 +2,20 @@
   <div>
     <div class="container d-flex justify-content-around">
       <div class="d-flex align-items-start flex-column bd-highlight mb-3">
-        <span>HOME</span>
-        <span>ABOUT</span>
-        <span>BUSINESSES</span>
-        <span>SOCIAL RESPONSIBILITY</span>
-        <span>INVESTORS</span>
-        <span>SERVICE CENTER</span>
+        <div class="mb-3">HOME</div>
+        <div class="mb-3">ABOUT</div>
+        <div class="mb-3">BUSINESSES</div>
+        <div class="mb-3">SOCIAL RESPONSIBILITY</div>
+        <div class="mb-3">INVESTORS</div>
+        <div class="mb-3">SERVICE CENTER</div>
       </div>
       <div class="d-flex align-items-start flex-column bd-highlight mb-3">
-        <div>CAREERS</div>
-        <div>SITE MAP</div>
-        <div>CONTACT US</div>
-        <div>PRIVACY POLICY</div>
-        <div>TEAMS OF USE</div>
-        <span>NEWSROOM</span>
+        <div class="mb-3">CAREERS</div>
+        <div class="mb-3">SITE MAP</div>
+        <div class="mb-3">CONTACT US</div>
+        <div class="mb-3">PRIVACY POLICY</div>
+        <div class="mb-3">TEAMS OF USE</div>
+        <div class="mb-3">NEWSROOM</div>
       </div>
       <div class="d-flex align-items-center">
         <img
