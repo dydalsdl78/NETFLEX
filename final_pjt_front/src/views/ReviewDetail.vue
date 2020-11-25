@@ -13,9 +13,7 @@
 
         <!-- Author -->
         <p class="lead">
-            <router-link class="nav-link" :to="{name: 'MovieDetail', params: { movie: review.movie, url: review.movie.title },}"> {{review.movie.title}} </router-link>에 대한 
-          
-         {{review.user.username}}님의 리뷰입니다.
+            <router-link class="nav-link d-inline" :to="{name: 'MovieDetail', params: { movie: review.movie, url: review.movie.title },}">{{review.movie.title}}</router-link>에 대한 {{review.user.username}}님의 리뷰입니다.
         </p>
 
         <hr>
@@ -44,24 +42,28 @@
 
 
         <!-- Single Comment -->
-        <div class="media mb-4">
+        <div class="media mb-4" v-for="(comment, idx) in comments" :key="idx">
           <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
           <div class="media-body text-left">
-            <h5 class="mt-0">Commenter님의 댓글</h5>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+            <h5 class="mt-0">{{comment.user.username}}님의 답글</h5>
+            {{comment.content}}
+          
           </div>
         </div>
 
         <!-- Comments Form -->
-        <div class="card my-4">
-          <h5 class="card-header">Leave a Comment:</h5>
+        <div class="card my-4" style="background-color:black">
+          <h5 class="card-header text-left" style="background-color:black">Leave a Comment:</h5>
           <div class="card-body">
             <form>
               <div class="form-group">
-                <textarea class="form-control" rows="3"></textarea>
+                <textarea v-model="commentItem.content" class="form-control" rows="3"></textarea>
               </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
+
             </form>
+                <div class="text-right">
+              <button @click="createComment" class="btn btn-primary">Submit</button>
+              </div>
           </div>
         </div>
 
@@ -93,6 +95,12 @@ export default {
     data: function(){
       return{
         user:false,
+        comments:[],
+        commentItem:{
+          content: "",
+          review: this.review,
+          user:"",
+        },
       }
     },
     methods:{
@@ -113,11 +121,32 @@ export default {
           if(res.data.username === this.review.user.username){
             console.log('match')
             this.user = true
+            this.commentItem.user = res.data
           }
         })
         .catch((err)=>{console.log(err)})
-        
+      },
+      readComment:function(){
 
+        console.log(this.commentItem)
+        axios.get('http://127.0.0.1:8000/movies/comment_crud/', {data:{review:this.review}})
+        .then((res)=>{
+          console.log(res.data)
+          this.comments=res.data;
+        })
+        .catch((err) => {console.log(err)})
+      },
+      createComment:function(){
+        const config = this.setToken()
+        console.log(this.commentItem)
+        axios.post('http://127.0.0.1:8000/movies/comment_crud/', this.commentItem, config)
+        .then((res)=>{
+          console.log(res.data)
+          this.comments.push(res.data)
+        })
+        .catch((err)=>{
+          console.log(err)
+        })
       },
       deleteReview: function(){
         if (confirm('삭제하시겠습니까?')) {
@@ -140,6 +169,7 @@ export default {
     },
     created: function(){
       this.userId()
+      this.readComment()
     }
 
 }

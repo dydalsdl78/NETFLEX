@@ -9,12 +9,12 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 from .models import Movie, Review, Genre
-from .serializers import MovieSerializer, ReviewSerializer
+from .serializers import MovieSerializer, ReviewSerializer, CommentSerializer
 from .CBF import overview_recommend, genre_recommend
 from .pingpong import pingpong
 
 from accounts.models import User
-from .models import Review, Movie
+from .models import Review, Movie, Comment
 # Create your views here.
 
 
@@ -71,6 +71,36 @@ def review_create_list(request):
             serializer.save(user=request.user, movie=Movie.objects.get(
                 pk=request.data['movie']['id']))
             return Response(serializer.data, status.HTTP_201_CREATED)
+
+
+@api_view(['GET', 'POST', 'PUT', 'DELETE'])
+@authentication_classes([JSONWebTokenAuthentication])
+# @permission_classes([IsAuthenticated])
+def comment_crud(request):
+    if request.method == 'POST':
+        print('jweaklfjweaklfhere')
+        serializer = CommentSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(user=request.user, review=Review.objects.get(
+                pk=request.data['review']['id']))
+            return Response(serializer.data, status.HTTP_201_CREATED)
+
+    elif request.method == 'GET':
+        print('here------------------')
+        print(request.data)
+        comments = Comment.objects.all()
+        serializer = CommentSerializer(comments, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        pass
+
+    else:
+        pass
+
+
+def comment_list(request):
+    pass
 
 
 @api_view(['POST'])
