@@ -63,9 +63,12 @@ def review_create_list(request):
 
     else:
         serializer = ReviewSerializer(data=request.data)
+
         if serializer.is_valid():
+            print('here')
             serializer.save(user=request.user, movie=Movie.objects.get(
                 pk=request.data['movie']['id']))
+
             return Response(serializer.data, status.HTTP_201_CREATED)
 
 
@@ -91,6 +94,14 @@ def comment_crud(request, review_pk):
         comment = Comment.objects.get(pk=comment_pk)
         comment.delete()
         return Response({'id': comment_pk})
+
+
+@api_view(['POST'])
+def get_movie(request):
+    movie = Movie.objects.get(title=request.data['name'])
+    print(movie.title)
+    serializer = MovieSerializer(movie)
+    return Response(serializer.data)
 
 
 @api_view(['POST'])

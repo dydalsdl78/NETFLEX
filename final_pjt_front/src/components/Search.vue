@@ -46,41 +46,24 @@ export default {
   },
   methods: {
     searchSelected: function (event) {
-      console.log(event.id)
+      const movie_name = event.name
+      console.log(movie_name)
+      axios.post(
+        `http://127.0.0.1:8000/movies/get_movie/`, {'name':movie_name}
+      )
+      .then((res) => {
+        console.log(res.data)
+        const received_movie = res.data
+        this.$router.push({ name: "MovieDetail", params:{movie:received_movie} });
+      })
+      .catch((res) => {
+        console.log(err)
+      })
+
     },
-    // searchMovie: function () {
-    //   console.log("?");
-    //   for (const idx in this.movies) {
-    //     this.suggests.push({ id: idx, name: this.movies[idx].title });
-    //   }
-    //   const API_KEY = "d7a0f6399832ff632e1b02fc2afb5d21";
-    //   axios
-    //     .get(
-    //       `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=kr-KR&query=${this.search}`
-    //     )
-    //     .then((res) => {
-    //       console.log(res.data["results"]);
-    //       for (const idx in res.data["results"]) {
-    //         this.suggests.push({
-    //           id: idx,
-    //           name: res.data["results"][idx].title,
-    //         });
-    //         console.log(this.suggests);
-    //       }
-    //       // this.suggests = res.data["results"];
-    //     })
-    //     .catch((err) => {
-    //       console.log(err, "일치하는 영화가 없습니다.");
-    //     });
-    // },
-  },
-  // created: function () {
-  //   for (const idx in this.movies) {
-  //     this.suggests.push(movies[idx].title);
-  //     console.log(this.suggests);
-  //   }
-  // },
-};
+
+}
+}
 </script>
 
 <style>
