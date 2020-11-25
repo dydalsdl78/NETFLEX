@@ -150,10 +150,3 @@ def getGenre(request):
 def detail(request, review_pk):
     review = Review.objects.get(pk=review_pk)
     return Response(review)
-
-
-@api_view(['POST'])
-def movieDetail(request):
-    movie = Movie.objects.get(title=request.data['title'])
-    serializer = MovieSerializer(movie)
-    return Response(serializer.data)
