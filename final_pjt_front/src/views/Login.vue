@@ -1,14 +1,21 @@
 <template>
-  <div class="container">
+  <div class="container" style="width: 300px">
     <form class="mt-5 form-signin">
-      <img
+      <!-- <img
         class="mb-4"
         src="https://s3.ap-northeast-2.amazonaws.com/elasticbeanstalk-ap-northeast-2-176213403491/media/magazine_img/magazine_283/5-2-%EC%8D%B8%EB%84%A4%EC%9D%BC.jpg"
         alt=""
         width="72"
         height="72"
-      />
-      <h1 class="h3 mb-3 font-weight-normal">Please Log in</h1>
+      /> -->
+      <div class="d-flex">
+        <p class="d-flex justify-content-start mb-1 font-weight-normal">
+          로그인
+        </p>
+        <p class="d-flex justify-content-end password-find">
+          비밀 번호를 잊어버리셨나요?
+        </p>
+      </div>
       <label for="username" class="sr-only"></label>
       <input
         v-model="credentials.username"
@@ -40,7 +47,7 @@
       </div>
       <button
         @click="login"
-        class="m-auto btn btn-lg btn-primary btn-block"
+        class="m-auto btn btn-lg btn-success btn-block"
         type="submit"
         style="width: 300px"
       >
@@ -48,7 +55,7 @@
       </button>
       <p class="mt-3">다른 방법으로 로그인하기</p>
       <div class="d-flex justify-content-around">
-        <div class="d-flex justify-content-around" style="width: 300px">
+        <div class="d-flex justify-content-around" style="width: 500px">
           <span class="d-inline">
             <img
               src="https://www.flaticon.com/svg/static/icons/svg/270/270799.svg"
@@ -138,4 +145,7 @@ export default {
 </script>
 
 <style>
+.password-find {
+  font-size: 12px;
+}
 </style>

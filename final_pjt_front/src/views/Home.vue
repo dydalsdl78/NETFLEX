@@ -1,16 +1,16 @@
 <template>
-  <div >
-    <Search :movies="movies" />
-    <h2 class="mt-5">현재 상영 영화</h2>
+  <div>
+    <!-- <Search :movies="movies" /> -->
+    <h5 class="mt-5 mb-4">현재 상영 영화</h5>
     <div class="container">
       <carousel
         :navigationEnabled="true"
-        :perPage="5"
+        :perPage="10"
         :scrollPerPage="true"
         :paginationEnabled="false"
       >
         <slide
-          v-for="(movie, idx) in movies"
+          v-for="(movie, idx) in cur_movies"
           :key="idx"
           @slideclick="handleSlideClick"
         >
@@ -19,16 +19,16 @@
       </carousel>
     </div>
 
-    <h2 class="mt-5">개봉 예정 영화</h2>
+    <h5 class="mt-5 mb-4">개봉 예정 영화</h5>
     <div class="container">
       <carousel
         :navigationEnabled="true"
-        :perPage="5"
+        :perPage="10"
         :scrollPerPage="true"
         :paginationEnabled="false"
       >
         <slide
-          v-for="(movie, idx) in movies"
+          v-for="(movie, idx) in pre_movies"
           :key="idx"
           @slideclick="handleSlideClick"
         >
@@ -36,19 +36,35 @@
         </slide>
       </carousel>
     </div>
-    <footer>
-      <h2 class="m-5">footer</h2>
-      <h2 class="m-5">footer</h2>
-    </footer>
+
+    <h5 class="mt-5 mb-4">인기 영화</h5>
+    <div class="mb-4 container">
+      <carousel
+        :navigationEnabled="true"
+        :perPage="10"
+        :scrollPerPage="true"
+        :paginationEnabled="false"
+      >
+        <slide
+          v-for="(movie, idx) in pop_movies"
+          :key="idx"
+          @slideclick="handleSlideClick"
+        >
+          <MovieCard3 :movie="movie" />
+        </slide>
+      </carousel>
+    </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import axios from "axios";
+import _ from "lodash";
 import MovieCard from "@/components/MovieCard";
 import MovieCard2 from "@/components/MovieCard2";
-import Search from "@/components/Search";
+import MovieCard3 from "@/components/MovieCard3";
+// import Search from "@/components/Search";
 import { Carousel, Slide } from "vue-carousel";
 
 export default {
@@ -56,13 +72,17 @@ export default {
   components: {
     MovieCard,
     MovieCard2,
-    Search,
+    MovieCard3,
+    // Search,
     Carousel,
     Slide,
   },
   data: function () {
     return {
       movies: [],
+      cur_movies: [],
+      pre_movies: [],
+      pop_movies: [],
     };
   },
   methods: {
@@ -70,6 +90,9 @@ export default {
       axios.get("http://127.0.0.1:8000/movies/movielist/").then((res) => {
         // console.log(res.data[0].title)
         this.movies = res.data;
+        this.cur_movies = _.slice(res.data, 0, 66);
+        this.pre_movies = _.slice(res.data, 67, 136);
+        this.pop_movies = _.slice(res.data, 137, 200);
       });
     },
     handleSlideClick: function () {

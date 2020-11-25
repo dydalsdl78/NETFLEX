@@ -1,14 +1,14 @@
 <template>
-  <div class="container">
+  <div class="container" style="width: 300px">
     <form class="mt-5 form-signin">
-      <img
+      <!-- <img
         class="mb-4"
         src="https://s3.ap-northeast-2.amazonaws.com/elasticbeanstalk-ap-northeast-2-176213403491/media/magazine_img/magazine_283/5-2-%EC%8D%B8%EB%84%A4%EC%9D%BC.jpg"
         alt=""
         width="72"
         height="72"
-      />
-      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+      /> -->
+      <h1 class="h3 mb-3 font-weight-normal">회원가입</h1>
       <label for="username" class="sr-only"></label>
       <input
         v-model="credentials.username"
@@ -18,7 +18,7 @@
         placeholder="영문 아이디"
         required=""
         autofocus=""
-        maxlength="10"
+        maxlength=""
         style="width: 300px"
       />
       <label for="inputPassword" class="sr-only"></label>
@@ -30,7 +30,7 @@
         class="m-auto form-control"
         placeholder="비밀번호"
         required=""
-        minlength="10"
+        minlength=""
         style="width: 300px"
       />
       <label for="passwordConfirmation" class="sr-only"></label>
@@ -46,13 +46,24 @@
         style="width: 300px"
       />
       <div class="checkbox mt-2">
-        <label>
-          <input type="checkbox" value="remember-me" /> 아이디 저장
+        <label for="cb">
+          <input id="cb" type="checkbox" value="remember-me" />
+          <span class="blurtext"> 아이디 저장 </span>
+        </label>
+        <br />
+        <label for="cb">
+          <input id="cb" type="checkbox" value="agreement" />
+          <span class="blurtext"> 전체 약관에 동의합니다. </span>
+        </label>
+        <br />
+        <label for="cb">
+          <input id="cb" type="checkbox" value="14gte" />
+          <span class="blurtext"> 14세 이상입니다. </span>
         </label>
       </div>
       <button
         @click="signup"
-        class="m-auto btn btn-lg btn-primary btn-block"
+        class="m-auto btn btn-lg btn-success btn-block"
         type="submit"
         style="width: 300px"
       >
@@ -167,7 +178,7 @@ export default {
 </script>
 
 <style scoped>
-body {
+/* body {
   position: relative;
   z-index: 1;
 }
@@ -184,5 +195,21 @@ body:after {
   content: "";
   width: 100%;
   height: 100%;
+} */
+
+.blurtext {
+  opacity: 0.5;
+}
+
+input[id="cb"] + label {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #bcbcbc;
+  cursor: pointer;
+}
+
+input[id="cb"]:checked + label {
+  background-color: #666666;
 }
 </style>

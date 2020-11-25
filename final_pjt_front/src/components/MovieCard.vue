@@ -1,31 +1,33 @@
 <template>
-  <div id="MovieCard" class="card" style="width: 15rem; backgroud-color:black;">
+  <div id="MovieCard" class="card" style="width: 12rem; backgroud-color: black">
     <img
       :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path"
       class="card-img-top"
       alt="poster"
     />
     <div class="card-body">
-      <h5 class="card-title">{{ movie.title }}</h5>
+      <h5 class="card-title font-size-title">{{ movie.title }}</h5>
     </div>
     <div class="card-tail">
-      <router-link
-        v-if="login"
-        class="nav-link"
-        :to="{
-          name: 'ReviewCreate',
-          params: { movie: movie, url: movie.title },
-        }"
-        >리뷰쓰기
-      </router-link>
-      <router-link
-        class="nav-link"
-        :to="{
-          name: 'MovieDetail',
-          params: { movie: movie, url: movie.title },
-        }"
-        >영화정보
-      </router-link>
+      <div class="container">
+        <router-link
+          class="nav-link font-size-menus d-inline"
+          :to="{
+            name: 'MovieDetail',
+            params: { movie: movie, url: movie.title },
+          }"
+          >영화정보
+        </router-link>
+        <router-link
+          v-if="login"
+          class="nav-link font-size-menus d-inline"
+          :to="{
+            name: 'ReviewCreate',
+            params: { movie: movie, url: movie.title },
+          }"
+          >리뷰쓰기
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -52,14 +54,19 @@ export default {
 </script>
 
 <style scoped>
-#MovieCard{
+#MovieCard {
   background-color: black;
 }
-.nav-link{
+.nav-link {
   color: red;
 }
-.nav-link:hover{
-  color:white;
+.nav-link:hover {
+  color: white;
 }
-
+.font-size-title {
+  font-size: 15px;
+}
+.font-size-menus {
+  font-size: 11px;
+}
 </style>

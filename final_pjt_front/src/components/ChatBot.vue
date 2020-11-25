@@ -41,26 +41,29 @@
         <p v-else>사이트에 궁금한 점이 있으시면 물어봐주세요</p>
       </main>
       <footer class="chatbox-popup__footer">
-        <i
-          ><font-awesome-icon
-            :icon="faUserCircle"
-            size="2x"
-            aria-hidden="true"
-            class="d-flex"
-        /></i>
-        <aside style="flex: 1; color: #888; text-align: center">
+        <span class="d-flex">
+          <i
+            ><font-awesome-icon
+              :icon="faUserCircle"
+              :style="{ color: '#42b983' }"
+              size="2x"
+              aria-hidden="true"
+              class="d-flex mr-3"
+          /></i>
+          <!-- <aside style="flex: 1; color: #888; text-align: center">
           <i class="fa fa-camera" aria-hidden="true"></i>
-        </aside>
-        <aside style="flex: 10">
-          <textarea
-            v-model="query"
-            id="text"
-            type="text"
-            placeholder="채팅을 입력하세요"
-            autofocus
-            @keypress.enter="transferQuery"
-          ></textarea>
-        </aside>
+        </aside> -->
+          <aside style="flex: 10">
+            <textarea
+              v-model="query"
+              id="text"
+              type="text"
+              placeholder="채팅을 입력하세요"
+              autofocus
+              @keypress.enter="transferQuery"
+            ></textarea>
+          </aside>
+        </span>
         <aside style="flex: 1; color: #888; text-align: center">
           <i class="fa fa-paper-plane" aria-hidden="true"></i>
         </aside>
@@ -117,6 +120,7 @@
         <i
           ><font-awesome-icon
             :icon="faUserCircle"
+            :style="{ color: '#42b983' }"
             size="2x"
             aria-hidden="true"
             class="d-flex"
@@ -227,13 +231,8 @@ chatbox(() => {
 @import "../assets/chat_css.css";
 
 .loader {
-  /* width: 100%;
-  height: 100%; */
   z-index: 0;
   position: fixed;
-  /* display: flex; */
-  /* align-items: center; */
   justify-content: center;
-  /* background: #fff; */
 }
 </style>

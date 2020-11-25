@@ -6,7 +6,7 @@
       alt="poster"
     />
     <div class="card-body">
-      <h5 class="card-title font-size-title">{{ movie.title }}</h5>
+      <h5 class="mb-0 card-title font-size-title">{{ movie.title }}</h5>
     </div>
     <div>
       <router-link
