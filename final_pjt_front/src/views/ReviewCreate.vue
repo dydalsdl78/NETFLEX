@@ -10,7 +10,7 @@
           type="text"
           class="form-control"
           id="title"
-          placeholder="글 제목"
+          placeholder="리뷰 제목"
         />
   </div>
 
@@ -21,6 +21,7 @@
           class="form-control"
           id="content"
           rows="3"
+          placeholder='리뷰 내용'
         ></textarea>
   </div>
 
@@ -33,6 +34,7 @@
           id="score"
           min="1"
           max="10"
+          placeholder="1~10 사이의 평점"
         />
   </div>
 

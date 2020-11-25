@@ -33,3 +33,11 @@ class Review(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE, related_name="reviews", null=True)
+
+
+class Comment(models.Model):
+    content = models.CharField(max_length=300)
+    review = models.ForeignKey(
+        Review, related_name='comments', on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='comments',
+                             on_delete=models.CASCADE)
