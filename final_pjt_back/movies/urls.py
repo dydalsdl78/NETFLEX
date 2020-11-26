@@ -12,4 +12,5 @@ urlpatterns = [
     path('<int:review_pk>/', views.detail),
     path('<int:review_pk>/comment_crud/', views.comment_crud),
     path('get_movie/', views.get_movie),
+    path('commentcount/', views.commentCount)
 ]

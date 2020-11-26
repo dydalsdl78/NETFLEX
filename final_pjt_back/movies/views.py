@@ -15,6 +15,7 @@ from .pingpong import pingpong
 
 from accounts.models import User
 from .models import Review, Movie, Comment
+from django.contrib.auth import get_user_model
 # Create your views here.
 
 
@@ -98,7 +99,6 @@ def comment_crud(request, review_pk):
 @api_view(['POST'])
 def get_movie(request):
     movie = Movie.objects.get(title=request.data['name'])
-    print(movie.title)
     serializer = MovieSerializer(movie)
     return Response(serializer.data)
 
@@ -150,3 +150,19 @@ def getGenre(request):
 def detail(request, review_pk):
     review = Review.objects.get(pk=review_pk)
     return Response(review)
+
+
+@api_view(['POST'])
+def commentCount(request):
+    res = []
+    for i in range(len(request.data['reviewComment'])):
+        movieId = request.data['reviewComment'][i]['movie']['id']
+        name = request.data['reviewComment'][i]['user']['username']
+        userId = get_user_model().objects.get(username=name)
+        reviewId = Review.objects.values("id").get(
+            movie_id=movieId, user_id=userId)
+        review = Review.objects.get(pk=reviewId['id'])
+        reviews = review.comments.all()
+        res.append(len(reviews))
+
+    return Response({"count": res})
