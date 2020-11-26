@@ -126,7 +126,7 @@
 <script>
 import axios from "axios";
 
-const SERVER_URL = process.env.VUE_APP_SERVER_URL;
+
 
 export default {
   name: "Signup",
@@ -142,7 +142,7 @@ export default {
   methods: {
     signup: function () {
       axios
-        .post(`${SERVER_URL}/accounts/signup/`, this.credentials)
+        .post('http://127.0.0.1:8000/accounts/signup', this.credentials)
         .then((res) => {
           console.log(res);
           this.$router.push({ name: "Home" });

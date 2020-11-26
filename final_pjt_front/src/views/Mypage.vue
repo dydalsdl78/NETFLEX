@@ -122,7 +122,6 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import StarRating from "vue-star-rating";
 
-const SERVER_URL = process.env.VUE_APP_SERVER_URL;
 
 export default {
   name: "Mypage",
@@ -154,7 +153,7 @@ export default {
     getUserReview: function () {
       const config = this.setToken();
       axios
-        .get(`${SERVER_URL}/accounts/userReview/`, config)
+        .get('http://127.0.0.1:8000/accounts/userReview/', config)
         .then((res) => {
           console.log(res.data);
           this.reviews = res.data;
@@ -166,7 +165,7 @@ export default {
     getUsername: function () {
       const config = this.setToken();
       axios
-        .get(`${SERVER_URL}/accounts/username/`, config)
+        .get('http://127.0.0.1:8000/accounts/username/', config)
         .then((res) => {
           console.log(res.data);
           this.username = res.data.username;

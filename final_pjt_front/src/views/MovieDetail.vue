@@ -122,7 +122,6 @@ import MovieRecommendGenre from "@/components/MovieRecommendGenre";
 import MovieRecommendOverview from "@/components/MovieRecommendOverview";
 import axios from "axios";
 
-const SERVER_URL = process.env.VUE_APP_SERVER_URL;
 
 export default {
   name: "MovieDetail",
@@ -152,14 +151,14 @@ export default {
         movie_title: this.movie.title,
       };
 
-      axios.post(`${SERVER_URL}/movies/genre/`, movie_title).then((res) => {
+      axios.post('http://127.0.0.1:8000/movies/genre/', movie_title).then((res) => {
         console.log(res.data);
         this.recommend_Genre = res.data;
       });
     },
     getRecommendedOverwiew: function () {
       axios
-        .post(`${SERVER_URL}/movies/overview/`, {
+        .post('http://127.0.0.1:8000/movies/overview/', {
           movie_title: this.movie.title,
         })
         .then((res) => {

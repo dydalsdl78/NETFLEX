@@ -178,7 +178,6 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faCommentDots } from "@fortawesome/free-solid-svg-icons";
 import { faRobot } from "@fortawesome/free-solid-svg-icons";
 
-const SERVER_URL = process.env.VUE_APP_SERVER_URL;
 
 export default {
   name: "ChatBot",
@@ -206,7 +205,7 @@ export default {
         query: this.query,
       };
 
-      axios.post(`${SERVER_URL}/movies/pingpong/`, query).then((res) => {
+      axios.post('http://127.0.0.1:8000/movies/pingpong/', query).then((res) => {
         // this.chattings.push(this.query);
         this.Messages.push(this.query);
         this.chattings = res.data;

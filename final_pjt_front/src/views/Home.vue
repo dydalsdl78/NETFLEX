@@ -30,7 +30,6 @@
         <slide
           v-for="(movie, idx) in pop_movies"
           :key="idx"
-          @slideclick="handleSlideClick"
         >
           <MovieCard3 :movie="movie" />
         </slide>
@@ -48,7 +47,6 @@
         <slide
           v-for="(movie, idx) in pre_movies"
           :key="idx"
-          @slideclick="handleSlideClick"
         >
           <MovieCard2 :movie="movie" />
         </slide>
@@ -68,7 +66,6 @@ import MovieCard3 from "@/components/MovieCard3";
 import { Carousel, Slide } from "vue-carousel";
 import HomeCarousel from "@/components/HomeCarousel";
 
-const SERVER_URL = process.env.VUE_APP_SERVER_URL;
 
 export default {
   name: "Home",
@@ -90,16 +87,13 @@ export default {
   },
   methods: {
     getMovieList: function () {
-      axios.get(`${SERVER_URL}/movies/movielist/`).then((res) => {
+      axios.get('http://127.0.0.1:8000/movies/movielist/').then((res) => {
         // console.log(res.data[0].title)
         this.movies = res.data;
         this.cur_movies = _.slice(res.data, 0, 66);
         this.pre_movies = _.slice(res.data, 67, 136);
         this.pop_movies = _.slice(res.data, 137, 200);
       });
-    },
-    handleSlideClick: function () {
-      console.log("슬라이드 클릭 굿");
     },
   },
   created() {

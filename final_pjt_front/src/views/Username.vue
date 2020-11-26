@@ -31,7 +31,7 @@ export default {
     getUsername: function () {
       const config = this.setToken();
       axios
-        .get(`${SERVER_URL}/accounts/username/`, config)
+        .get('http://127.0.0.1:8000/accounts/username/', config)
         .then((res) => {
           console.log(res.data);
           this.username = res.data.username;
