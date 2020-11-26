@@ -29,12 +29,36 @@
         <!-- Preview Image -->
         <div class="row">
           <div class="col">
-            <img
-              class="img-fluid rounded"
-              :src="'https://image.tmdb.org/t/p/w300' + review.movie.poster_path"
-              alt="poster"
-              style="height: 200px"
-            />            
+            <router-link
+              :to="{
+                name: 'MovieDetail',
+                params: {
+                  movie: review.movie,
+                  url: review.movie.title,
+                },
+              }"
+              >
+              <img
+                :src="
+                  'https://image.tmdb.org/t/p/w300' + review.movie.poster_path
+                "
+                class="card-img-top"
+                alt="poster"
+                style="width: 150px; height: 220px"
+              />
+           </router-link>
+
+
+          <star-rating
+            :increment="0.5"
+            :star-size="15"
+            :show-rating="false"
+            v-model="review.score"
+            @rating-selected="setRating"
+            class="justify-content-center"
+            read-only="true"
+            >
+            </star-rating>                        
           </div>
           <div class="col">
             <p class="lead">{{ review.content }}</p>
@@ -115,9 +139,13 @@
 
 <script>
 import axios from "axios";
+import StarRating from "vue-star-rating";
 
 export default {
   name: "ReviewDetail",
+  components:{
+    StarRating,
+  },
   props: {
     review: Object,
   },
@@ -211,7 +239,7 @@ export default {
         // Save it!
         console.log(this.review);
         axios
-          .delete(`http://127.0.0.1:8000/movies/${this.review.id}/comment_crud/`, {
+          .delete(`http://127.0.0.1:8000/movies/review_create_list/`, {
             data: this.review,
           })
           .then((res) => {

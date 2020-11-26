@@ -108,6 +108,7 @@ export default {
     },
   },
   created: function () {
+    document.title="NETFLEX"
     const token = localStorage.getItem("jwt");
 
     if (token) {

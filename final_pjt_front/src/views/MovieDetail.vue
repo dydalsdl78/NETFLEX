@@ -40,6 +40,18 @@
         <h5 class="mt-3">
           {{ movie.overview }}
         </h5>
+        <div>
+          <router-link
+          v-if="login"
+          class="nav-link font-size-menus d-inline"
+          :to="{
+          name: 'ReviewCreate',
+          params: { movie: movie, url: movie.title },
+          }"
+          >리뷰쓰기
+          </router-link>
+        </div>
+        
       </div>
     </div>
     <hr />
@@ -143,6 +155,7 @@ export default {
       recommend_Genre: [],
       recommend_Overview: [],
       genreName: [],
+      login:false,
     };
   },
   methods: {
@@ -171,6 +184,11 @@ export default {
     this.getRecommendedGenre();
     this.getRecommendedOverwiew();
     // this.gertGenre();
+    const token = localStorage.getItem("jwt");
+    if (token) {
+      this.login = true;
+    }
+
   },
   watch: {
     movie: function () {
