@@ -38,6 +38,8 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import Dropdown from "vue-simple-search-dropdown";
 import searchJson from "../assets/search.json";
 
+const SERVER_URL = process.env.VUE_APP_SERVER_URL;
+
 export default {
   name: "Search",
   components: {
@@ -60,7 +62,7 @@ export default {
       const movie_name = event.name;
       console.log(movie_name);
       axios
-        .post(`http://127.0.0.1:8000/movies/get_movie/`, { name: movie_name })
+        .post(`${SERVER_URL}/movies/get_movie/`, { name: movie_name })
         .then((res) => {
           console.log("changed");
           const received_movie = res.data;

@@ -14,7 +14,6 @@ def pingpong(query):
         }
     }
 
-    # sessionId = "m2FMUktXL0oq3eF0o3oJh2Mefx345cYj5D0P0VUJLBQ7AxqS8g+s9XxeR0t6pla4v1HaAFrl/BrLDw6jnKDRHw=="
     sessionId = "22w42o7e6o5rbxh2urxnyonlbxof1wev"
     url = "https://builder.pingpong.us/api/builder/5fa35802e4b07b8420a5822d/integration/v0.2/custom/" + sessionId
 
