@@ -32,7 +32,6 @@
             <div class="row">
               <div class="col-4">
                 <div>{{ commentCounts.count[idx] }} 개의 댓글</div>
-                <div>{{ idx }}</div>
                 <!-- <div>{{ commentCounts.count }}</div> -->
               </div>
               <div class="col-8">{{ review.created_at | slice }}</div>

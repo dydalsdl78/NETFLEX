@@ -12,16 +12,17 @@
         :maxItem="20"
         placeholder="영화 제목을 입력하세요"
       >
-        <!-- <router-link
+        <router-link
           class="nav-link font-size-menus"
           :to="{
             name: '',
             params: {
               movie: movie,
+              url: movie.title,
             },
           }"
         >
-        </router-link> -->
+        </router-link>
       </Dropdown>
       <button></button>
     </span>
