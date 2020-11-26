@@ -45,14 +45,11 @@
           <i
             ><font-awesome-icon
               :icon="faUserCircle"
-              :style="{ color: '#42b983' }"
+              :style="{ color: '#808080' }"
               size="2x"
               aria-hidden="true"
               class="d-flex mr-3"
           /></i>
-          <!-- <aside style="flex: 1; color: #888; text-align: center">
-          <i class="fa fa-camera" aria-hidden="true"></i>
-        </aside> -->
           <aside style="flex: 10">
             <textarea
               v-model="query"
@@ -80,10 +77,6 @@
               aria-hidden="true"
               class="chatbox-popup__avatar"
           /></i>
-          <!-- <i
-            class="fa fa-user-circle fa-3x chatbox-popup__avatar"
-            aria-hidden="true"
-          ></i> -->
         </aside>
         <aside style="flex: 1">
           <h1>채팅봇</h1>
@@ -137,14 +130,11 @@
         <i
           ><font-awesome-icon
             :icon="faUserCircle"
-            :style="{ color: '#42b983' }"
+            :style="{ color: '#808080' }"
             size="2x"
             aria-hidden="true"
             class="d-flex mr-3"
         /></i>
-        <!-- <aside style="flex: 1; color: #888; text-align: center">
-          <i class="fa fa-camera" aria-hidden="true"></i>
-        </aside> -->
         <aside style="flex: 10">
           <textarea
             v-model="query"
@@ -178,7 +168,6 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faCommentDots } from "@fortawesome/free-solid-svg-icons";
 import { faRobot } from "@fortawesome/free-solid-svg-icons";
 
-
 export default {
   name: "ChatBot",
   components: {
@@ -205,14 +194,16 @@ export default {
         query: this.query,
       };
 
-      axios.post('http://127.0.0.1:8000/movies/pingpong/', query).then((res) => {
-        // this.chattings.push(this.query);
-        this.Messages.push(this.query);
-        this.chattings = res.data;
-        this.Messages.push(this.chattings);
-        this.query = "";
-        console.log(res.data);
-      });
+      axios
+        .post("http://127.0.0.1:8000/movies/pingpong/", query)
+        .then((res) => {
+          // this.chattings.push(this.query);
+          this.Messages.push(this.query);
+          this.chattings = res.data;
+          this.Messages.push(this.chattings);
+          this.query = "";
+          console.log(res.data);
+        });
     },
   },
 };
@@ -252,5 +243,9 @@ chatbox(() => {
   z-index: 0;
   position: fixed;
   justify-content: center;
+}
+
+.__bar-is-vertical {
+  background: rgb(80, 80, 80) !important;
 }
 </style>

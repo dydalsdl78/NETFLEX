@@ -9,11 +9,7 @@
         :scrollPerPage="true"
         :paginationEnabled="false"
       >
-        <slide
-          v-for="(movie, idx) in cur_movies"
-          :key="idx"
-          @slideclick="handleSlideClick"
-        >
+        <slide v-for="(movie, idx) in cur_movies" :key="idx">
           <MovieCard :movie="movie" />
         </slide>
       </carousel>
@@ -27,10 +23,7 @@
         :scrollPerPage="true"
         :paginationEnabled="false"
       >
-        <slide
-          v-for="(movie, idx) in pop_movies"
-          :key="idx"
-        >
+        <slide v-for="(movie, idx) in pop_movies" :key="idx">
           <MovieCard3 :movie="movie" />
         </slide>
       </carousel>
@@ -44,10 +37,7 @@
         :scrollPerPage="true"
         :paginationEnabled="false"
       >
-        <slide
-          v-for="(movie, idx) in pre_movies"
-          :key="idx"
-        >
+        <slide v-for="(movie, idx) in pre_movies" :key="idx">
           <MovieCard2 :movie="movie" />
         </slide>
       </carousel>
@@ -65,7 +55,6 @@ import MovieCard2 from "@/components/MovieCard2";
 import MovieCard3 from "@/components/MovieCard3";
 import { Carousel, Slide } from "vue-carousel";
 import HomeCarousel from "@/components/HomeCarousel";
-
 
 export default {
   name: "Home",
@@ -87,7 +76,7 @@ export default {
   },
   methods: {
     getMovieList: function () {
-      axios.get('http://127.0.0.1:8000/movies/movielist/').then((res) => {
+      axios.get("http://127.0.0.1:8000/movies/movielist/").then((res) => {
         // console.log(res.data[0].title)
         this.movies = res.data;
         this.cur_movies = _.slice(res.data, 0, 66);

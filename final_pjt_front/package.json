@@ -17,7 +17,6 @@
     "core-js": "^3.6.5",
     "jquery": "^3.5.1",
     "vue": "^2.6.12",
-    "vue-autosuggest": "^2.2.0",
     "vue-bootstrap-typeahead": "^0.2.6",
     "vue-carousel": "^0.18.0",
     "vue-router": "^3.2.0",

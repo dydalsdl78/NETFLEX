@@ -126,8 +126,6 @@
 <script>
 import axios from "axios";
 
-
-
 export default {
   name: "Signup",
   data: function () {
@@ -142,7 +140,7 @@ export default {
   methods: {
     signup: function () {
       axios
-        .post('http://127.0.0.1:8000/accounts/signup', this.credentials)
+        .post("http://127.0.0.1:8000/accounts/signup/", this.credentials)
         .then((res) => {
           console.log(res);
           this.$router.push({ name: "Home" });

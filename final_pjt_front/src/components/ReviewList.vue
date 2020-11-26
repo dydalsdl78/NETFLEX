@@ -3,6 +3,7 @@
     <div class="card mb-3" style="background-color: black">
       <div class="card-header">
         <div class="row">
+          <div class="col">Movie</div>
           <div class="col">Topics</div>
           <div class="col-4">
             <div class="row">
@@ -13,23 +14,45 @@
       </div>
       <div class="card-body py-3" v-for="(review, idx) in reviews" :key="idx">
         <div class="row">
-          <div class="col text-left">
+          <div class="mr-5 col text-center">
             <router-link
-              class="nav-link"
+              :to="{
+                name: 'MovieDetail',
+                params: {
+                  movie: review.movie,
+                  url: review.movie.title,
+                },
+              }"
+              ><img
+                :src="
+                  'https://image.tmdb.org/t/p/w300' + review.movie.poster_path
+                "
+                class="img-thumbnail ml-3"
+                alt="poster"
+                style="width: 100px"
+              />
+            </router-link>
+          </div>
+          <div class="mt-4 col">
+            <router-link
+              class="nav-link pl-0 pd-4 d-flex justify-content-start"
               :to="{
                 name: 'ReviewDetail',
                 params: { review: review, url: review.title },
               }"
               >{{ review.title }}
             </router-link>
-            <div class="small">
-              {{ review.movie.title }}를 보고 {{ review.user.username }}님이
-              쓰신 리뷰
+            <div class="small d-flex justify-content-starts">
+              {{ review.movie.title }}에 {{ review.user.username }}님이 작성하신
+              리뷰 입니다.
             </div>
           </div>
+
           <div class="d-none d-md-block col-4">
             <div class="row">
-              <div class="col">{{ review.created_at | slice }}</div>
+              <div class="mt-5 col">
+                {{ review.created_at | slice }}
+              </div>
             </div>
           </div>
         </div>

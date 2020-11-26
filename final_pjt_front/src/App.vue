@@ -12,17 +12,15 @@
           alt=""
         />
       </router-link>
-      <!-- <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button> -->
+      <router-link
+        style="color: white"
+        v-if="login"
+        :to="{
+          name: 'Mypage',
+        }"
+        >{{ this.username }} 님 반갑습니다!
+      </router-link>
+
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
           <!-- 로그인 했을 때 -->
@@ -87,6 +85,7 @@
 import ChatBot from "@/components/ChatBot";
 import MovieFooter from "@/components/MovieFooter";
 import Search from "@/components/Search";
+import axios from "axios";
 
 export default {
   name: "App",
@@ -98,22 +97,50 @@ export default {
   data: function () {
     return {
       login: false,
+      username: "",
     };
   },
   methods: {
     logout: function () {
       localStorage.removeItem("jwt");
       this.login = false;
-      this.$router.push({ name: "Login" });
+      this.$router.replace({ name: "Login" });
+    },
+    setToken: function () {
+      const token = localStorage.getItem("jwt");
+      const config = {
+        headers: {
+          Authorization: `JWT ${token}`,
+        },
+      };
+      return config;
+    },
+    getUsername: function () {
+      const config = this.setToken();
+      axios
+        .get("http://127.0.0.1:8000/accounts/username/", config)
+        .then((res) => {
+          console.log(res.data);
+          this.username = res.data.username;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
   created: function () {
-    document.title="NETFLEX"
+    this.getUsername();
+    document.title = "NETFLEX";
     const token = localStorage.getItem("jwt");
 
     if (token) {
       this.login = true;
     }
+  },
+  watch: {
+    username: function () {
+      this.getUsername();
+    },
   },
 };
 </script>

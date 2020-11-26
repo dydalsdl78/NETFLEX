@@ -22,7 +22,7 @@
         <hr />
 
         <!-- Date/Time -->
-        <p>Posted on {{ review.created_at|slice }}</p>
+        <p>Posted on {{ review.created_at | slice }}</p>
 
         <hr />
 
@@ -37,7 +37,7 @@
                   url: review.movie.title,
                 },
               }"
-              >
+            >
               <img
                 :src="
                   'https://image.tmdb.org/t/p/w300' + review.movie.poster_path
@@ -46,31 +46,24 @@
                 alt="poster"
                 style="width: 150px; height: 220px"
               />
-           </router-link>
+            </router-link>
 
-
-          <star-rating
-            :increment="0.5"
-            :star-size="15"
-            :show-rating="false"
-            v-model="review.score"
-            @rating-selected="setRating"
-            class="justify-content-center"
-            read-only="true"
+            <star-rating
+              :increment="0.5"
+              :star-size="15"
+              :show-rating="false"
+              v-model="review.score"
+              class="justify-content-center"
+              :read-only="true"
             >
-            </star-rating>                        
+            </star-rating>
           </div>
           <div class="col">
             <p class="lead">{{ review.content }}</p>
           </div>
         </div>
 
-
         <!-- Post Content -->
-        
-
-
-
 
         <hr />
         <div class="text-right" v-if="user">
@@ -92,11 +85,15 @@
 
         <!-- Single Comment -->
         <div class="media mb-4" v-for="(comment, idx) in comments" :key="idx">
-          <img
-            class="d-flex mr-3 rounded-circle"
-            src="http://placehold.it/50x50"
-            alt=""
-          />
+          <i
+            ><font-awesome-icon
+              :icon="faUserCircle"
+              :style="{ color: '#808080' }"
+              size="2x"
+              aria-hidden="true"
+              class="d-flex mr-3"
+          /></i>
+
           <div class="media-body text-left">
             <h5 class="mt-0">{{ comment.user.username }}님의 답글</h5>
             {{ comment.content }}
@@ -109,7 +106,7 @@
         <!-- Comments Form -->
         <div class="card my-4" style="background-color: black">
           <h5 class="card-header text-left" style="background-color: black">
-            Leave a Comment:
+            댓글을 남겨주세요
           </h5>
           <div class="card-body">
             <form>
@@ -140,17 +137,21 @@
 <script>
 import axios from "axios";
 import StarRating from "vue-star-rating";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 
 export default {
   name: "ReviewDetail",
-  components:{
+  components: {
     StarRating,
+    FontAwesomeIcon,
   },
   props: {
     review: Object,
   },
   data: function () {
     return {
+      faUserCircle,
       user: false,
       username: "",
       comments: [],
@@ -174,7 +175,7 @@ export default {
     userId: function () {
       const config = this.setToken();
       axios
-        .get('http://127.0.0.1:8000/accounts/username/', config)
+        .get("http://127.0.0.1:8000/accounts/username/", config)
         .then((res) => {
           this.username = res.data.username;
           if (res.data.username === this.review.user.username) {
@@ -190,9 +191,12 @@ export default {
     deleteComment: function (comment) {
       console.log(comment);
       axios
-        .delete(`http://127.0.0.1:8000/movies/${this.review.id}/comment_crud/`, {
-          data: comment,
-        })
+        .delete(
+          `http://127.0.0.1:8000/movies/${this.review.id}/comment_crud/`,
+          {
+            data: comment,
+          }
+        )
         .then((res) => {
           console.log(res);
           const targetCommentIdx = this.comments.findIndex((comment) => {
@@ -258,10 +262,10 @@ export default {
     this.readComment();
   },
   filters: {
-slice: function (origin) {
-  return origin.slice(0, 10);
-},
-},
+    slice: function (origin) {
+      return origin.slice(0, 10);
+    },
+  },
 };
 </script>
 

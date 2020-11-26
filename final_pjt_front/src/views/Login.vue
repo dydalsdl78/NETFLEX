@@ -107,7 +107,6 @@
 <script>
 import axios from "axios";
 
-
 export default {
   name: "Login",
   data: function () {
@@ -124,7 +123,10 @@ export default {
       // username 데이터를 전송
       this.$store.dispatch("usernameSave", username);
       axios
-        .post('http://127.0.0.1:8000/accounts/api-token-auth/', this.credentials)
+        .post(
+          "http://127.0.0.1:8000/accounts/api-token-auth/",
+          this.credentials
+        )
         .then((res) => {
           console.log(this.$store.state.username);
           // jwt 토큰 생성
@@ -158,7 +160,7 @@ export default {
   /* border-radius: 1px; */
 }
 
-.wrapper:after {
+.wrapper::after {
   width: 100%;
   height: 830px;
   z-index: 10;

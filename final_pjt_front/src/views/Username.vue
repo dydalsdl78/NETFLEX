@@ -1,15 +1,10 @@
 <template>
-  <div>
-    Username : {{ username }}
-    <hr />
-    <button @click="getUsername">getUsername</button>
-  </div>
+  <div @click="moveMypage">{{ this.username }} 님 반갑습니다!</div>
 </template>
 
 <script>
+// 이파일 안쓰는듯요
 import axios from "axios";
-
-const SERVER_URL = process.env.VUE_APP_SERVER_URL;
 
 export default {
   name: "Username",
@@ -31,7 +26,7 @@ export default {
     getUsername: function () {
       const config = this.setToken();
       axios
-        .get('http://127.0.0.1:8000/accounts/username/', config)
+        .get("http://127.0.0.1:8000/accounts/username/", config)
         .then((res) => {
           console.log(res.data);
           this.username = res.data.username;
@@ -40,8 +35,12 @@ export default {
           console.log(err);
         });
     },
+    moveMypage: function () {
+      this.$router.push({ name: "Mypage" });
+      console.log("??");
+    },
   },
-  Created() {
+  created() {
     this.getUsername();
   },
 };

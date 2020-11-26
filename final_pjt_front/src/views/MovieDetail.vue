@@ -42,16 +42,15 @@
         </h5>
         <div>
           <router-link
-          v-if="login"
-          class="nav-link font-size-menus d-inline"
-          :to="{
-          name: 'ReviewCreate',
-          params: { movie: movie, url: movie.title },
-          }"
-          >리뷰쓰기
+            v-if="login"
+            class="nav-link font-size-menus d-inline d-flex justify-content-end"
+            :to="{
+              name: 'ReviewCreate',
+              params: { movie: movie, url: movie.title },
+            }"
+            >리뷰쓰러 가기
           </router-link>
         </div>
-        
       </div>
     </div>
     <hr />
@@ -134,7 +133,6 @@ import MovieRecommendGenre from "@/components/MovieRecommendGenre";
 import MovieRecommendOverview from "@/components/MovieRecommendOverview";
 import axios from "axios";
 
-
 export default {
   name: "MovieDetail",
   components: {
@@ -155,7 +153,7 @@ export default {
       recommend_Genre: [],
       recommend_Overview: [],
       genreName: [],
-      login:false,
+      login: false,
     };
   },
   methods: {
@@ -164,14 +162,16 @@ export default {
         movie_title: this.movie.title,
       };
 
-      axios.post('http://127.0.0.1:8000/movies/genre/', movie_title).then((res) => {
-        console.log(res.data);
-        this.recommend_Genre = res.data;
-      });
+      axios
+        .post("http://127.0.0.1:8000/movies/genre/", movie_title)
+        .then((res) => {
+          console.log(res.data);
+          this.recommend_Genre = res.data;
+        });
     },
     getRecommendedOverwiew: function () {
       axios
-        .post('http://127.0.0.1:8000/movies/overview/', {
+        .post("http://127.0.0.1:8000/movies/overview/", {
           movie_title: this.movie.title,
         })
         .then((res) => {
@@ -188,7 +188,6 @@ export default {
     if (token) {
       this.login = true;
     }
-
   },
   watch: {
     movie: function () {
@@ -196,7 +195,6 @@ export default {
       this.getRecommendedOverwiew();
     },
   },
-
 };
 </script>
 
