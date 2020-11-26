@@ -16,6 +16,8 @@ from .pingpong import pingpong
 from accounts.models import User
 from .models import Review, Movie, Comment
 from django.contrib.auth import get_user_model
+# API키와 URL불러오기 위해
+# from decouple import config
 # Create your views here.
 
 

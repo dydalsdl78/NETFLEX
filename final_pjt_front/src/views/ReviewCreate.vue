@@ -73,6 +73,8 @@
 import axios from "axios";
 import StarRating from "vue-star-rating";
 
+const SERVER_URL = process.env.VUE_APP_SERVER_URL;
+
 export default {
   name: "CreateReview",
   components: {
@@ -108,7 +110,7 @@ export default {
       const config = this.setToken();
       axios
         .post(
-          `http://127.0.0.1:8000/movies/review_create_list/`,
+          `${SERVER_URL}/movies/review_create_list/`,
           this.reviewItem,
           config
         )
@@ -123,7 +125,7 @@ export default {
       const config = this.setToken();
       axios
         .put(
-          `http://127.0.0.1:8000/movies/review_create_list/`,
+          `${SERVER_URL}/movies/review_create_list/`,
           this.reviewItem,
           config
         )

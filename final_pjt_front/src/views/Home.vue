@@ -68,6 +68,8 @@ import MovieCard3 from "@/components/MovieCard3";
 import { Carousel, Slide } from "vue-carousel";
 import HomeCarousel from "@/components/HomeCarousel";
 
+const SERVER_URL = process.env.VUE_APP_SERVER_URL;
+
 export default {
   name: "Home",
   components: {
@@ -88,7 +90,7 @@ export default {
   },
   methods: {
     getMovieList: function () {
-      axios.get("http://127.0.0.1:8000/movies/movielist/").then((res) => {
+      axios.get(`${SERVER_URL}/movies/movielist/`).then((res) => {
         // console.log(res.data[0].title)
         this.movies = res.data;
         this.cur_movies = _.slice(res.data, 0, 66);

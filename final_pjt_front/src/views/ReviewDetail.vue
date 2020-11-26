@@ -116,6 +116,8 @@
 <script>
 import axios from "axios";
 
+const SERVER_URL = process.env.VUE_APP_SERVER_URL;
+
 export default {
   name: "ReviewDetail",
   props: {
@@ -146,7 +148,7 @@ export default {
     userId: function () {
       const config = this.setToken();
       axios
-        .get("http://127.0.0.1:8000/accounts/username/", config)
+        .get(`${SERVER_URL}/accounts/username/`, config)
         .then((res) => {
           this.username = res.data.username;
           if (res.data.username === this.review.user.username) {
@@ -162,10 +164,9 @@ export default {
     deleteComment: function (comment) {
       console.log(comment);
       axios
-        .delete(
-          `http://127.0.0.1:8000/movies/${this.review.id}/comment_crud/`,
-          { data: comment }
-        )
+        .delete(`${SERVER_URL}/movies/${this.review.id}/comment_crud/`, {
+          data: comment,
+        })
         .then((res) => {
           console.log(res);
           const targetCommentIdx = this.comments.findIndex((comment) => {
@@ -180,7 +181,7 @@ export default {
     readComment: function () {
       console.log(this.review);
       axios
-        .get(`http://127.0.0.1:8000/movies/${this.review.id}/comment_crud/`)
+        .get(`${SERVER_URL}/movies/${this.review.id}/comment_crud/`)
         .then((res) => {
           console.log(res.data);
           this.comments = res.data;
@@ -194,7 +195,7 @@ export default {
       console.log(this.commentItem);
       axios
         .post(
-          `http://127.0.0.1:8000/movies/${this.review.id}/comment_crud/`,
+          `${SERVER_URL}/movies/${this.review.id}/comment_crud/`,
           this.commentItem,
           config
         )
@@ -212,7 +213,7 @@ export default {
         // Save it!
         console.log(this.review);
         axios
-          .delete("http://127.0.0.1:8000/movies/review_create_list/", {
+          .delete(`${SERVER_URL}/movies/review_create_list/`, {
             data: this.review,
           })
           .then((res) => {

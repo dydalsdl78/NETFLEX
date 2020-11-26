@@ -107,6 +107,8 @@
 <script>
 import axios from "axios";
 
+const SERVER_URL = process.env.VUE_APP_SERVER_URL;
+
 export default {
   name: "Login",
   data: function () {
@@ -123,10 +125,7 @@ export default {
       // username 데이터를 전송
       this.$store.dispatch("usernameSave", username);
       axios
-        .post(
-          "http://127.0.0.1:8000/accounts/api-token-auth/",
-          this.credentials
-        )
+        .post(`${SERVER_URL}/accounts/api-token-auth/`, this.credentials)
         .then((res) => {
           console.log(this.$store.state.username);
           // jwt 토큰 생성

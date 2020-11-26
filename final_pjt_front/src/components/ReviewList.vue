@@ -41,7 +41,8 @@
 <script>
 import axios from "axios";
 
-// const SERVER_URL = process.env.VUE_APP_SERVER_URL
+const SERVER_URL = process.env.VUE_APP_SERVER_URL;
+
 export default {
   name: "ReviewList",
   data: function () {
@@ -53,12 +54,28 @@ export default {
   },
   methods: {
     getList: function () {
+<<<<<<< HEAD
       axios
         .get("http://127.0.0.1:8000/movies/review_create_list/")
         .then((res) => {
           this.reviews = res.data;
           console.log("getlist 테스트", this.reviews);
         });
+=======
+      axios.get(`${SERVER_URL}/movies/review_create_list/`).then((res) => {
+        this.reviews = res.data;
+        console.log("getlist 테스트", this.reviews);
+        const reviewComment = {
+          reviewComment: this.reviews,
+        };
+        axios
+          .post(`${SERVER_URL}/movies/commentcount/`, reviewComment)
+          .then((res) => {
+            this.commentCounts = res.data;
+            console.log("comment 테스트", this.commentCounts);
+          });
+      });
+>>>>>>> 54f6ea90e7429c75ba5af1fcdba541ac812aaf7d
     },
   },
   created: function () {

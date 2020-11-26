@@ -21,9 +21,7 @@ for page in range(0, pages):
 
         data.append({"id": i, "name": tmp['results'][i]['title']})
 
-    print(data)
-
-file_path = "./movies.json"
+file_path = "./src/assets/search.json"
 
 with open(file_path, 'w', encoding='UTF-8') as outfile:
     json.dump(data, outfile, ensure_ascii=False, indent=4)
