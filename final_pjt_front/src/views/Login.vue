@@ -1,33 +1,21 @@
 <template>
   <div class="wrapper">
-    <div class="container" style="width: 300px">
-      <form class="mt-5 form-signin">
-        <!-- <img
-        class="mb-4"
-        src="https://s3.ap-northeast-2.amazonaws.com/elasticbeanstalk-ap-northeast-2-176213403491/media/magazine_img/magazine_283/5-2-%EC%8D%B8%EB%84%A4%EC%9D%BC.jpg"
-        alt=""
-        width="72"
-        height="72"
-      /> -->
-        <div class="d-flex">
-          <p class="d-flex justify-content-start mb-1 font-weight-normal">
-            로그인
-          </p>
-          <p class="d-flex justify-content-end password-find">
-            비밀 번호를 잊어버리셨나요?
-          </p>
+    <div class="d-flex justify-content-center">
+      <form class="mt-5 form-signin" style="z-index: 100">
+        <div>
+          <p class="font-weight-normal">로그인</p>
+          <p class="password-find">비밀 번호를 잊어버리셨나요?</p>
         </div>
         <label for="username" class="sr-only"></label>
         <input
           v-model="credentials.username"
           type="text"
           id="username"
-          class="m-auto form-control"
+          class="form-control"
           placeholder="영문 아이디"
           required=""
           autofocus=""
           maxlength="10"
-          style="width: 300px"
         />
         <label for="inputPassword" class="sr-only"></label>
         <input
@@ -35,11 +23,10 @@
           @keypress.enter="login"
           type="password"
           id="inputPassword"
-          class="m-auto form-control"
+          class="mt-1 form-control"
           placeholder="비밀번호"
           required=""
           minlength="10"
-          style="width: 300px"
         />
         <div class="checkbox mt-2">
           <label>
@@ -48,15 +35,14 @@
         </div>
         <button
           @click="login"
-          class="m-auto btn btn-lg btn-success btn-block"
+          class="m-auto btn btn-lg btn-danger btn-block"
           type="submit"
-          style="width: 300px"
         >
-          Log in
+          로그인
         </button>
         <p class="mt-3">다른 방법으로 로그인하기</p>
         <div class="d-flex justify-content-around">
-          <div class="d-flex justify-content-around" style="width: 500px">
+          <div class="d-flex justify-content-around" style="width: 300px">
             <span class="d-inline">
               <a href="https://www.google.com/" target="_blank">
                 <img
@@ -112,7 +98,6 @@
             </span>
           </div>
         </div>
-
         <p class="mt-5 mb-3 text-muted">© 2020</p>
       </form>
     </div>
@@ -162,12 +147,8 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Jua&display=swap");
 
-.basic-font {
-  font-family: "Jua", sans-serif;
-}
-
 .password-find {
-  font-size: 12px;
+  font-size: 10px;
 }
 
 .wrapper {
@@ -180,9 +161,9 @@ export default {
 }
 
 .wrapper:after {
-  width: 1300px;
-  height: 520px;
-  z-index: -1;
+  width: 100%;
+  height: 830px;
+  z-index: 10;
   position: absolute;
   top: 0;
   left: 0;

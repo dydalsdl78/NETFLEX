@@ -18,12 +18,29 @@
     </div>
     <hr class="mb-5 mt-5 bg-light" style="width: 1200px" />
 
-
-
-    <h2 @click="getUserReview">작성한 리뷰 리스트</h2>
-    <div class="media mb-4" v-for="(review, idx) in reviews" :key="'review' + idx">
+    <h2>작성한 리뷰 리스트</h2>
+    <div
+      class="media mb-4"
+      v-for="(review, idx) in reviews"
+      :key="'review' + idx"
+    >
       <div class="justify-content-center">
-        <img class="d-flex mr-3"  :src="'https://image.tmdb.org/t/p/w300' + review.movie.poster_path" alt="" style="width: 100px; height: 160px">
+        <router-link
+          :to="{
+            name: 'MovieDetail',
+            params: {
+              movie: review.movie,
+              url: review.movie.title,
+            },
+          }"
+          ><img
+            class="d-flex mr-3"
+            :src="'https://image.tmdb.org/t/p/w300' + review.movie.poster_path"
+            alt=""
+            style="width: 100px; height: 160px"
+          />
+        </router-link>
+
         <star-rating
           :increment="0.5"
           :star-size="15"
@@ -36,20 +53,22 @@
         </star-rating>
       </div>
       <div class="media-body text-left">
-        <h5 class="mt-0">{{review.title}}</h5>
-        {{review.content}}
-        <p>{{review.movie.title}}을 보고 {{review.created_at |slice }}에 남긴 리뷰</p>
-      
+        <h5 class="mt-0">{{ review.title }}</h5>
+        {{ review.content }}
+        <p>
+          {{ review.movie.title }}을 보고 {{ review.created_at | slice }}에 남긴
+          리뷰
+        </p>
       </div>
       <div class="d-flex justify-content-center align-items-center">
         <router-link
-            class="nav-link"
-            :to="{
+          class="nav-link"
+          :to="{
             name: 'ReviewDetail',
             params: { review: review, url: review.title },
-            }"
-            >보러 가기
-        </router-link>        
+          }"
+          >보러 가기
+        </router-link>
       </div>
     </div>
     <hr class="mb-5 mt-5 bg-light" style="width: 1200px" />
@@ -57,14 +76,24 @@
     <h2>평점 매긴 영화</h2>
     <div class="row d-flex mb-3">
       <div v-for="(movieRating, idx) in movieRatings" :key="idx">
-        <img
-          :src="
-            'https://image.tmdb.org/t/p/w300' + movieRating.movie.poster_path
-          "
-          class="card-img-top"
-          alt="poster"
-          style="width: 150px; height: 220px"
-        />
+        <router-link
+          :to="{
+            name: 'MovieDetail',
+            params: {
+              movie: movieRating.movie,
+              url: movieRating.movie.title,
+            },
+          }"
+          ><img
+            :src="
+              'https://image.tmdb.org/t/p/w300' + movieRating.movie.poster_path
+            "
+            class="card-img-top"
+            alt="poster"
+            style="width: 150px; height: 220px"
+          />
+        </router-link>
+
         <div class="container" style="width: 180px">
           <div>
             {{ movieRating.movie.title }}
@@ -84,11 +113,6 @@
         </div>
       </div>
     </div>
-
-
-
-
-
   </div>
 </template>
 
@@ -102,7 +126,7 @@ export default {
   name: "Mypage",
   components: {
     FontAwesomeIcon,
-    StarRating
+    StarRating,
   },
   data: function () {
     return {
@@ -156,10 +180,9 @@ export default {
     this.ratingMovie();
   },
   filters: {
-    slice: function(origin){
-        return origin.slice(0, 10)
-
-    }
+    slice: function (origin) {
+      return origin.slice(0, 10);
+    },
   },
 };
 </script>

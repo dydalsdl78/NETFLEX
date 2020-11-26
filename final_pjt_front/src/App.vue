@@ -75,7 +75,9 @@
       <ChatBot />
     </div>
     <router-view @login="login = true" />
-    <hr class="mb-5 mt-0 bg-light" style="width: 1200px" />
+    <div class="mb-5 mt-5"></div>
+    <br />
+    <br />
     <MovieFooter />
   </div>
 </template>
@@ -119,10 +121,10 @@ export default {
 <style>
 @import "./assets/chat_css.css";
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
 
 #app {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
 }
 
 .loader {
@@ -140,9 +142,4 @@ export default {
 nav .navbar-nav li a {
   color: white;
 }
-
-
-
-
-
 </style>
