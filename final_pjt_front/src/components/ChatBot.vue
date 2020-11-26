@@ -32,7 +32,6 @@
                 size="2x"
                 aria-hidden="true"
             /></i>
-            <!-- <i class="fa fa-window-maximize" aria-hidden="true"></i> -->
           </button>
         </aside>
       </header>
@@ -82,6 +81,7 @@
           <h1>채팅봇</h1>
         </aside>
         <aside style="flex: 1; text-align: right">
+          <!-- 채팅 간소화
           <button class="chatbox-minimize">
             <i
               ><font-awesome-icon
@@ -89,7 +89,7 @@
                 size="2x"
                 aria-hidden="true"
             /></i>
-          </button>
+          </button> -->
           <button class="chatbox-panel-close">
             <i
               ><font-awesome-icon
@@ -209,25 +209,55 @@ export default {
 };
 const chatbox = jQuery.noConflict();
 
+// 채팅 UI 전체 코드 ---- 여기서 부터
+// chatbox(() => {
+//   chatbox(".chatbox-open").click(() =>
+//     chatbox(".chatbox-popup, .chatbox-close").fadeIn()
+//   );
+
+//   chatbox(".chatbox-close").click(() =>
+//     chatbox(".chatbox-popup, .chatbox-close").fadeOut()
+//   );
+
+//   chatbox(".chatbox-maximize").click(() => {
+//     chatbox(".chatbox-popup, .chatbox-open, .chatbox-close").fadeOut();
+//     chatbox(".chatbox-panel").fadeIn();
+//     chatbox(".chatbox-panel").css({ display: "flex" });
+//   });
+
+//   chatbox(".chatbox-minimize").click(() => {
+//     chatbox(".chatbox-panel").fadeOut();
+//     chatbox(".chatbox-popup, .chatbox-open, .chatbox-close").fadeIn();
+//   });
+
+//   chatbox(".chatbox-panel-close").click(() => {
+//     chatbox(".chatbox-panel").fadeOut();
+//     chatbox(".chatbox-open").fadeIn();
+//   });
+// 채팅 UI 전체 코드 ---- 여기까지
+
+// 아래는 간소화
 chatbox(() => {
-  chatbox(".chatbox-open").click(() =>
-    chatbox(".chatbox-popup, .chatbox-close").fadeIn()
-  );
-
-  chatbox(".chatbox-close").click(() =>
-    chatbox(".chatbox-popup, .chatbox-close").fadeOut()
-  );
-
-  chatbox(".chatbox-maximize").click(() => {
+  chatbox(".chatbox-open").click(() => {
     chatbox(".chatbox-popup, .chatbox-open, .chatbox-close").fadeOut();
     chatbox(".chatbox-panel").fadeIn();
     chatbox(".chatbox-panel").css({ display: "flex" });
   });
 
-  chatbox(".chatbox-minimize").click(() => {
-    chatbox(".chatbox-panel").fadeOut();
-    chatbox(".chatbox-popup, .chatbox-open, .chatbox-close").fadeIn();
-  });
+  // chatbox(".chatbox-close").click(() =>
+  //   chatbox(".chatbox-popup, .chatbox-close").fadeOut()
+  // );
+
+  // chatbox(".chatbox-maximize").click(() => {
+  //   chatbox(".chatbox-popup, .chatbox-open, .chatbox-close").fadeOut();
+  //   chatbox(".chatbox-panel").fadeIn();
+  //   chatbox(".chatbox-panel").css({ display: "flex" });
+  // });
+
+  // chatbox(".chatbox-minimize").click(() => {
+  //   chatbox(".chatbox-panel").fadeOut();
+  //   chatbox(".chatbox-popup, .chatbox-open, .chatbox-close").fadeIn();
+  // });
 
   chatbox(".chatbox-panel-close").click(() => {
     chatbox(".chatbox-panel").fadeOut();
