@@ -98,7 +98,7 @@ export default {
   font-size: 15px;
 }
 .font-size-menus {
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .content {

@@ -114,6 +114,7 @@ def recommendGenre(request):
 @api_view(['POST'])
 def recommendOverview(request):
     # print(request.data)
+    print(request.data)
     movies_recommended = overview_recommend(request.data['movie_title'])
     # print(movies_recommended)
     return Response(movies_recommended)

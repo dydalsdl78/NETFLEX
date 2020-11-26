@@ -58,7 +58,6 @@
     <div class="p-4 container">
       <span class="text-center">
         <p class="pt-4">Copyright 권기현, 김용민 All Rights Reserved</p>
-        <p>Designed by 권기현 ,김용민</p>
       </span>
     </div>
   </div>

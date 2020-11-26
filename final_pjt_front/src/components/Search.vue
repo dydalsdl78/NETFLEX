@@ -12,7 +12,7 @@
         :maxItem="20"
         placeholder="영화 제목을 입력하세요"
       >
-        <router-link
+        <!-- <router-link
           class="nav-link font-size-menus"
           :to="{
             name: '',
@@ -21,7 +21,7 @@
             },
           }"
         >
-        </router-link>
+        </router-link> -->
       </Dropdown>
       <button></button>
     </span>
@@ -63,11 +63,11 @@ export default {
         `http://127.0.0.1:8000/movies/get_movie/`, {'name':movie_name}
       )
       .then((res) => {
-        console.log(res.data)
+        console.log('changed')
         const received_movie = res.data
-        this.$router.push({ name: "MovieDetail", params:{movie:received_movie} });
+        this.$router.push({ name: "MovieDetail", params:{url:movie_name, movie:received_movie} });
       })
-      .catch((res) => {
+      .catch((err) => {
         console.log(err)
       })
 

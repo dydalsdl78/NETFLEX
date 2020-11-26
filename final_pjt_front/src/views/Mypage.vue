@@ -70,7 +70,16 @@
             {{ movieRating.movie.title }}
           </div>
           <div>
-            {{ movieRating.rating }}
+            <star-rating
+              :increment="0.5"
+              :star-size="15"
+              :show-rating="false"
+              v-model="movieRating.rating"
+              @rating-selected="setRating"
+              class="justify-content-center"
+              read-only="true"
+            >
+            </star-rating>
           </div>
         </div>
       </div>

@@ -6,7 +6,7 @@
     >
       <router-link class="navbar-brand" :to="{ name: 'Home' }">
         <img
-          src="./assets/ssaflix(white).png"
+          src="./assets/netflex(red).png"
           height="80"
           class="d-inline-block align-top"
           alt=""
@@ -118,10 +118,11 @@ export default {
 
 <style>
 @import "./assets/chat_css.css";
-@import url("https://fonts.googleapis.com/css2?family=Jua&display=swap");
 
-.basic-font {
-  font-family: "Jua", sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+#app {
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
 .loader {
@@ -139,4 +140,9 @@ export default {
 nav .navbar-nav li a {
   color: white;
 }
+
+
+
+
+
 </style>
