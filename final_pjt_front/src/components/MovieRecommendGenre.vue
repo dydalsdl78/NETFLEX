@@ -12,13 +12,14 @@
       </h5>
     </div>
     <div class="card-tail">
-      <div @click="moveMovieDetail" class="container">
+      <div class="container">
         <router-link
           class="nav-link font-size-menus"
           :to="{
             name: 'MovieDetail',
             params: {
               movie: recommend_movie,
+              url:recommend_movie.title,
             },
           }"
           >영화정보
@@ -38,14 +39,6 @@ export default {
     return {
       login: false,
     };
-  },
-  methods: {
-    moveMovieDetail: function () {
-      this.$router.replace({
-        path: "MovieDetail",
-        query: { movie: this.recommend_movie },
-      });
-    },
   },
   created: function () {
     const token = localStorage.getItem("jwt");

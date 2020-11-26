@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container-fluid">
     <HomeCarousel />
     <h5 class="mt-5 mb-4">현재 상영 영화</h5>
     <div class="container">

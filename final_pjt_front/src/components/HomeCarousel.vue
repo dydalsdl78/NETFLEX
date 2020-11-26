@@ -7,31 +7,29 @@
   >
     <slide>
       <img
-        src="https://t1.daumcdn.net/cfile/tistory/99713B485DE860D201"
+        src="@/assets/ddd.jpg"
         alt=""
         class="test"
-        style="width: 1000px"
+        style="width: 100%"
       />
       <p class="img-content">11월 4주차 인기작</p>
     </slide>
     <slide
       ><img
-        src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F9940613C5A62F7001A341B"
+        src="@/assets/ccc.jpg"
         alt=""
-        style="width: 1000px"
+        style="width: 100%"
       />
-      <p class="img-content">코로나 때문에 집에 있을 때</p>
-      <p class="img-content">보기 좋은 미드!</p></slide
+
+  </slide
     >
     <slide
       ><img
-        src="https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F2433A93C53C72A6C2B8C64"
+        src="@/assets/aaa.png"
         alt=""
-        style="width: 1000px"
+        style="width: 100%"
       />
-      <p class="img-content">싸피릭스</p>
-      <p class="img-content">최고 인기 시리즈</p></slide
-    >
+    </slide>
   </carousel>
 </template>
 

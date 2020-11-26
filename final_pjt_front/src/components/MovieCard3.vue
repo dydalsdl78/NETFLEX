@@ -33,7 +33,7 @@
           :to="{
             name: 'MovieDetail',
             params: { movie: movie, url: movie.title },
-          }"
+          }"         
           >영화정보
         </router-link>
         <router-link
@@ -89,7 +89,7 @@ export default {
 };
 </script>
 
-<style>
+<style >
 .nav-link {
   color: red;
 }
@@ -100,7 +100,7 @@ export default {
   font-size: 15px;
 }
 .font-size-menus {
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .content {

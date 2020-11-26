@@ -1,67 +1,84 @@
 <template>
   <div class="container">
-    <form>
-      <div class="form-group">
-        <!-- movie를 받아오는 곳이 없어서 오류나는 듯?.. -->
-        <!-- <label for="title"> {{ movie.title }}의 리뷰 </label> -->
-        <label for="title"> {{ movie.title }}의 리뷰 </label>
-        <input
-          v-model="reviewItem.title"
-          type="text"
-          class="form-control"
-          id="title"
-          placeholder="리뷰 제목"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="content">리뷰 내용</label>
-        <textarea
-          v-model="reviewItem.content"
-          class="form-control"
-          id="content"
-          rows="3"
-          placeholder="리뷰 내용"
-        ></textarea>
-      </div>
-
-      <div class="form-group">
-        <label for="score">평점</label>
-        <input
-          v-model="reviewItem.score"
-          class="form-control"
-          type="number"
-          id="score"
-          min="1"
-          max="5"
-          placeholder="1~5 사이의 평점"
-        />
-      </div>
-
-      <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-        <label class="form-check-label" for="exampleCheck1"
-          >사용자 약관에 동의합니다.</label
-        >
-      </div>
-      <!-- <button @click="createReview" type="submit" class="btn btn-primary">제출</button> -->
-      <small id="emailHelp" class="form-text text-muted"
-        >We'll never share your email with anyone elsedd.</small
+    <div class="row">
+      <div
+        class="col-12 col-lg-4 d-flex align-items-center justify-content-center"
       >
-    </form>
+        <img
+          :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path"
+          class="img-thumbnail ml-5"
+          alt="poster"
+        />
+      </div>
+      <div class="col-12 col-lg-8">
+        <form>
+          <div class="form-group">
+            <label for="title"> {{ movie.title }}의 리뷰 </label>
+            <input
+              v-model="reviewItem.title"
+              type="text"
+              class="form-control"
+              id="title"
+              placeholder="리뷰 제목 달아주시고요"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="score">평점</label>
+            <star-rating
+              :increment="0.5"
+              :star-size="30"
+              :show-rating="false"
+              v-model="reviewItem.score"
+              @rating-selected="setRating"
+              class="justify-content-center"
+            >
+            </star-rating>
+          </div>
+
+          <div class="form-group">
+            <label for="content">리뷰 내용</label>
+            <textarea
+              v-model="reviewItem.content"
+              class="form-control"
+              id="content"
+              rows="12"
+              placeholder="리뷰 내용도 달아주세요"
+            ></textarea>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+      <label class="form-check-label" for="exampleCheck1">
+        넷플렉스 이용약관을 확인하였으며, 이에 동의합니다
+      </label>
+    </div>
+    <!-- <button @click="createReview" type="submit" class="btn btn-primary">제출</button> -->
+    <small id="emailHelp" class="form-text text-muted">
+      당신의 개인정보는 소중합니다
+    </small>
 
     <button v-if="update" @click="updateReview" class="btn btn-primary">
       업데이트
     </button>
-    <button v-else @click="createReview" class="btn btn-primary">등록</button>
+    <button v-else @click="createReview" class="btn btn-danger mt-3 mb-3">
+      등록
+    </button>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import StarRating from "vue-star-rating";
 
 export default {
   name: "CreateReview",
+  components: {
+    StarRating,
+  },
   props: {
     movie: Object,
     review: Object,

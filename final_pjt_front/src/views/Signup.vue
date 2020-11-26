@@ -165,15 +165,6 @@ export default {
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Jua&family=Oswald:wght@500&display=swap");
-
-.basic-font-ko {
-  font-family: "Jua", sans-serif;
-}
-
-.basic-font-en {
-  font-family: "Oswald", sans-serif;
-}
 
 .wrapper {
   z-index: 1;

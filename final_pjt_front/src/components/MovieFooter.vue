@@ -47,7 +47,7 @@
           class="m-1"
         />
         <img
-          src="https://cdn.icon-icons.com/icons2/1907/PNG/512/iconfinder-github-4555889_121361.png"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7cmmOu4xUkNNZlk-qh4r47i9n6R1mLQD-3Q&usqp=CAU"
           alt=""
           width="40"
           height="40"
@@ -58,7 +58,6 @@
     <div class="p-4 container">
       <span class="text-center">
         <p class="pt-4">Copyright 권기현, 김용민 All Rights Reserved</p>
-        <p>Designed by 권기현 ,김용민</p>
       </span>
     </div>
   </div>
