@@ -6,8 +6,7 @@
           <div class="col">Topics</div>
           <div class="col-4">
             <div class="row">
-              <div class="col-4">Replies</div>
-              <div class="col-8">작성일</div>
+              <div class="col">작성일</div>
             </div>
           </div>
         </div>
@@ -30,11 +29,7 @@
           </div>
           <div class="d-none d-md-block col-4">
             <div class="row">
-              <div class="col-4">
-                <div>{{ commentCounts.count[idx] }} 개의 댓글</div>
-                <!-- <div>{{ commentCounts.count }}</div> -->
-              </div>
-              <div class="col-8">{{ review.created_at | slice }}</div>
+              <div class="col">{{ review.created_at | slice }}</div>
             </div>
           </div>
         </div>
@@ -54,7 +49,6 @@ export default {
       reviews: [],
       movie_titles: [],
       review: [],
-      commentCounts: [],
     };
   },
   methods: {
@@ -64,22 +58,11 @@ export default {
         .then((res) => {
           this.reviews = res.data;
           console.log("getlist 테스트", this.reviews);
-          const reviewComment = {
-            reviewComment: this.reviews,
-          };
-          axios
-            .post("http://127.0.0.1:8000/movies/commentcount/", reviewComment)
-            .then((res) => {
-              this.commentCounts = res.data;
-              console.log("comment 테스트", this.commentCounts);
-            });
         });
     },
-    // getCommentCount: function () {},
   },
   created: function () {
     this.getList();
-    // this.getCommentCount();
   },
   filters: {
     slice: function (origin) {

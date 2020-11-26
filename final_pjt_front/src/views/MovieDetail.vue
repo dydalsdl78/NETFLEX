@@ -16,7 +16,9 @@
           <h5>{{ movie.release_date }} |</h5>
           <!-- <h5 v-for="(name, idx) in genreName" :key="idx">{{ name.name }}</h5> -->
           <h5 v-for="(genre_id, idx) in movie.genre_ids" :key="idx">
-            <button type="button" class="btn btn-secondary btn-sm ml-1">{{ genre_id.name  }}</button>
+            <button type="button" class="btn btn-secondary btn-sm ml-1">
+              {{ genre_id.name }}
+            </button>
           </h5>
         </div>
         <div class="d-flex mb-4 justify-content-center">
@@ -43,70 +45,68 @@
     <hr />
     <div class="mb-5 d-flex justify-content-around">
       <div>
-        <h2 class="mb-5 d-flex justify-content-center">
-          좋아요 {{ movie.vote_count }}
-        </h2>
         <i
           ><font-awesome-icon
             :icon="faHeart"
             size="6x"
             :style="{ color: 'red' }"
         /></i>
+        <h2 class="mt-3 mb-4 d-flex justify-content-center">좋아요</h2>
+        <h2 class="mt-3 d-flex justify-content-center">
+          {{ movie.vote_count }}
+        </h2>
       </div>
       <div>
-        <h2 class="mb-5 d-flex justify-content-center">
-          인기도 {{ movie.popularity }}
-        </h2>
         <i
           ><font-awesome-icon
             :icon="faFire"
             size="6x"
             :style="{ color: 'orange' }"
         /></i>
+        <h2 class="mt-3 mb-4 d-flex justify-content-center">인기도</h2>
+        <h2 class="mt-3 d-flex justify-content-center">
+          {{ movie.popularity }}
+        </h2>
       </div>
       <div>
-        <h2 class="mb-5 d-flex justify-content-center">
-          평점 {{ movie.vote_average }}
-        </h2>
         <i
           ><font-awesome-icon
             :icon="faStar"
             size="6x"
             :style="{ color: 'yellow' }"
         /></i>
+        <h2 class="mt-3 mb-4 d-flex justify-content-center">평점</h2>
+        <h2 class="mt-3 d-flex justify-content-center">
+          {{ movie.vote_average }}
+        </h2>
       </div>
     </div>
     <hr />
     <div class="row d-flex justify-content-around">
       <div class="col-12 col-lg">
-
-
-          <h3 class="m-4">유사한 장르</h3>
-          <div class="container-fluid">
-            <div class="row justify-content-center mt-5 mb-5">
-              <MovieRecommendGenre
-                v-for="(recommend_movie, idx) in recommend_Genre"
-                :key="idx"
-                :recommend_movie="recommend_movie"
-              />
-            </div>
-          </div>
-
-
-        </div>
-        <div class="col-12 col-lg">
-          <h3 class="m-4">유사한 줄거리</h3>
-          <div class="container-fluid">
-            <div class="row justify-content-center mt-5 mb-5">
-              <MovieRecommendOverview
-                v-for="(recommend_movie, idx) in recommend_Overview"
-                :key="idx"
-                :recommend_movie="recommend_movie"
-              />
-            </div>
+        <h3 class="m-4">이 영화와 유사한 장르</h3>
+        <div class="container-fluid">
+          <div class="row justify-content-center mt-5 mb-5">
+            <MovieRecommendGenre
+              v-for="(recommend_movie, idx) in recommend_Genre"
+              :key="idx"
+              :recommend_movie="recommend_movie"
+            />
           </div>
         </div>
-      
+      </div>
+      <div class="col-12 col-lg">
+        <h3 class="m-4">이 영화와 유사한 줄거리</h3>
+        <div class="container-fluid">
+          <div class="row justify-content-center mt-5 mb-5">
+            <MovieRecommendOverview
+              v-for="(recommend_movie, idx) in recommend_Overview"
+              :key="idx"
+              :recommend_movie="recommend_movie"
+            />
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -159,7 +159,9 @@ export default {
     },
     getRecommendedOverwiew: function () {
       axios
-        .post("http://127.0.0.1:8000/movies/overview/", {movie_title: this.movie.title})
+        .post("http://127.0.0.1:8000/movies/overview/", {
+          movie_title: this.movie.title,
+        })
         .then((res) => {
           console.log(res.data);
           this.recommend_Overview = res.data;
@@ -169,14 +171,14 @@ export default {
   created() {
     this.getRecommendedGenre();
     this.getRecommendedOverwiew();
-    // this.getGenre();
+    // this.gertGenre();
   },
-  watch:{
-    movie: function(){
+  watch: {
+    movie: function () {
       this.getRecommendedGenre();
       this.getRecommendedOverwiew();
-    }
-  }
+    },
+  },
 
 };
 </script>

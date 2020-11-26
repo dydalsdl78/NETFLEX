@@ -26,7 +26,6 @@
           <div class="form-group">
             <label for="score">평점</label>
             <star-rating
-              :increment="0.5"
               :star-size="30"
               :show-rating="false"
               v-model="reviewItem.score"
@@ -107,8 +106,6 @@ export default {
     },
     createReview: function () {
       const config = this.setToken();
-      console.log("here");
-      console.log(this.reviewItem);
       axios
         .post(
           `http://127.0.0.1:8000/movies/review_create_list/`,

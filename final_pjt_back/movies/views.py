@@ -63,12 +63,10 @@ def review_create_list(request):
 
     else:
         serializer = ReviewSerializer(data=request.data)
-
+        print(request.data['movie']['id'])
         if serializer.is_valid():
-            print('here')
             serializer.save(user=request.user, movie=Movie.objects.get(
                 pk=request.data['movie']['id']))
-
             return Response(serializer.data, status.HTTP_201_CREATED)
 
 

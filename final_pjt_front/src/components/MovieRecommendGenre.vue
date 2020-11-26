@@ -9,6 +9,7 @@
     <div class="pt-2 card-body">
       <h5 class="card-title font-size-title">
         {{ recommend_movie.title }}
+        ({{recommend_movie.original_title}})
       </h5>
     </div>
     <div class="card-tail">

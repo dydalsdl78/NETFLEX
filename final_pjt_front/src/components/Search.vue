@@ -12,17 +12,7 @@
         :maxItem="20"
         placeholder="영화 제목을 입력하세요"
       >
-        <router-link
-          class="nav-link font-size-menus"
-          :to="{
-            name: '',
-            params: {
-              movie: movie,
-              url: movie.title,
-            },
-          }"
-        >
-        </router-link>
+
       </Dropdown>
       <button></button>
     </span>
@@ -43,9 +33,6 @@ export default {
   name: "Search",
   components: {
     Dropdown,
-  },
-  props: {
-    // movies: Array,
   },
   data: function () {
     return {

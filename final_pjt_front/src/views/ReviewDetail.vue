@@ -22,22 +22,31 @@
         <hr />
 
         <!-- Date/Time -->
-        <p>Posted on {{ review.created_at }}</p>
+        <p>Posted on {{ review.created_at|slice }}</p>
 
         <hr />
 
         <!-- Preview Image -->
-        <img
-          class="img-fluid rounded"
-          :src="'https://image.tmdb.org/t/p/w300' + review.movie.poster_path"
-          alt="poster"
-          style="height: 200px"
-        />
+        <div class="row">
+          <div class="col">
+            <img
+              class="img-fluid rounded"
+              :src="'https://image.tmdb.org/t/p/w300' + review.movie.poster_path"
+              alt="poster"
+              style="height: 200px"
+            />            
+          </div>
+          <div class="col">
+            <p class="lead">{{ review.content }}</p>
+          </div>
+        </div>
 
-        <hr />
 
         <!-- Post Content -->
-        <p class="lead">{{ review.content }}</p>
+        
+
+
+
 
         <hr />
         <div class="text-right" v-if="user">
@@ -221,6 +230,11 @@ export default {
     this.userId();
     this.readComment();
   },
+  filters: {
+slice: function (origin) {
+  return origin.slice(0, 10);
+},
+},
 };
 </script>
 
