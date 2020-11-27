@@ -7,6 +7,7 @@
         <img
           :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path"
           class="img-thumbnail ml-5"
+          style="width: 300px; height: 480px"
           alt="poster"
         />
       </div>
@@ -29,7 +30,6 @@
               :star-size="30"
               :show-rating="false"
               v-model="reviewItem.score"
-              @rating-selected="setRating"
               class="justify-content-center"
             >
             </star-rating>
@@ -60,8 +60,12 @@
       당신의 개인정보는 소중합니다
     </small>
 
-    <button v-if="update" @click="updateReview" class="btn btn-primary">
-      업데이트
+    <button
+      v-if="update"
+      @click="updateReview"
+      class="btn btn-success mt-3 mb-3"
+    >
+      수정
     </button>
     <button v-else @click="createReview" class="btn btn-danger mt-3 mb-3">
       등록
@@ -72,8 +76,6 @@
 <script>
 import axios from "axios";
 import StarRating from "vue-star-rating";
-
-
 
 export default {
   name: "CreateReview",
@@ -110,7 +112,7 @@ export default {
       const config = this.setToken();
       axios
         .post(
-          'http://127.0.0.1:8000/movies/review_create_list/',
+          "http://127.0.0.1:8000/movies/review_create_list/",
           this.reviewItem,
           config
         )
@@ -125,7 +127,7 @@ export default {
       const config = this.setToken();
       axios
         .put(
-         'http://127.0.0.1:8000/movies/review_create_list/',
+          "http://127.0.0.1:8000/movies/review_create_list/",
           this.reviewItem,
           config
         )

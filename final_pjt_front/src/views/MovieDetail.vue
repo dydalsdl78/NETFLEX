@@ -1,5 +1,12 @@
 <template>
   <div class="container">
+    <div>
+      <img
+        :src="'https://image.tmdb.org/t/p/w300' + movie.backdrop_path"
+        alt="backdrop"
+        style="width: 80%"
+      />
+    </div>
     <div class="row p-5 d-flex">
       <div class="col-12 col-lg">
         <img
@@ -23,18 +30,18 @@
         </div>
         <div class="d-flex mb-4 justify-content-center">
           <div class="pr-3">
-            <span class="d-flex justify-content-center">성인</span>
+            <h4 class="d-flex justify-content-center">성인</h4>
             <i v-if="movie.adult"
-              ><font-awesome-icon :icon="faCheck" size="3x"
+              ><font-awesome-icon :icon="faCheck" size="2x"
             /></i>
-            <i v-else><font-awesome-icon :icon="faTimesCircle" size="3x" /></i>
+            <i v-else><font-awesome-icon :icon="faTimesCircle" size="2x" /></i>
           </div>
           <div>
-            <span class="d-flex justify-content-center">예고편</span>
+            <h4 class="d-flex justify-content-center">예고편</h4>
             <i v-if="movie.video"
-              ><font-awesome-icon :icon="faCheck" size="3x"
+              ><font-awesome-icon :icon="faCheck" size="2x"
             /></i>
-            <i v-else><font-awesome-icon :icon="faTimesCircle" size="3x" /></i>
+            <i v-else><font-awesome-icon :icon="faTimesCircle" size="2x" /></i>
           </div>
         </div>
         <h5 class="mt-3">
@@ -92,6 +99,7 @@
         </h2>
       </div>
     </div>
+
     <hr />
     <div class="row d-flex justify-content-around">
       <div class="col-12 col-lg">

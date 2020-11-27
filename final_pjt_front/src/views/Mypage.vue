@@ -4,7 +4,7 @@
     <i
       ><font-awesome-icon
         :icon="faUserCircle"
-        :style="{ color: '#42b983' }"
+        :style="{ color: '#808080' }"
         size="10x"
         aria-hidden="true"
     /></i>
@@ -18,7 +18,7 @@
     </div>
     <hr class="mb-5 mt-5 bg-light" style="width: 1200px" />
 
-    <h2>작성한 리뷰 리스트</h2>
+    <h2 class="mb-5">작성한 리뷰 리스트</h2>
     <div
       class="media mb-4"
       v-for="(review, idx) in reviews"
@@ -51,15 +51,15 @@
         >
         </star-rating>
       </div>
-      <div class="media-body text-left">
-        <h5 class="mt-0">{{ review.title }}</h5>
+      <div class="ml-5 media-body text-left">
+        <h2 class="mt-0 mb-5">{{ review.title }}</h2>
         {{ review.content }}
-        <p>
+        <p class="mt-5 text-right info-font-size">
           {{ review.movie.title }}을 보고 {{ review.created_at | slice }}에 남긴
           리뷰
         </p>
       </div>
-      <div class="d-flex justify-content-center align-items-center">
+      <div class="mt-5 toreivew-font-size">
         <router-link
           class="nav-link"
           :to="{
@@ -72,7 +72,7 @@
     </div>
     <hr class="mb-5 mt-5 bg-light" style="width: 1200px" />
 
-    <h2>평점 매긴 영화</h2>
+    <h2 class="mb-5">평점 매긴 영화</h2>
     <div class="row d-flex mb-3">
       <div v-for="(movieRating, idx) in movieRatings" :key="idx">
         <router-link
@@ -94,7 +94,7 @@
         </router-link>
 
         <div class="container" style="width: 180px">
-          <div>
+          <div class="mt-2">
             {{ movieRating.movie.title }}
           </div>
           <div>
@@ -191,6 +191,14 @@ export default {
 }
 
 .follow-count-size {
+  font-size: 20px;
+}
+
+.info-font-size {
+  font-size: 10px;
+}
+
+.toreivew-font-size {
   font-size: 20px;
 }
 </style>

@@ -5,7 +5,7 @@
       <!-- Post Content Column -->
       <div class="col">
         <!-- Title -->
-        <h2 class="mt-4">{{ review.title }}</h2>
+        <h2 class="mt-4 mb-4">{{ review.title }}</h2>
 
         <!-- Author -->
         <p class="lead">
@@ -22,7 +22,7 @@
         <hr />
 
         <!-- Date/Time -->
-        <p>Posted on {{ review.created_at | slice }}</p>
+        <p>{{ review.created_at | slice }} 에 생성된 리뷰 입니다.</p>
 
         <hr />
 
@@ -58,7 +58,7 @@
             >
             </star-rating>
           </div>
-          <div class="col">
+          <div class="col d-flex align-items-center">
             <p class="lead">{{ review.content }}</p>
           </div>
         </div>
@@ -77,9 +77,9 @@
                 review: review,
               },
             }"
-            >Update
+            >수정
           </router-link>
-          <button class="btn btn-danger" @click="deleteReview">Delete</button>
+          <button class="btn btn-danger" @click="deleteReview">삭제</button>
           <hr />
         </div>
 
@@ -120,7 +120,7 @@
             </form>
             <div class="text-right">
               <button @click="createComment" class="btn btn-primary">
-                Submit
+                등록
               </button>
             </div>
           </div>
