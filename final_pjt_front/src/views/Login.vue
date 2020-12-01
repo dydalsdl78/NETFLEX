@@ -120,7 +120,6 @@ export default {
   methods: {
     login: function () {
       const username = this.credentials.username;
-      // username 데이터를 전송
       this.$store.dispatch("usernameSave", username);
       axios
         .post(
@@ -129,7 +128,6 @@ export default {
         )
         .then((res) => {
           console.log(this.$store.state.username);
-          // jwt 토큰 생성
           localStorage.setItem("jwt", res.data.token);
           this.$emit("login");
           this.$router.push({ name: "Home" });
@@ -138,8 +136,6 @@ export default {
           console.log(err);
         });
     },
-    // 여기서 vuex써서 dispatch로 username을 보내고 actions, mutaions 차례로 state에 username을 저장한다.
-    // 그리고 recommend를 누를 때 $store.state로 username을 받아 url에 같이 요청한다.
   },
 };
 </script>
@@ -156,8 +152,6 @@ export default {
   position: relative;
   width: auto;
   height: 600;
-  /* border: 1px solid; */
-  /* border-radius: 1px; */
 }
 
 .wrapper::after {

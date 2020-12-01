@@ -77,7 +77,6 @@ export default {
   methods: {
     getMovieList: function () {
       axios.get("http://127.0.0.1:8000/movies/movielist/").then((res) => {
-        // console.log(res.data[0].title)
         this.movies = res.data;
         this.cur_movies = _.slice(res.data, 0, 66);
         this.pre_movies = _.slice(res.data, 67, 136);

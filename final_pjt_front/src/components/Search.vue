@@ -1,6 +1,5 @@
 <template>
   <div class="d-flex justify-content-end mt-5">
-    <!-- <input @keydown="searchMovie" v-model="search" type="text" /> -->
     <button>
       <i><font-awesome-icon :icon="faSearch" size="1x" /></i>
     </button>
@@ -12,7 +11,6 @@
         :maxItem="20"
         placeholder="영화 제목을 입력하세요"
       >
-
       </Dropdown>
       <button></button>
     </span>
@@ -47,7 +45,7 @@ export default {
     searchSelected: function (event) {
       const movie_name = event.name;
       axios
-        .post('http://127.0.0.1:8000/movies/get_movie/', { name: movie_name })
+        .post("http://127.0.0.1:8000/movies/get_movie/", { name: movie_name })
         .then((res) => {
           console.log("changed");
           const received_movie = res.data;

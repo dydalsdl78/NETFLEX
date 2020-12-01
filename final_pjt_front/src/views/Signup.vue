@@ -159,8 +159,6 @@ export default {
   position: relative;
   width: auto;
   height: 600;
-  /* border: 1px solid; */
-  /* border-radius: 1px; */
 }
 .wrapper:after {
   width: 100%;

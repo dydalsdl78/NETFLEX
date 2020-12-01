@@ -91,12 +91,15 @@ export default {
 .nav-link {
   color: red;
 }
+
 .nav-link:hover {
   color: white;
 }
+
 .font-size-title {
   font-size: 15px;
 }
+
 .font-size-menus {
   font-size: 12px;
 }

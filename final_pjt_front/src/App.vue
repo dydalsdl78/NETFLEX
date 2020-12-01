@@ -23,7 +23,6 @@
 
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
-          <!-- 로그인 했을 때 -->
           <span v-if="login" class="form-inline">
             <li class="nav-item">
               <Search class="mb-5 mr-3" />
@@ -45,7 +44,6 @@
             </li>
           </span>
 
-          <!-- 로그인 안 했을 때 -->
           <span v-else class="form-inline">
             <li class="nav-item">
               <Search class="mb-5 mr-3" />

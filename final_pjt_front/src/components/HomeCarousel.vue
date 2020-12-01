@@ -6,11 +6,20 @@
     :paginationEnabled="true"
   >
     <slide>
-      <img src="@/assets/ddd.jpg" alt="" class="test" style="width: 100%" />
+      <img
+        src="@/assets/carousel1.jpg"
+        alt=""
+        class="test"
+        style="width: 100%"
+      />
       <p class="img-content">11월 4주차 인기작</p>
     </slide>
-    <slide><img src="@/assets/ccc.jpg" alt="" style="width: 100%" /> </slide>
-    <slide><img src="@/assets/aaa.png" alt="" style="width: 100%" /> </slide>
+    <slide
+      ><img src="@/assets/carousel2.jpg" alt="" style="width: 100%" />
+    </slide>
+    <slide
+      ><img src="@/assets/carousel3.png" alt="" style="width: 100%" />
+    </slide>
   </carousel>
 </template>
 

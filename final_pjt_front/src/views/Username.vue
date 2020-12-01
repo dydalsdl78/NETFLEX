@@ -3,7 +3,6 @@
 </template>
 
 <script>
-// 이파일 안쓰는듯요
 import axios from "axios";
 
 export default {

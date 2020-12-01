@@ -55,7 +55,6 @@
         넷플렉스 이용약관을 확인하였으며, 이에 동의합니다
       </label>
     </div>
-    <!-- <button @click="createReview" type="submit" class="btn btn-primary">제출</button> -->
     <small id="emailHelp" class="form-text text-muted">
       당신의 개인정보는 소중합니다
     </small>

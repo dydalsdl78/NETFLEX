@@ -1,6 +1,5 @@
 <template>
   <div id="MovieCard" class="card" style="width: 150px; height: 330px">
-    <!-- <div class="card" style="width: 15rem"> -->
     <img
       :src="'https://image.tmdb.org/t/p/w300' + recommend_movie.poster_path"
       class="card-img-top"
@@ -10,7 +9,7 @@
       <h5 class="card-title font-size-title">{{ recommend_movie.title }}</h5>
     </div>
     <div class="card-tail">
-      <div  class="container">
+      <div class="container">
         <router-link
           class="nav-link font-size-menus"
           :to="{

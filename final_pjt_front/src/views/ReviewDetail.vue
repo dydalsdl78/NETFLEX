@@ -1,13 +1,8 @@
 <template>
-  <!-- Page Content -->
   <div class="container">
     <div class="row">
-      <!-- Post Content Column -->
       <div class="col">
-        <!-- Title -->
         <h2 class="mt-4 mb-4">{{ review.title }}</h2>
-
-        <!-- Author -->
         <p class="lead">
           <router-link
             class="nav-link d-inline"
@@ -21,12 +16,10 @@
 
         <hr />
 
-        <!-- Date/Time -->
         <p>{{ review.created_at | slice }} 에 생성된 리뷰 입니다.</p>
 
         <hr />
 
-        <!-- Preview Image -->
         <div class="row">
           <div class="col">
             <router-link
@@ -63,8 +56,6 @@
           </div>
         </div>
 
-        <!-- Post Content -->
-
         <hr />
         <div class="text-right" v-if="user">
           <router-link
@@ -83,7 +74,6 @@
           <hr />
         </div>
 
-        <!-- Single Comment -->
         <div class="media mb-4" v-for="(comment, idx) in comments" :key="idx">
           <i
             ><font-awesome-icon
@@ -103,7 +93,6 @@
           </div>
         </div>
 
-        <!-- Comments Form -->
         <div class="card my-4" style="background-color: black">
           <h5 class="card-header text-left" style="background-color: black">
             댓글을 남겨주세요
@@ -126,12 +115,8 @@
           </div>
         </div>
       </div>
-
-      <!-- Sidebar Widgets Column -->
     </div>
-    <!-- /.row -->
   </div>
-  <!-- /.container -->
 </template>
 
 <script>
@@ -240,7 +225,6 @@ export default {
     },
     deleteReview: function () {
       if (confirm("삭제하시겠습니까?")) {
-        // Save it!
         console.log(this.review);
         axios
           .delete(`http://127.0.0.1:8000/movies/review_create_list/`, {
@@ -252,7 +236,6 @@ export default {
             this.$router.push({ name: "Community" });
           });
       } else {
-        // Do nothing!
         console.log("Thing was not saved to the database.");
       }
     },

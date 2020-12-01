@@ -50,7 +50,6 @@ def userReview(request):
     review_user = get_user_model().objects.values(
         'id').filter(username=request.user)
     reviews = Review.objects.filter(user_id=review_user[0]['id'])
-    # print(reviews[0])
     serializer = ReviewSerializer(reviews, many=True)
     return Response(serializer.data)
 
@@ -62,7 +61,6 @@ def userMovie(request):
     review_user = get_user_model().objects.values(
         'id').filter(username=request.user)
     movies = Movie.objects.filter(user_id=review_user[0]['id'])
-    # print(reviews[0])
     serializer = MovieSerializer(movies, many=True)
     print(serializer.data)
     return Response(serializer.data)

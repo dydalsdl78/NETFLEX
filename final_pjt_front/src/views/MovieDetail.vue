@@ -21,7 +21,6 @@
         </h2>
         <div class="d-flex mb-4 justify-content-center">
           <h5>{{ movie.release_date }} |</h5>
-          <!-- <h5 v-for="(name, idx) in genreName" :key="idx">{{ name.name }}</h5> -->
           <h5 v-for="(genre_id, idx) in movie.genre_ids" :key="idx">
             <button type="button" class="btn btn-secondary btn-sm ml-1">
               {{ genre_id.name }}
@@ -191,7 +190,6 @@ export default {
   created() {
     this.getRecommendedGenre();
     this.getRecommendedOverwiew();
-    // this.gertGenre();
     const token = localStorage.getItem("jwt");
     if (token) {
       this.login = true;
