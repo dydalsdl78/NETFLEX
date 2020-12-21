@@ -3,7 +3,6 @@ def genre_recommend(movie_title):
 
     from sklearn.feature_extraction.text import TfidfVectorizer
     from sklearn.metrics.pairwise import cosine_similarity
-    from eunjeon import Mecab
     import pandas as pd
     import numpy as np
     import json
@@ -96,6 +95,9 @@ def overview_recommend(movie_title):
     # 명사 기반
     movies_df['overview_token'] = movies_df['overview'].apply(
         lambda x: mecab.nouns(x))
+
+    # movies_df['overview_token'] = movies_df['overview'].apply(
+    #     lambda x: x.split())
     # 형태소 기반
 
     # 줄거리가 없는 영화 제거
