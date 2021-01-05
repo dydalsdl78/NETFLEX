@@ -18,7 +18,7 @@
 
 데이터 ERD
 
-![image-20201127000827802](C:\Users\kym\AppData\Roaming\Typora\typora-user-images\image-20201127000827802.png)
+![image-20201127000827802](/uploads/9a6a0688ce36a1c6a3536afbefed93ad/image-20201127000827802.png)
 
 User와 Review, User와 Comment, Movie와 Review, Movie와 Reivew가 모두 1:N 관계를 갖고 있고 Genre와 Movie가 Movie_genre_ids를 사이에 두고 M:N 관계를 갖고 있습니다. 
 
