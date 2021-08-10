@@ -64,3 +64,5 @@ def userMovie(request):
     serializer = MovieSerializer(movies, many=True)
     print(serializer.data)
     return Response(serializer.data)
+
+
