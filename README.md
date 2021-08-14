@@ -18,7 +18,7 @@
 
 데이터 ERD
 
-![image-20201127000827802](/uploads/9a6a0688ce36a1c6a3536afbefed93ad/image-20201127000827802.png)
+![ERD](https://user-images.githubusercontent.com/62883948/129454464-9fc8ef5b-eb1b-4a39-888c-ba9a31e3460e.png)
 
 User와 Review, User와 Comment, Movie와 Review, Movie와 Reivew가 모두 1:N 관계를 갖고 있고 Genre와 Movie가 Movie_genre_ids를 사이에 두고 M:N 관계를 갖고 있습니다. 
 
